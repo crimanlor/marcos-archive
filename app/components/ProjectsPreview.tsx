@@ -75,7 +75,7 @@ export default function ProjectsPreview() {
         <div className="mt-16 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
           >
             Ver todos los proyectos
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

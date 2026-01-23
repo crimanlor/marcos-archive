@@ -37,25 +37,25 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-gray-950 mb-6 mt-12">Áreas de expertise</h2>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8">
-                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors">
+                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-950 mb-2">Paisajismo</h3>
                   <p className="text-gray-600 text-sm">
                     Diseño de espacios verdes, jardines contemporáneos y reinterpretación del paisaje natural.
                   </p>
                 </div>
-                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors">
+                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-950 mb-2">Residencial</h3>
                   <p className="text-gray-600 text-sm">
                     Viviendas unifamiliares con enfoque naturalista y materiales sostenibles.
                   </p>
                 </div>
-                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors">
+                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-950 mb-2">Espacios Públicos</h3>
                   <p className="text-gray-600 text-sm">
                     Plazas, parques y espacios comunitarios que fomentan la conexión social.
                   </p>
                 </div>
-                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors">
+                <div className="p-6 border border-gray-200 hover:border-gray-950 transition-colors rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-950 mb-2">Acuarelas</h3>
                   <p className="text-gray-600 text-sm">
                     Interpretación artística y conceptual de proyectos arquitectónicos.

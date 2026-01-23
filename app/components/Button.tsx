@@ -19,7 +19,7 @@ export default function Button({
   href,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-medium transition-all duration-300 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-950';
+  const baseStyles = 'font-medium transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-950';
 
   const variantStyles = {
     primary: 'bg-gray-950 text-white hover:bg-gray-800',

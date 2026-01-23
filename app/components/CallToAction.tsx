@@ -13,10 +13,10 @@ export default function CallToAction() {
           Contacta conmigo para discutir tu proyecto y explorar cómo podemos crear espacios que inspiren.
         </p>
         <Link
-          href="#contact"
-          className="inline-block px-8 py-4 bg-white text-gray-950 font-medium hover:bg-gray-100 transition-colors duration-300"
+          href="/contact"
+          className="inline-block px-8 py-4 bg-white text-gray-950 font-medium hover:bg-gray-100 transition-colors duration-300 rounded-lg"
         >
-          Enviar mensaje
+          Contactar
         </Link>
       </div>
     </section>

@@ -13,6 +13,10 @@ const config: Config = {
         secondary: '#1a1a1a',
         accent: '#0d3d3d',
       },
+      borderRadius: {
+        'subtle': '0.5rem', // 8px - bordes sutiles para mejor UX
+        DEFAULT: '0.5rem',  // 8px como valor por defecto
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',

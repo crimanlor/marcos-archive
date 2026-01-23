@@ -11,7 +11,7 @@ export default function Navigation() {
       <nav className="container-portfolio flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <Link href="/" className="text-lg md:text-xl font-semibold tracking-tight hover:opacity-70 transition-opacity">
-          Estudio Arquitectura
+          Marcos Villén Rubio
         </Link>
 
         {/* Desktop Navigation */}
@@ -26,8 +26,8 @@ export default function Navigation() {
             Proyectos
           </Link>
           <Link
-            href="#contact"
-            className="px-6 py-2 bg-gray-950 text-white text-sm font-medium rounded-none hover:bg-gray-800 transition-colors"
+            href="/contact"
+            className="px-6 py-2 bg-gray-950 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
           >
             Contacto
           </Link>
@@ -58,7 +58,7 @@ export default function Navigation() {
             <Link href="/projects" className="text-sm font-medium hover:text-gray-600 transition-colors">
               Proyectos
             </Link>
-            <Link href="#contact" className="px-6 py-2 bg-gray-950 text-white text-sm font-medium text-center hover:bg-gray-800 transition-colors">
+            <Link href="/contact" className="px-6 py-2 bg-gray-950 text-white rounded-lg text-sm font-medium text-center hover:bg-gray-800 transition-colors">
               Contacto
             </Link>
           </div>

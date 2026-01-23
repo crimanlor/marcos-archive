@@ -45,13 +45,13 @@ export default function HeroSection() {
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/projects"
-            className="px-8 py-4 bg-gray-950 text-white font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg"
+            className="px-8 py-4 bg-gray-950 text-white font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg rounded-lg"
           >
             Ver proyectos
           </Link>
           <Link
             href="/about"
-            className="px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300"
+            className="px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
           >
             Conocer más
           </Link>

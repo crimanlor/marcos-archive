@@ -56,10 +56,10 @@ export default function ProjectsPage() {
               <Link
                 key={category.id}
                 href={`/projects/${category.slug}`}
-                className="group flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                className="group flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-lg"
               >
                 {/* Image container */}
-                <div className="relative w-full bg-gray-100 aspect-square overflow-hidden">
+                <div className="relative w-full bg-gray-100 aspect-square overflow-hidden rounded-t-lg">
                   <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <div className="text-center text-gray-500">
                       <svg className="w-12 h-12 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,8 +100,8 @@ export default function ProjectsPage() {
             Estoy disponible para nuevos proyectos. Contáctame para discutir tu idea.
           </p>
           <Link
-            href="#contact"
-            className="inline-block px-8 py-4 bg-white text-gray-950 font-medium hover:bg-gray-100 transition-colors duration-300"
+            href="/contact"
+            className="inline-block px-8 py-4 bg-white text-gray-950 font-medium hover:bg-gray-100 transition-colors duration-300 rounded-lg"
           >
             Enviar propuesta
           </Link>

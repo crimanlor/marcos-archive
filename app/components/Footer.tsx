@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Column 1: Brand */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Estudio Arquitectura</h3>
+            <h3 className="text-lg font-semibold mb-4">Marcos Villén Rubio</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Diseño minimalista, paisajismo contemporáneo y espacios que dialogan con la naturaleza.
             </p>
@@ -69,16 +69,16 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Estudio Arquitectura. Todos los derechos reservados.
+              © {currentYear} Marcos Villén Rubio. Todos los derechos reservados.
             </p>
-            <div className="flex gap-6 text-sm">
+            {/* <div className="flex gap-6 text-sm">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                 Privacidad
               </Link>
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                 Términos
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
