@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# Backups de imágenes originales (no subir al remoto - muy pesadas)
+/public/images/originales/
+public/images/originales
+
 # debug
 npm-debug.log*
 yarn-debug.log*

@@ -29,7 +29,7 @@ const projectCategories = [
     title: 'Archivo Fotográfico',
     description: 'Documentación visual de espacios y proyectos completados',
     slug: 'photography',
-    count: 45,
+    count: 36,
     image: '/images/image-project-3.jpg',
   },
 ];

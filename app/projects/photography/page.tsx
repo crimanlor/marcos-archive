@@ -1,10 +1,22 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Archivo Fotográfico | Arquitecto',
   description: 'Archivo fotográfico de proyectos, espacios y documentación visual de trabajos arquitectónicos',
 };
+
+// Array de imágenes disponibles
+const photos = [
+  '010.jpg', '022.jpg', '023.jpg', '024.jpg', '025.jpg', '033.jpg', '035.jpg', '036.jpg',
+  'photo-001.jpg', 'photo-002.jpg', 'photo-003.jpg', 'photo-004.jpg', 'photo-005.jpg',
+  'photo-006.jpg', 'photo-007.jpg', 'photo-008.jpg', 'photo-009.jpg', 'photo-011.jpg',
+  'photo-012.jpg', 'photo-013.jpg', 'photo-014.jpg', 'photo-015.jpg', 'photo-016.jpg',
+  'photo-017.jpg', 'photo-018.jpg', 'photo-019.jpg', 'photo-020.jpg', 'photo-021.jpg',
+  'photo-022.jpg', 'photo-026.jpg', 'photo-027.jpg', 'photo-028.jpg', 'photo-029.jpg',
+  'photo-030.jpg', 'photo-031.jpg', 'photo-032.jpg'
+];
 
 export default function PhotographyPage() {
   return (
@@ -30,29 +42,20 @@ export default function PhotographyPage() {
       {/* Photo grid */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Featured large photo */}
-            <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-gray-100 aspect-video rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 flex items-center justify-center cursor-pointer hover:bg-gray-200 group">
-              <div className="text-center text-gray-500">
-                <svg className="w-16 h-16 mx-auto mb-2 opacity-50 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-sm">Foto destacada 1</p>
-              </div>
-            </div>
-
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {/* Photos grid */}
-            {[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45].map((item) => (
+            {photos.map((photo, index) => (
               <div
-                key={item}
-                className="bg-gray-100 aspect-square rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 flex items-center justify-center cursor-pointer hover:bg-gray-200 group"
+                key={index}
+                className="relative bg-gray-100 aspect-square rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
               >
-                <div className="text-center text-gray-500">
-                  <svg className="w-12 h-12 mx-auto mb-2 opacity-50 group-hover:opacity-70 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-xs">Foto {item}</p>
-                </div>
+                <Image
+                  src={`/images/${photo}`}
+                  alt={`Archivo fotográfico ${index + 1}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
               </div>
             ))}
           </div>
