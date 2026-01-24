@@ -1,34 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import { landscapeProjects } from '../../lib/landscape';
 
 export const metadata: Metadata = {
   title: 'Proyectos Paisajísticos | Arquitecto',
   description: 'Galería de proyectos de paisajismo y diseño de espacios naturales contemporáneos',
 };
-
-const landscapeProjects = [
-  {
-    id: 1,
-    title: 'Jardín Minimalista',
-    location: 'Barcelona, España',
-    year: 2023,
-    description: 'Un jardín contemporáneo que integra elementos naturales con diseño geométrico. Piedra, agua y vegetación nativa crean un espacio de contemplación.',
-  },
-  {
-    id: 2,
-    title: 'Paisaje Urbano',
-    location: 'Madrid, España',
-    year: 2022,
-    description: 'Reconfiguración de un espacio público tradicional en un área metropolitana con enfoque naturalista.',
-  },
-  {
-    id: 3,
-    title: 'Terraza con Vistas',
-    location: 'Costa Brava, España',
-    year: 2023,
-    description: 'Integración de terrazas con el paisaje natural circundante, maximizando conexión visual con el entorno.',
-  },
-];
 
 export default function LandscapeProjectsPage() {
   return (
@@ -58,50 +36,68 @@ export default function LandscapeProjectsPage() {
             {landscapeProjects.map((project, index) => (
               <article key={project.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                 {/* Image */}
-                <div className={`w-full bg-gray-100 aspect-square rounded-lg flex items-center justify-center ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                  <div className="text-center text-gray-500 w-full h-full flex items-center justify-center">
-                    <div>
-                      <svg className="w-12 h-12 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-sm">Proyecto {project.id}</p>
-                    </div>
-                  </div>
+                <div className={`relative w-full bg-gray-100 aspect-square rounded-lg overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                  <Image
+                    src={`/images/${project.filename}`}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
 
                 {/* Content */}
                 <div className={index % 2 === 1 ? 'md:order-1' : ''}>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-950 mb-4">{project.title}</h2>
                   
-                  <div className="flex flex-col gap-2 mb-6 text-gray-600">
-                    <p><span className="font-semibold text-gray-950">Ubicación:</span> {project.location}</p>
-                    <p><span className="font-semibold text-gray-950">Año:</span> {project.year}</p>
+                 <div className="flex flex-col gap-2 mb-6 text-gray-600">
+                  <p><span className="font-semibold text-gray-950">Ubicación:</span> {project.location}</p>
+                  <p><span className="font-semibold text-gray-950">Año:</span> {project.year}</p>
+                  {project.area && (
+                    <p><span className="font-semibold text-gray-950">Superficie:</span> {project.area}</p>
+                  )}
+                  {project.category && (
+                    <p><span className="font-semibold text-gray-950">Categoría:</span> {project.category}</p>
+                  )}
+
+                  {/* Tag */}
+                  <div className="pt-2">
+                    <span className="inline-block text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
+                      {project.medium || 'Paisajismo'}
+                    </span>
                   </div>
+                </div>
+
 
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">{project.description}</p>
 
-                  <div className="flex flex-col gap-3">
-                    <div className="border-t border-gray-200 pt-6">
-                      <h3 className="text-sm font-semibold text-gray-950 mb-3">Características principales</h3>
-                      <ul className="space-y-2 text-gray-600 text-sm">
-                        <li className="flex items-start gap-2">
-                          <span className="text-gray-950 mt-1">•</span>
-                          <span>Diseño minimalista integrado con naturaleza</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-gray-950 mt-1">•</span>
-                          <span>Uso de materiales naturales y locales</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-gray-950 mt-1">•</span>
-                          <span>Sostenibilidad y respeto ambiental</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-gray-950 mt-1">•</span>
-                          <span>Espacios de contemplación y conexión</span>
-                        </li>
-                      </ul>
+                  {project.features && project.features.length > 0 && (
+                    <div className="flex flex-col gap-3">
+                      <div className="border-t border-gray-200 pt-6">
+                        <h3 className="text-sm font-semibold text-gray-950 mb-3">Características principales</h3>
+                        <ul className="space-y-2 text-gray-600 text-sm">
+                          {project.features.map((feature, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span className="text-gray-950 mt-1">•</span>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
+                  )}
+
+                  {/* Call to Action */}
+                  <div className="mt-8">
+                    <Link
+                      href={`/projects/landscape/${project.id}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gray-950 text-white rounded-lg hover:bg-gray-800 transition-colors"
+                    >
+                      Ver proyecto completo
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </article>

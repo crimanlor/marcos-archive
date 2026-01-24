@@ -1,78 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { watercolors } from '../../lib/watercolors';
 
 export const metadata: Metadata = {
   title: 'Acuarelas Arquitectónicas | Arquitecto',
   description: 'Galería de acuarelas: interpretación artística de proyectos y conceptos arquitectónicos',
 };
-
-// Array de acuarelas con información
-const watercolors = [
-  {
-    id: 1,
-    title: 'Jardín de Contemplación',
-    description: 'Exploración de espacios verdes integrados con arquitectura minimalista',
-    image: '/images/watercolor-001.jpg',
-    orientation: 'vertical', // 1600x2000
-  },
-  {
-    id: 2,
-    title: 'Luz y Sombra',
-    description: 'Estudio de contrastes lumínicos en espacios interiores',
-    image: '/images/watercolor-002.jpg',
-    orientation: 'horizontal', // 2000x1600
-  },
-  {
-    id: 3,
-    title: 'Paisaje Natural',
-    description: 'Interpretación de la relación entre construcción y naturaleza',
-    image: '/images/watercolor-003.jpg',
-    orientation: 'vertical', // 1600x2000
-  },
-  {
-    id: 4,
-    title: 'Materiales Orgánicos',
-    description: 'Texturas y formas naturales aplicadas al diseño',
-    image: '/images/watercolor-004.jpg',
-    orientation: 'vertical', // 1600x2000
-  },
-  {
-    id: 5,
-    title: 'Espacio Fluido',
-    description: 'Conceptualización de espacios abiertos y continuos',
-    image: '/images/watercolor-005.jpg',
-    orientation: 'horizontal', // 2000x1599
-  },
-  {
-    id: 6,
-    title: 'Geometría Natural',
-    description: 'Patrones geométricos inspirados en formas orgánicas',
-    image: '/images/watercolor-006.jpg',
-    orientation: 'horizontal', // 2000x1599
-  },
-  {
-    id: 7,
-    title: 'Refugio Minimalista',
-    description: 'Concepto de espacio reducido a su esencia',
-    image: '/images/watercolor-007.jpg',
-    orientation: 'horizontal', // 2000x1600
-  },
-  {
-    id: 8,
-    title: 'Transición Interior-Exterior',
-    description: 'Difuminación de límites entre espacios construidos y naturales',
-    image: '/images/watercolor-008.jpg',
-    orientation: 'horizontal', // 2000x1600
-  },
-  {
-    id: 9,
-    title: 'Composición Abstracta',
-    description: 'Interpretación libre de formas y colores arquitectónicos',
-    image: '/images/watercolor-009.jpg',
-    orientation: 'vertical', // 1600x2000
-  },
-];
 
 export default function WatercolorsPage() {
   return (
@@ -111,7 +45,7 @@ export default function WatercolorsPage() {
                     : 'max-w-2xl aspect-[5/4]'
                 }`}>
                   <Image
-                    src={watercolor.image}
+                    src={`/images/${watercolor.filename}`}
                     alt={watercolor.title}
                     fill
                     className="object-contain group-hover:scale-[1.02] transition-transform duration-500"
@@ -140,8 +74,8 @@ export default function WatercolorsPage() {
 
                   {/* Metadata */}
                   <div className="flex flex-wrap gap-3 text-sm text-gray-500 justify-center">
-                    <span className="px-3 py-1 bg-gray-100 rounded-full">Acuarela</span>
-                    <span className="px-3 py-1 bg-gray-100 rounded-full">2023-2024</span>
+                    <span className="px-3 py-1 bg-gray-100 rounded-full">{watercolor.medium || 'Acuarela'}</span>
+                    <span className="px-3 py-1 bg-gray-100 rounded-full">{watercolor.year}</span>
                   </div>
                 </div>
               </article>

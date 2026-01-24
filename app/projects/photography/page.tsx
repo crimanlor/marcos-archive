@@ -1,15 +1,6 @@
-import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-
-export const metadata: Metadata = {
-  title: 'Archivo Fotográfico | Arquitecto',
-  description: 'Archivo fotográfico de proyectos, espacios y documentación visual de trabajos arquitectónicos',
-};
-
-// Array de imágenes disponibles
-const photos = Array.from({ length: 36 }, (_, i) => i + 1)
-  .map((num) => `photo-${String(num).padStart(3, '0')}.jpg`);
+import { photos } from '../../lib/photos';
 
 export default function PhotographyPage() {
   return (
@@ -37,19 +28,20 @@ export default function PhotographyPage() {
         <div className="container-portfolio">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {/* Photos grid */}
-            {photos.map((photo, index) => (
-              <div
-                key={index}
+            {photos.map((photo) => (
+              <Link
+                key={photo.id}
+                href={`/projects/photography/${photo.id}`}
                 className="relative bg-gray-100 aspect-square rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
               >
                 <Image
-                  src={`/images/${photo}`}
-                  alt={`Archivo fotográfico ${index + 1}`}
+                  src={`/images/${photo.filename}`}
+                  alt={photo.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
