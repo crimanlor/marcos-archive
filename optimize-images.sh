@@ -15,14 +15,15 @@ count=0
 # Crear carpeta temporal para las originales si no existe
 mkdir -p "$IMAGE_DIR/originales"
 
-# Buscar todas las imágenes JPG y JPEG
-for img in "$IMAGE_DIR"/*.{jpg,jpeg,JPG,JPEG} 2>/dev/null; do
-  # Verificar si el archivo existe
+# Función para procesar una imagen
+process_image() {
+  local img="$1"
+  local quality="${2:-80}"
+  
   if [ -f "$img" ]; then
-    # Obtener el nombre del archivo
     filename=$(basename "$img")
     
-    # Verificar si ya está en la carpeta de originales (para no procesar dos veces)
+    # Verificar si ya está en la carpeta de originales
     if [[ ! "$img" == *"/originales/"* ]]; then
       # Obtener el tamaño original
       original_size=$(du -h "$img" | cut -f1)
@@ -30,8 +31,12 @@ for img in "$IMAGE_DIR"/*.{jpg,jpeg,JPG,JPEG} 2>/dev/null; do
       # Hacer backup del original
       cp "$img" "$IMAGE_DIR/originales/$filename"
       
-      # Optimizar la imagen (max 2000px, calidad 80%)
-      sips -Z 2000 --setProperty formatOptions 80 "$img" --out "$img" > /dev/null 2>&1
+      # Optimizar la imagen (max 2000px, calidad especificada)
+      if [[ "$img" == *.png ]] || [[ "$img" == *.PNG ]]; then
+        sips -Z 2000 "$img" --out "$img" > /dev/null 2>&1
+      else
+        sips -Z 2000 --setProperty formatOptions "$quality" "$img" --out "$img" > /dev/null 2>&1
+      fi
       
       # Obtener el nuevo tamaño
       new_size=$(du -h "$img" | cut -f1)
@@ -43,26 +48,20 @@ for img in "$IMAGE_DIR"/*.{jpg,jpeg,JPG,JPEG} 2>/dev/null; do
       ((count++))
     fi
   fi
+}
+
+# Procesar imágenes JPG y JPEG
+for ext in jpg jpeg JPG JPEG; do
+  for img in "$IMAGE_DIR"/*."$ext"; do
+    process_image "$img" 80
+  done
 done
 
-# Buscar también imágenes PNG
-for img in "$IMAGE_DIR"/*.{png,PNG} 2>/dev/null; do
-  if [ -f "$img" ]; then
-    filename=$(basename "$img")
-    
-    if [[ ! "$img" == *"/originales/"* ]]; then
-      original_size=$(du -h "$img" | cut -f1)
-      cp "$img" "$IMAGE_DIR/originales/$filename"
-      sips -Z 2000 "$img" --out "$img" > /dev/null 2>&1
-      new_size=$(du -h "$img" | cut -f1)
-      
-      echo "✅ $filename"
-      echo "   Antes: $original_size → Después: $new_size"
-      echo ""
-      
-      ((count++))
-    fi
-  fi
+# Procesar imágenes PNG
+for ext in png PNG; do
+  for img in "$IMAGE_DIR"/*."$ext"; do
+    process_image "$img"
+  done
 done
 
 if [ $count -eq 0 ]; then

@@ -21,7 +21,7 @@ const projectCategories = [
     title: 'Acuarelas Arquitectónicas',
     description: 'Interpretación artística y conceptual de proyectos',
     slug: 'watercolors',
-    count: 12,
+    count: 8,
     image: '/images/image-projects-2.jpg',
   },
   {
