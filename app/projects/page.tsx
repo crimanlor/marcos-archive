@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Proyectos | Arquitecto',
@@ -13,7 +14,7 @@ const projectCategories = [
     description: 'Diseño contemporáneo de espacios naturales y jardines minimalistas',
     slug: 'landscape',
     count: 8,
-    image: 'landscape.jpg',
+    image: '/images/image-projects-1.jpg',
   },
   {
     id: 'watercolors',
@@ -21,7 +22,7 @@ const projectCategories = [
     description: 'Interpretación artística y conceptual de proyectos',
     slug: 'watercolors',
     count: 12,
-    image: 'watercolors.jpg',
+    image: '/images/image-projects-2.jpg',
   },
   {
     id: 'photography',
@@ -29,7 +30,7 @@ const projectCategories = [
     description: 'Documentación visual de espacios y proyectos completados',
     slug: 'photography',
     count: 45,
-    image: 'photography.jpg',
+    image: '/images/image-project-3.jpg',
   },
 ];
 
@@ -52,23 +53,30 @@ export default function ProjectsPage() {
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projectCategories.map((category) => (
+            {projectCategories.map((category, index) => (
               <Link
                 key={category.id}
                 href={`/projects/${category.slug}`}
-                className="group flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-lg"
+                className="group flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-lg bg-stone-100"
               >
-                {/* Image container */}
-                <div className="relative w-full bg-gray-100 aspect-square overflow-hidden rounded-t-lg">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <div className="text-center text-gray-500">
-                      <svg className="w-12 h-12 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-xs">{category.image}</p>
-                    </div>
-                  </div>
+                {/* Number header */}
+                <div className="p-6 pb-4">
+                  <h3 className="text-5xl font-bold text-gray-950 mb-3">
+                    {String(index + 1).padStart(2, '0')}
+                  </h3>
+                  <div className="w-full h-px bg-gray-300"></div>
+                </div>
 
+                {/* Image container */}
+                <div className="relative w-full bg-gray-100 aspect-square overflow-hidden">
+                  <Image
+                    src={category.image}
+                    alt={category.title}
+                    fill
+                    className={`object-cover ${index === 2 ? 'object-top' : ''}`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                 </div>
@@ -79,12 +87,11 @@ export default function ProjectsPage() {
                     {category.title}
                   </h2>
                   <p className="text-gray-600 mb-4 flex-1">{category.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <span className="text-sm text-gray-500">{category.count} elementos</span>
+                  {/* <div className="flex items-center justify-end pt-4 border-t border-gray-200">
                     <svg className="w-5 h-5 text-gray-950 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </div>
+                  </div> */}
                 </div>
               </Link>
             ))}

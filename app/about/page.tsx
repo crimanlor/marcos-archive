@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Sobre mí | Arquitecto',
@@ -20,9 +21,9 @@ export default function AboutPage() {
       {/* Main content */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
             {/* Main text */}
-            <div className="md:col-span-2 prose prose-lg max-w-none">
+            <div className="md:col-span-3 prose prose-lg max-w-none">
               <h2 className="text-3xl font-bold text-gray-950 mb-6">Quién soy</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Soy un arquitecto especializado en diseño minimalista y paisajismo contemporáneo. Mi práctica se fundamenta en la creencia de que la arquitectura debe establecer un diálogo respetuoso con la naturaleza.
@@ -65,16 +66,20 @@ export default function AboutPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="md:col-span-1">
-              {/* Image placeholder */}
-              <div className="bg-gradient-to-br from-gray-200 to-gray-300 aspect-square rounded-lg flex items-center justify-center mb-8 h-64 md:h-80">
-                <div className="text-center text-gray-500">
-                  <svg className="w-12 h-12 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-sm">Foto del arquitecto</p>
-                </div>
-              </div>
+            <div className="md:col-span-2">
+              {/* Image */}
+<div className="relative aspect-square w-full mb-8 rounded-lg overflow-hidden border border-neutral-200">
+  <Image
+    src="/images/image-quien-soy-1.jpg"
+    alt="Marcos Villén Rubio - Arquitecto"
+    fill
+    className="object-cover object-center"
+    priority
+  />
+</div>
+
+
+
 
               {/* Credentials */}
               <div className="border border-gray-200 p-6 rounded-lg">
