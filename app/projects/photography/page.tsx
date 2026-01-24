@@ -8,15 +8,8 @@ export const metadata: Metadata = {
 };
 
 // Array de imágenes disponibles
-const photos = [
-  '010.jpg', '022.jpg', '023.jpg', '024.jpg', '025.jpg', '033.jpg', '035.jpg', '036.jpg',
-  'photo-001.jpg', 'photo-002.jpg', 'photo-003.jpg', 'photo-004.jpg', 'photo-005.jpg',
-  'photo-006.jpg', 'photo-007.jpg', 'photo-008.jpg', 'photo-009.jpg', 'photo-011.jpg',
-  'photo-012.jpg', 'photo-013.jpg', 'photo-014.jpg', 'photo-015.jpg', 'photo-016.jpg',
-  'photo-017.jpg', 'photo-018.jpg', 'photo-019.jpg', 'photo-020.jpg', 'photo-021.jpg',
-  'photo-022.jpg', 'photo-026.jpg', 'photo-027.jpg', 'photo-028.jpg', 'photo-029.jpg',
-  'photo-030.jpg', 'photo-031.jpg', 'photo-032.jpg'
-];
+const photos = Array.from({ length: 36 }, (_, i) => i + 1)
+  .map((num) => `photo-${String(num).padStart(3, '0')}.jpg`);
 
 export default function PhotographyPage() {
   return (

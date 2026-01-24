@@ -23,8 +23,8 @@ process_image() {
   if [ -f "$img" ]; then
     filename=$(basename "$img")
     
-    # Verificar si ya está en la carpeta de originales
-    if [[ ! "$img" == *"/originales/"* ]]; then
+    # Verificar si ya está en la carpeta de originales (significa que ya fue procesada)
+    if [[ ! "$img" == *"/originales/"* ]] && [[ ! -f "$IMAGE_DIR/originales/$filename" ]]; then
       # Obtener el tamaño original
       original_size=$(du -h "$img" | cut -f1)
       
