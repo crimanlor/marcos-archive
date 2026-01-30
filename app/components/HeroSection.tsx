@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 export default function HeroSection() {
@@ -19,12 +20,21 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 -z-10" />
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/image-hero.jpg"
+          alt="Arquitectura y naturaleza"
+          fill
+          className="object-cover"
+          priority
+          quality={90}
+        />
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-white/70" />
+      </div>
       
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+      {/* Decorative elements - removed as image is now background */}
 
       {/* Content */}
       <div className="container-portfolio text-center z-10 max-w-3xl">
