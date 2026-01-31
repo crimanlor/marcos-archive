@@ -10,14 +10,14 @@ export default function ContactPage() {
   return (
     <div className="pt-20 md:pt-24">
       {/* Hero section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="container-portfolio max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-950 text-balance">
             Hablemos de tu proyecto
           </h1>
-          <p className="text-xl text-gray-600 text-balance">
+          {/* <p className="text-xl text-gray-600 text-balance">
             Estoy disponible para nuevos proyectos de arquitectura y paisajismo. No dudes en contactarme para explorar cómo podemos crear espacios excepcionales juntos.
-          </p>
+          </p> */}
         </div>
       </section>
 

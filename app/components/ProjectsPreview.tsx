@@ -40,11 +40,11 @@ const projectCategories = [
 
 export default function ProjectsPreview() {
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-20 md:py-20 bg-white">
       <div className="container-portfolio">
         {/* Section header */}
-        <div className="mb-16 md:mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-950 mb-6 text-balance">
+        <div className="mb-16 md:mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-950 mb-2 text-balance">
             Proyectos
           </h2>
           {/* <p className="text-lg text-gray-600 max-w-2xl text-balance">

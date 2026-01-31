@@ -63,7 +63,7 @@ export default function HeroSection() {
             href="/about"
             className="px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
           >
-            Sobre mi
+            Sobre mí
           </Link>
         </div>
       </div>
