@@ -61,11 +61,11 @@ export default function LandscapeProjectsPage() {
                   )}
 
                   {/* Tag */}
-                  <div className="pt-2">
+                  {/* <div className="pt-2">
                     <span className="inline-block text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
                       {project.medium || 'Paisajismo'}
                     </span>
-                  </div>
+                  </div> */}
                 </div>
 
 

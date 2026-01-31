@@ -163,9 +163,9 @@ export default function LandscapeProjectDetailPage() {
           <div className="container-portfolio max-w-6xl">
             <h2 className="text-3xl font-bold text-gray-950 mb-12">Galería del proyecto</h2>
             
-            {/* Two images in a row */}
+            {/* Three images in a row */}
             {project.detailImages && project.detailImages.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 {project.detailImages.map((img, idx) => (
                   <div key={idx} className="group">
                     <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
@@ -174,7 +174,7 @@ export default function LandscapeProjectDetailPage() {
                         alt={img.caption || `Detalle ${idx + 1}`}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
                     {img.caption && (
@@ -205,7 +205,17 @@ export default function LandscapeProjectDetailPage() {
 
             {/* Large plan image */}
             {project.planImage && (
-              <div>
+              <div className="mb-12">
+                {/* Strategy section if available */}
+                {project.strategy && (
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-gray-950 mb-4">{project.strategy.title}</h3>
+                    <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                      {project.strategy.description}
+                    </p>
+                  </div>
+                )}
+                
                 <div className="relative w-full aspect-[16/9] bg-white rounded-lg overflow-hidden mb-4 border border-gray-200">
                   <Image
                     src={`/images/${project.planImage.filename}`}
@@ -215,9 +225,22 @@ export default function LandscapeProjectDetailPage() {
                     sizes="(max-width: 1280px) 100vw, 1280px"
                   />
                 </div>
-                {project.planImage.caption && (
-                  <p className="text-sm text-gray-600 text-center font-medium">{project.planImage.caption}</p>
+                {(project.strategy?.planCaption || project.planImage.caption) && (
+                  <p className="text-sm text-gray-600 text-center">
+                    {project.strategy?.planCaption || project.planImage.caption}
+                  </p>
                 )}
+              </div>
+            )}
+
+            {/* Author note section */}
+            {project.authorNote && (
+              <div className="border-t border-gray-200 pt-12">
+                <div className="max-w-3xl mx-auto">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {project.authorNote}
+                  </p>
+                </div>
               </div>
             )}
           </div>
