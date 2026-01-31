@@ -84,10 +84,10 @@ export default function PhotographyPage() {
         <div className="container-portfolio max-w-3xl">
           <h2 className="text-3xl font-bold text-gray-950 mb-6">Documentación visual</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Cada fotografía captura momentos específicos de nuestros proyectos, documentando tanto el resultado final como los detalles que hacen única cada creación.
+            Mi mirada se detiene en las relaciones: entre lo natural y lo artificial, entre lo orgánico y lo hierático, entre lo vivo y lo construido. 
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Desde vistas aéreas de paisajes intervenidos hasta close-ups de materiales y texturas, este archivo es un testimonio visual del proceso creativo y del diálogo constante entre diseño e implementación.
+            Me interesa cómo la vegetación ocupa, transforma o dialoga con estructuras existentes, y cómo pequeños gestos activan el paisaje. El archivo fotográfico funciona como un registro de estas interacciones.
           </p>
         </div>
       </section>
