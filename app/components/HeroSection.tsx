@@ -30,8 +30,14 @@ export default function HeroSection() {
           priority
           quality={90}
         />
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-white/70" />
+        {/* Overlay for better text readability - radial gradient for center focus */}
+        <div className="absolute inset-0 bg-white/40" />
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.3) 70%, transparent 100%)'
+          }}
+        />
       </div>
       
       {/* Decorative elements - removed as image is now background */}
@@ -41,13 +47,15 @@ export default function HeroSection() {
         <h1
           ref={titleRef}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-950 mb-6 leading-tight text-balance"
+          style={{ textShadow: '0 2px 8px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)' }}
         >
-          Arquitectura que respira paisaje
+          Arquitectura <br></br>del paisaje
         </h1>
 
         <p
           ref={subtitleRef}
           className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed text-balance max-w-2xl mx-auto"
+          style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(255, 255, 255, 0.7)' }}
         >
           Urbanismo · Biofilia · Regeneración ecológica
         </p>

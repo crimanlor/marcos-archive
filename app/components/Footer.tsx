@@ -46,11 +46,6 @@ export default function Footer() {
                   contact@example.com
                 </a>
               </li>
-              <li>
-                <a href="tel:+34000000000" className="text-gray-400 hover:text-white transition-colors">
-                  +34 000 000 000
-                </a>
-              </li>
               <li className="pt-2">
                 <div className="flex gap-4">
                   <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
