@@ -1,8 +1,28 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { photos } from '../../lib/photos';
+import PhotoModal from '../../components/PhotoModal';
 
 export default function PhotographyPage() {
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+
+  const handleNext = () => {
+    if (selectedPhotoIndex !== null && selectedPhotoIndex < photos.length - 1) {
+      setSelectedPhotoIndex(selectedPhotoIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (selectedPhotoIndex !== null && selectedPhotoIndex > 0) {
+      setSelectedPhotoIndex(selectedPhotoIndex - 1);
+    }
+  };
+
+  const selectedPhoto = selectedPhotoIndex !== null ? photos[selectedPhotoIndex] : null;
+
   return (
     <div className="pt-20 md:pt-24">
       {/* Hero section */}
@@ -28,10 +48,10 @@ export default function PhotographyPage() {
         <div className="container-portfolio">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {/* Photos grid */}
-            {photos.map((photo) => (
-              <Link
+            {photos.map((photo, index) => (
+              <button
                 key={photo.id}
-                href={`/projects/photography/${photo.id}`}
+                onClick={() => setSelectedPhotoIndex(index)}
                 className="relative bg-gray-100 aspect-square rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
               >
                 <Image
@@ -41,11 +61,23 @@ export default function PhotographyPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-              </Link>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Photo Modal */}
+      <PhotoModal
+        isOpen={selectedPhoto !== null}
+        onClose={() => setSelectedPhotoIndex(null)}
+        imageSrc={selectedPhoto ? `/images/${selectedPhoto.filename}` : ''}
+        imageAlt={selectedPhoto?.title || ''}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        hasNext={selectedPhotoIndex !== null && selectedPhotoIndex < photos.length - 1}
+        hasPrevious={selectedPhotoIndex !== null && selectedPhotoIndex > 0}
+      />
 
       {/* About section */}
       <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
