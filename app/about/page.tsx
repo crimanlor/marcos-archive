@@ -21,7 +21,7 @@ export default function AboutPage() {
       {/* Main content */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:items-center">
             {/* Main text */}
             <div className="md:col-span-3 prose prose-lg max-w-none">
               <h2 className="text-3xl font-bold text-gray-950 mb-6">Quién soy</h2>
@@ -41,16 +41,12 @@ export default function AboutPage() {
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Me atraen los proyectos donde el paisaje dialoga con la arquitectura y la ciudad: espacios públicos, cubiertas verdes, patios, parques, entornos educativos o áreas en proceso de transformación, con una atención especial al bienestar colectivo y la sostenibilidad.
               </p>
-
             </div>
-
-
-
 
             {/* Sidebar */}
             <div className="md:col-span-2">
               {/* Image */}
-            <div className="relative aspect-square w-full rounded-lg overflow-hidden border border-neutral-200">
+            <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden border border-neutral-200">
               <Image
                 src="/images/image-quien-soy-1.jpg"
                 alt="Marcos Villén Rubio - Arquitecto"
