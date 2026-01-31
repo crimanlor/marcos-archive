@@ -30,8 +30,16 @@ const projectCategories = [
     description: 'Documentación visual de espacios y proyectos completados',
     slug: 'photography',
     count: 36,
-    image: '/images/image-project-3.jpg',
+    image: '/images/image-projects-3.jpg',
   },
+  {
+    id: 'references',
+    title: 'Referencias',
+    description: 'Documentación visual de espacios y proyectos completados',
+    slug: 'references',
+    count: 1,
+    image: '/images/image-projects-4.jpg',
+  }
 ];
 
 export default function ProjectsPage() {
@@ -52,12 +60,12 @@ export default function ProjectsPage() {
       {/* Projects grid */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {projectCategories.map((category, index) => (
               <Link
                 key={category.id}
                 href={`/projects/${category.slug}`}
-                className="group flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-lg bg-stone-100"
+                className="group flex flex-col overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 rounded-lg bg-stone-100"
               >
                 {/* Number header */}
                 <div className="p-6 pb-4">
@@ -100,7 +108,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA section */}
-      <section className="py-16 md:py-24 bg-gray-950 text-white border-t border-gray-800">
+      {/* <section className="py-16 md:py-24 bg-gray-950 text-white border-t border-gray-800">
         <div className="container-portfolio text-center max-w-2xl mx-auto">
           <h2 className="text-4xl font-bold mb-6">¿Interesado en colaborar?</h2>
           <p className="text-lg text-gray-300 mb-8">
@@ -113,7 +121,7 @@ export default function ProjectsPage() {
             Enviar propuesta
           </Link>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

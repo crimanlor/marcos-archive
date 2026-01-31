@@ -42,14 +42,14 @@ export default function HeroSection() {
           ref={titleRef}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-950 mb-6 leading-tight text-balance"
         >
-          Arquitectura que respira naturaleza
+          Arquitectura que respira paisaje
         </h1>
 
         <p
           ref={subtitleRef}
           className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed text-balance max-w-2xl mx-auto"
         >
-          Diseño minimalista, paisajismo contemporáneo y espacios que dialogan con el entorno. Cada proyecto es una reflexión sobre la relación entre hombre, arquitectura y naturaleza.
+          Urbanismo · Biofilia · Regeneración ecológica
         </p>
 
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -63,7 +63,7 @@ export default function HeroSection() {
             href="/about"
             className="px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
           >
-            Conocer más
+            Sobre mi
           </Link>
         </div>
       </div>
