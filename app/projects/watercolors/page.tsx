@@ -1,14 +1,28 @@
+'use client';
+
+import { useState } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { watercolors } from '../../lib/watercolors';
-
-export const metadata: Metadata = {
-  title: 'Acuarelas Arquitectónicas | Arquitecto',
-  description: 'Galería de acuarelas: interpretación artística de proyectos y conceptos arquitectónicos',
-};
+import PhotoModal from '../../components/PhotoModal';
 
 export default function WatercolorsPage() {
+  const [selectedWatercolorIndex, setSelectedWatercolorIndex] = useState<number | null>(null);
+
+  const handleNext = () => {
+    if (selectedWatercolorIndex !== null && selectedWatercolorIndex < watercolors.length - 1) {
+      setSelectedWatercolorIndex(selectedWatercolorIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (selectedWatercolorIndex !== null && selectedWatercolorIndex > 0) {
+      setSelectedWatercolorIndex(selectedWatercolorIndex - 1);
+    }
+  };
+
+  const selectedWatercolor = selectedWatercolorIndex !== null ? watercolors[selectedWatercolorIndex] : null;
   return (
     <div className="pt-20 md:pt-24">
       {/* Hero section */}
@@ -21,7 +35,7 @@ export default function WatercolorsPage() {
             Volver a proyectos
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
-            Acuarelas Arquitectónicas
+            Sketching
           </h1>
           <p className="text-xl text-gray-600 text-balance">
             Una colección de acuarelas que exploran la interpretación artística de conceptos arquitectónicos, espacios y visiones naturalistas.
@@ -29,62 +43,42 @@ export default function WatercolorsPage() {
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Gallery Grid */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
-        <div className="container-portfolio max-w-5xl">
-          <div className="space-y-24">
+        <div className="container-portfolio">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {watercolors.map((watercolor, index) => (
-              <article 
-                key={watercolor.id} 
-                className="flex flex-col items-center"
+              <button
+                key={watercolor.id}
+                onClick={() => setSelectedWatercolorIndex(index)}
+                className="relative bg-gray-50 aspect-square rounded-lg overflow-hidden group shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
               >
-                {/* Image - Centrada y prominente */}
-                <div className={`relative w-full mb-8 shadow-sm border border-gray-100 bg-white rounded-lg overflow-hidden group ${
-                  watercolor.orientation === 'vertical' 
-                    ? 'max-w-xl aspect-[4/5]' 
-                    : 'max-w-2xl aspect-[5/4]'
-                }`}>
-                  <Image
-                    src={`/images/${watercolor.filename}`}
-                    alt={watercolor.title}
-                    fill
-                    className="object-contain group-hover:scale-[1.02] transition-transform duration-500"
-                    sizes={watercolor.orientation === 'vertical' 
-                      ? '(max-width: 768px) 100vw, 576px' 
-                      : '(max-width: 768px) 100vw, 672px'}
-                  />
-                </div>
-
-                {/* Content - Debajo y centrado */}
-                <div className="max-w-2xl text-center">
-                  {/* Number */}
-                  <p className="text-sm font-semibold text-gray-400 mb-3 tracking-wider">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  
-                  {/* Title */}
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-950 mb-4 text-balance">
-                    {watercolor.title}
-                  </h2>
-                  
-                  {/* Description */}
-                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                    {watercolor.description}
-                  </p>
-
-                  {/* Metadata */}
-                  <div className="flex flex-wrap gap-3 text-sm text-gray-500 justify-center">
-                    <span className="px-3 py-1 bg-gray-100 rounded-full">{watercolor.medium || 'Acuarela'}</span>
-                    <span className="px-3 py-1 bg-gray-100 rounded-full">{watercolor.year}</span>
-                  </div>
-                </div>
-              </article>
+                <Image
+                  src={`/images/${watercolor.filename}`}
+                  alt={watercolor.title}
+                  fill
+                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About section */}
+      {/* Watercolor Modal */}
+      <PhotoModal
+        isOpen={selectedWatercolor !== null}
+        onClose={() => setSelectedWatercolorIndex(null)}
+        imageSrc={selectedWatercolor ? `/images/${selectedWatercolor.filename}` : ''}
+        imageAlt={selectedWatercolor?.title || ''}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        hasNext={selectedWatercolorIndex !== null && selectedWatercolorIndex < watercolors.length - 1}
+        hasPrevious={selectedWatercolorIndex !== null && selectedWatercolorIndex > 0}
+      />
+
+{/* About section */}
       <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
         <div className="container-portfolio max-w-3xl">
           <h2 className="text-3xl font-bold text-gray-950 mb-6">Sobre esta serie</h2>

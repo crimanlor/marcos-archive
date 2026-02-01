@@ -17,7 +17,7 @@ export const projectCategories: ProjectCategory[] = [
   },
   {
     id: 'watercolors',
-    title: 'Acuarelas Arquitectónicas',
+    title: 'Sketching',
     description: 'Interpretación artística de espacios y conceptos',
     slug: 'watercolors',
     count: 12,

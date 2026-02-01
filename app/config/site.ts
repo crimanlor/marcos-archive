@@ -60,7 +60,7 @@ export const siteConfig = {
     },
     {
       id: 'watercolors',
-      name: 'Acuarelas Arquitectónicas',
+      name: 'Sketching',
       slug: 'watercolors',
       description: 'Interpretación artística de espacios y conceptos',
       icon: '🎨',

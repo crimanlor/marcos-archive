@@ -80,9 +80,19 @@ export default function LandscapeProjectDetailPage() {
               {project.additionalInfo && (
                 <div className="border-t border-gray-200 pt-8 mb-8">
                   <h2 className="text-2xl font-bold text-gray-950 mb-4">Sobre este proyecto</h2>
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    {project.additionalInfo}
-                  </p>
+                  <div className="space-y-4">
+                    {Array.isArray(project.additionalInfo) ? (
+                      project.additionalInfo.map((paragraph, idx) => (
+                        <p key={idx} className="text-lg text-gray-700 leading-relaxed">
+                          {paragraph}
+                        </p>
+                      ))
+                    ) : (
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        {project.additionalInfo}
+                      </p>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -141,6 +151,17 @@ export default function LandscapeProjectDetailPage() {
                       </p>
                     </div>
                   )}
+                  {project.distance && (
+                    <div>
+                      <p className="text-sm text-gray-500 mb-1">Distancia</p>
+                      <p className="text-gray-950 font-medium flex items-center gap-2">
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                        </svg>
+                        {project.distance}
+                      </p>
+                    </div>
+                  )}
 
                   {project.category && (
                     <div>
@@ -157,6 +178,31 @@ export default function LandscapeProjectDetailPage() {
         </div>
       </section>
 
+      {/* Plants and Textures Section */}
+      {project.plantsAndTextures && project.plantsAndTextures.length > 0 && (
+        <section className="py-16 md:py-24 bg-white border-t border-gray-200">
+          <div className="container-portfolio max-w-6xl">
+            <h2 className="text-3xl font-bold text-gray-950 mb-12">Plantas y texturas</h2>
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-4">
+              {project.plantsAndTextures.map((item, idx) => (
+                <div key={idx} className="text-center">
+                  <div className="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden mb-3">
+                    <Image
+                      src={`/images/${item.filename}`}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 25vw, (max-width: 768px) 16vw, (max-width: 1024px) 12vw, 9vw"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-700 font-medium leading-tight">{item.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Additional Project Images Gallery */}
       {(project.detailImages || project.featureImage || project.planImage) && (
         <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
@@ -165,10 +211,10 @@ export default function LandscapeProjectDetailPage() {
             
             {/* Three images in a row */}
             {project.detailImages && project.detailImages.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className={`grid grid-cols-1 gap-8 mb-12 ${project.detailImages.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
                 {project.detailImages.map((img, idx) => (
                   <div key={idx} className="group">
-                    <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                    <div className={`relative w-full bg-gray-100 rounded-lg overflow-hidden mb-4 ${project.detailImages.length === 2 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
                       <Image
                         src={`/images/${img.filename}`}
                         alt={img.caption || `Detalle ${idx + 1}`}

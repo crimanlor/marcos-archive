@@ -5,6 +5,16 @@ export interface ProjectImage {
   caption?: string;
 }
 
+export interface PlantTexture {
+  filename: string;
+  name: string;
+}
+
+export interface PlantTexture {
+  filename: string;
+  name: string;
+}
+
 export interface LandscapeProject {
   id: number;
   filename: string;
@@ -13,10 +23,11 @@ export interface LandscapeProject {
   location: string;
   year: string;
   area?: string; // Superficie del proyecto
+  distance?: string; // Longitud del proyecto (si aplica)
   // medium?: string;
   category?: 'Proyecto conceptual' | 'Proyecto realizado';
   features?: string[]; // Características principales del proyecto
-  additionalInfo?: string; // Contenido adicional "Sobre este proyecto"
+  additionalInfo?: string | string[]; // Contenido adicional "Sobre este proyecto"
   // Galería de imágenes adicionales
   detailImages?: ProjectImage[]; // Dos imágenes en fila
   featureImage?: ProjectImage; // Imagen grande centrada
@@ -28,12 +39,13 @@ export interface LandscapeProject {
     planCaption?: string; // Pie de foto del plano
   };
   authorNote?: string; // Nota del autor
+  plantsAndTextures?: PlantTexture[]; // Plantas y texturas del proyecto
 }
 
 export const landscapeProjects: LandscapeProject[] = [
   { 
     id: 1, 
-    filename: 'image-landscape-project-1.jpg', 
+    filename: 'image-landscape-project-01.jpg', 
     title: 'Cubierta verde · Residencia Sanitas Consell de Cent', 
     description: 'Cubierta vegetal como espacio de bienestar y refugio biofílico en altura.',
     location: 'Barcelona, España',
@@ -67,7 +79,60 @@ export const landscapeProjects: LandscapeProject[] = [
       description: 'La propuesta organiza la cubierta mediante un sistema continuo de vegetación, recorridos accesibles y áreas de estancia. La plantación se concibe como una capa climática activa, capaz de mitigar el calor, retener agua y generar una experiencia sensorial ligada al paisaje mediterráneo.',
       planCaption: 'Planta general del proyecto · Distribución y zonificación'
     },
-    authorNote: 'Este proyecto supone un primer acercamiento a la arquitectura del paisaje como herramienta para humanizar espacios urbanos y mejorar la calidad de vida a través del diseño vegetal.'
+    authorNote: 'Este proyecto supone un primer acercamiento a la arquitectura del paisaje como herramienta para humanizar espacios urbanos y mejorar la calidad de vida a través del diseño vegetal.',
+    plantsAndTextures: [
+      { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
+      { filename: 'plant-lavandula-spica.jpg', name: 'LAVANDULA SPICA' },
+      { filename: 'plant-thymus-vulgaris.jpg', name: 'THYMUS VULGARIS' },
+      { filename: 'plant-gaura-lindheimeri.jpg', name: 'GAURA LINDHEIMERI' },
+      { filename: 'plant-salvia-nemorosa.jpg', name: 'SALVIA NEMOROSA' },
+      { filename: 'plant-verbena-bonariensis.jpg', name: 'VERBENA BONARIENSIS' },
+      { filename: 'plant-pittosporum-tobira.jpg', name: 'PITTOSPORUM TOBIRA' },
+      { filename: 'plant-pistacia-lentiscus.jpg', name: 'PISTACIA LENTISCUS' },
+      { filename: 'plant-myrtus-communis.jpg', name: 'MYRTUS COMMUNIS' },
+      { filename: 'plant-pennisetum-setaceum.jpg', name: 'PENNISETUM SETACEUM' },
+      { filename: 'texture-pavimento-ceramico.jpg', name: 'PAVIMENTO CERÁMICO ECO KLINKER' }
+    ]
+  },
+  { 
+    id: 2, 
+    filename: 'image-landscape-02.jpg', 
+    title: 'Passatge Valeri Serra · Paisajismo de paso', 
+    description: 'Una intervención paisajística mínima que cualifica un pasaje urbano silencioso, transformando el tránsito cotidiano en una experiencia más sensible y amable sin convertirlo en lugar de estancia.',
+    location: 'Barcelona',
+    year: '2026',
+    area: '589 m²',
+    distance: '237m',
+    category: 'Proyecto conceptual',
+    features: [
+      'Paisajismo ligero y reversible: jardineras con banco y macetas en los bordes del pasaje',
+      'Paso prioritario: corredor central libre para tránsito puntual de servicio',
+      'Vegetación mediterránea: especies resistentes, de bajo mantenimiento y valor estacional',
+      'Viabilidad urbana: reorganización compatible con los accesos existentes al aparcamiento'
+    ],
+    additionalInfo: [
+      'El proyecto propone una renaturalización ligera y reversible del Passatge de Valeri Serra, reforzando su condición de espacio tranquilo y de paso mediante jardineras con banco y macetas de vegetación mediterránea dispuestas en los laterales del recorrido.',
+      'La intervención no busca activar ni transformar el pasaje en un lugar de estancia, sino cualificar el tránsito cotidiano introduciendo pequeñas presencias vegetales que aportan textura, sombra y cambio estacional.',
+      'Todos los elementos se sitúan junto a las fachadas, manteniendo libre un corredor central continuo que permite el paso puntual de vehículos de servicio o emergencia, sin perder la prioridad peatonal.',
+      'La propuesta se apoya en la reorganización de uno de los accesos del aparcamiento, poco utilizado al conducir hacia una calle ya pacificada, concentrando la salida habitual hacia una vía claramente vehicular y haciendo viable la intervención sin pérdida funcional.'
+    ],
+    detailImages: [
+      { filename: 'image-landscape-02-1.jpg', caption: 'Vista del pasaje con la intervención paisajística' },
+      { filename: 'image-landscape-02-2.jpg', caption: 'Detalle de las jardineras y vegetación mediterránea' }
+    ],
+    plantsAndTextures: [
+      { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
+      { filename: 'plant-lavandula-spica.jpg', name: 'LAVANDULA SPICA' },
+      { filename: 'plant-thymus-vulgaris.jpg', name: 'THYMUS VULGARIS' },
+      { filename: 'plant-gaura-lindheimeri.jpg', name: 'GAURA LINDHEIMERI' },
+      { filename: 'plant-salvia-nemorosa.jpg', name: 'SALVIA NEMOROSA' },
+      { filename: 'plant-verbena-bonariensis.jpg', name: 'VERBENA BONARIENSIS' },
+      { filename: 'plant-pittosporum-tobira.jpg', name: 'PITTOSPORUM TOBIRA' },
+      { filename: 'plant-pistacia-lentiscus.jpg', name: 'PISTACIA LENTISCUS' },
+      { filename: 'plant-myrtus-communis.jpg', name: 'MYRTUS COMMUNIS' },
+      { filename: 'plant-pennisetum-setaceum.jpg', name: 'PENNISETUM SETACEUM' },
+      { filename: 'texture-pavimento-ceramico.jpg', name: 'PAVIMENTO CERÁMICO ECO KLINKER' }
+    ]
   }
 ];
 

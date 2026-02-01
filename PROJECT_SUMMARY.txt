@@ -201,7 +201,7 @@ GET  /                     - Página de inicio
 GET  /about                - Sobre mí
 GET  /projects             - Índice de proyectos
 GET  /projects/landscape   - Proyectos paisajísticos
-GET  /projects/watercolors - Acuarelas arquitectónicas
+GET  /projects/watercolors - Sketching
 GET  /projects/photography - Archivo fotográfico
 
 ================================================================================

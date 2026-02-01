@@ -33,7 +33,7 @@ architect-portfolio/
 │   │   ├── landscape/
 │   │   │   └── page.tsx         # Proyectos paisajísticos
 │   │   ├── watercolors/
-│   │   │   └── page.tsx         # Acuarelas arquitectónicas
+│   │   │   └── page.tsx         # Sketching
 │   │   └── photography/
 │   │       └── page.tsx         # Archivo fotográfico
 │   ├── layout.tsx               # Layout raíz

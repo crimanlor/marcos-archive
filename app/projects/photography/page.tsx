@@ -101,7 +101,7 @@ export default function PhotographyPage() {
               className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-gray-50"
             >
               <p className="text-sm text-gray-600 mb-2">Anterior</p>
-              <h3 className="text-lg font-semibold text-gray-950">Acuarelas Arquitectónicas</h3>
+              <h3 className="text-lg font-semibold text-gray-950">Sketching</h3>
             </Link>
             <Link
               href="/projects"
