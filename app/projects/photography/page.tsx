@@ -58,7 +58,6 @@ export default function PhotographyPage() {
                   className={`${IMAGE_CLASSES.cover} ${IMAGE_CLASSES.hoverZoom}`}
                   sizes={IMAGE_SIZES.photoGrid}
                 />
-                />
               </button>
             ))}
           </div>
