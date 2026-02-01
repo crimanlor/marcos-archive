@@ -92,17 +92,17 @@ export default function WatercolorsPage() {
         <div className="container-portfolio max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
-              href="/projects/landscape"
+              href="/projects"
               className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-gray-50"
             >
-              <p className="text-sm text-gray-600 mb-2">Anterior</p>
-              <h3 className="text-lg font-semibold text-gray-950">Proyectos Paisajísticos</h3>
+              <p className="text-sm text-gray-600 mb-2">Volver a</p>
+              <h3 className="text-lg font-semibold text-gray-950">Todos los proyectos</h3>
             </Link>
             <Link
               href="/projects/photography"
               className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-gray-50 text-right"
             >
-              <p className="text-sm text-gray-600 mb-2">Siguiente</p>
+              <p className="text-sm text-gray-600 mb-2">Siguiente categoría</p>
               <h3 className="text-lg font-semibold text-gray-950">Archivo Fotográfico</h3>
             </Link>
           </div>

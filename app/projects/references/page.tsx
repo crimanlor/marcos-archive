@@ -223,12 +223,20 @@ export default function ReferencesPage() {
       {/* Navigation */}
       <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
         <div className="container-portfolio max-w-4xl">
-          <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
+              className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
             >
-              Volver a todos los proyectos
+              <p className="text-sm text-gray-600 mb-2">Volver a</p>
+              <h3 className="text-lg font-semibold text-gray-950">Todos los proyectos</h3>
+            </Link>
+            <Link
+              href="/projects/landscape"
+              className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
+            >
+              <p className="text-sm text-gray-600 mb-2">Siguiente categoría</p>
+              <h3 className="text-lg font-semibold text-gray-950">Proyectos Paisajísticos</h3>
             </Link>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'Estudio de Arquitectura | Portfolio',
   description: 'Portfolio de un arquitecto especializado en diseño naturalista y paisajismo contemporáneo',
   keywords: 'arquitectura, paisaje, diseño, portfolio',

@@ -23,10 +23,14 @@ export default function PhotoDetailPage() {
     );
   }
 
-  // Encontrar foto anterior y siguiente
+  // Encontrar foto anterior y siguiente (navegación circular)
   const currentIndex = photos.findIndex(p => p.id === photoId);
-  const previousPhoto = currentIndex > 0 ? photos[currentIndex - 1] : null;
-  const nextPhoto = currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
+  const previousPhoto = currentIndex > 0 
+    ? photos[currentIndex - 1] 
+    : photos[photos.length - 1]; // Si es la primera, ir a la última
+  const nextPhoto = currentIndex < photos.length - 1 
+    ? photos[currentIndex + 1] 
+    : photos[0]; // Si es la última, ir a la primera
 
   return (
     <div className="pt-20 md:pt-24 min-h-screen bg-white">
@@ -119,38 +123,26 @@ export default function PhotoDetailPage() {
         <div className="container-portfolio max-w-6xl">
           <div className="grid grid-cols-2 gap-6">
             {/* Previous */}
-            {previousPhoto ? (
-              <Link
-                href={`/projects/photography/${previousPhoto.id}`}
-                className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
-              >
-                <p className="text-sm text-gray-600 mb-2">Anterior</p>
-                <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
-                  {previousPhoto.title}
-                </h3>
-              </Link>
-            ) : (
-              <div className="p-6 border border-gray-200 rounded-lg opacity-50">
-                <p className="text-sm text-gray-400">Primera imagen</p>
-              </div>
-            )}
+            <Link
+              href={`/projects/photography/${previousPhoto.id}`}
+              className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
+            >
+              <p className="text-sm text-gray-600 mb-2">Anterior</p>
+              <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
+                {previousPhoto.title}
+              </h3>
+            </Link>
 
             {/* Next */}
-            {nextPhoto ? (
-              <Link
-                href={`/projects/photography/${nextPhoto.id}`}
-                className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
-              >
-                <p className="text-sm text-gray-600 mb-2">Siguiente</p>
-                <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
-                  {nextPhoto.title}
-                </h3>
-              </Link>
-            ) : (
-              <div className="p-6 border border-gray-200 rounded-lg opacity-50 text-right">
-                <p className="text-sm text-gray-400">Última imagen</p>
-              </div>
-            )}
+            <Link
+              href={`/projects/photography/${nextPhoto.id}`}
+              className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
+            >
+              <p className="text-sm text-gray-600 mb-2">Siguiente</p>
+              <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
+                {nextPhoto.title}
+              </h3>
+            </Link>
           </div>
         </div>
       </section>

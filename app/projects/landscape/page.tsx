@@ -111,18 +111,18 @@ export default function LandscapeProjectsPage() {
         <div className="container-portfolio max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
-              href="/projects/landscape"
-              className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
-            >
-              <p className="text-sm text-gray-600 mb-2">Siguiente categoría</p>
-              <h3 className="text-lg font-semibold text-gray-950">Sketching</h3>
-            </Link>
-            <Link
               href="/projects"
-              className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
+              className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
             >
               <p className="text-sm text-gray-600 mb-2">Volver a</p>
               <h3 className="text-lg font-semibold text-gray-950">Todos los proyectos</h3>
+            </Link>
+            <Link
+              href="/projects/watercolors"
+              className="p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
+            >
+              <p className="text-sm text-gray-600 mb-2">Siguiente categoría</p>
+              <h3 className="text-lg font-semibold text-gray-950">Sketching</h3>
             </Link>
           </div>
         </div>

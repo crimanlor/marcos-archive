@@ -23,10 +23,14 @@ export default function LandscapeProjectDetailPage() {
     );
   }
 
-  // Encontrar proyecto anterior y siguiente
+  // Encontrar proyecto anterior y siguiente (navegación circular)
   const currentIndex = landscapeProjects.findIndex(p => p.id === projectId);
-  const previousProject = currentIndex > 0 ? landscapeProjects[currentIndex - 1] : null;
-  const nextProject = currentIndex < landscapeProjects.length - 1 ? landscapeProjects[currentIndex + 1] : null;
+  const previousProject = currentIndex > 0 
+    ? landscapeProjects[currentIndex - 1] 
+    : landscapeProjects[landscapeProjects.length - 1]; // Si es el primero, ir al último
+  const nextProject = currentIndex < landscapeProjects.length - 1 
+    ? landscapeProjects[currentIndex + 1] 
+    : landscapeProjects[0]; // Si es el último, ir al primero
 
   return (
     <div className="pt-20 md:pt-24 min-h-screen bg-white">
@@ -298,38 +302,26 @@ export default function LandscapeProjectDetailPage() {
         <div className="container-portfolio max-w-6xl">
           <div className="grid grid-cols-2 gap-6">
             {/* Previous */}
-            {previousProject ? (
-              <Link
-                href={`/projects/landscape/${previousProject.id}`}
-                className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
-              >
-                <p className="text-sm text-gray-600 mb-2">Anterior</p>
-                <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
-                  {previousProject.title}
-                </h3>
-              </Link>
-            ) : (
-              <div className="p-6 border border-gray-200 rounded-lg opacity-50">
-                <p className="text-sm text-gray-400">Primer proyecto</p>
-              </div>
-            )}
+            <Link
+              href={`/projects/landscape/${previousProject.id}`}
+              className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
+            >
+              <p className="text-sm text-gray-600 mb-2">Anterior</p>
+              <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
+                {previousProject.title}
+              </h3>
+            </Link>
 
             {/* Next */}
-            {nextProject ? (
-              <Link
-                href={`/projects/landscape/${nextProject.id}`}
-                className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
-              >
-                <p className="text-sm text-gray-600 mb-2">Siguiente</p>
-                <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
-                  {nextProject.title}
-                </h3>
-              </Link>
-            ) : (
-              <div className="p-6 border border-gray-200 rounded-lg opacity-50 text-right">
-                <p className="text-sm text-gray-400">Último proyecto</p>
-              </div>
-            )}
+            <Link
+              href={`/projects/landscape/${nextProject.id}`}
+              className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
+            >
+              <p className="text-sm text-gray-600 mb-2">Siguiente</p>
+              <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
+                {nextProject.title}
+              </h3>
+            </Link>
           </div>
         </div>
       </section>
