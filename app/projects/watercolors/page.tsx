@@ -1,28 +1,24 @@
 'use client';
 
-import { useState } from 'react';
-import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { watercolors } from '../../lib/watercolors';
+import { useGalleryModal } from '../../hooks/useGalleryModal';
+import { getImagePath, IMAGE_SIZES, IMAGE_CLASSES } from '../../lib/imageConfig';
 import PhotoModal from '../../components/PhotoModal';
 
 export default function WatercolorsPage() {
-  const [selectedWatercolorIndex, setSelectedWatercolorIndex] = useState<number | null>(null);
-
-  const handleNext = () => {
-    if (selectedWatercolorIndex !== null && selectedWatercolorIndex < watercolors.length - 1) {
-      setSelectedWatercolorIndex(selectedWatercolorIndex + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (selectedWatercolorIndex !== null && selectedWatercolorIndex > 0) {
-      setSelectedWatercolorIndex(selectedWatercolorIndex - 1);
-    }
-  };
-
-  const selectedWatercolor = selectedWatercolorIndex !== null ? watercolors[selectedWatercolorIndex] : null;
+  const { 
+    selectedIndex, 
+    selectedItem: selectedWatercolor,
+    isOpen,
+    openModal,
+    closeModal,
+    handleNext, 
+    handlePrevious,
+    hasNext,
+    hasPrevious 
+  } = useGalleryModal(watercolors);
   return (
     <div className="pt-20 md:pt-24">
       {/* Hero section */}
@@ -50,15 +46,15 @@ export default function WatercolorsPage() {
             {watercolors.map((watercolor, index) => (
               <button
                 key={watercolor.id}
-                onClick={() => setSelectedWatercolorIndex(index)}
-                className="relative bg-gray-50 aspect-square rounded-lg overflow-hidden group shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                onClick={() => openModal(index)}
+                className={`relative bg-gray-50 aspect-square rounded-lg overflow-hidden group cursor-pointer ${IMAGE_CLASSES.shadow}`}
               >
                 <Image
-                  src={`/images/${watercolor.filename}`}
+                  src={getImagePath(watercolor.filename)}
                   alt={watercolor.title}
                   fill
-                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className={`${IMAGE_CLASSES.contain} p-4 ${IMAGE_CLASSES.hoverZoom}`}
+                  sizes={IMAGE_SIZES.watercolorGrid}
                 />
               </button>
             ))}
@@ -68,14 +64,14 @@ export default function WatercolorsPage() {
 
       {/* Watercolor Modal */}
       <PhotoModal
-        isOpen={selectedWatercolor !== null}
-        onClose={() => setSelectedWatercolorIndex(null)}
-        imageSrc={selectedWatercolor ? `/images/${selectedWatercolor.filename}` : ''}
+        isOpen={isOpen}
+        onClose={closeModal}
+        imageSrc={selectedWatercolor ? getImagePath(selectedWatercolor.filename) : ''}
         imageAlt={selectedWatercolor?.title || ''}
         onNext={handleNext}
         onPrevious={handlePrevious}
-        hasNext={selectedWatercolorIndex !== null && selectedWatercolorIndex < watercolors.length - 1}
-        hasPrevious={selectedWatercolorIndex !== null && selectedWatercolorIndex > 0}
+        hasNext={hasNext}
+        hasPrevious={hasPrevious}
       />
 
 {/* About section */}

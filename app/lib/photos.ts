@@ -1,15 +1,7 @@
 // Configuración centralizada de todas las fotografías del archivo
+import { Photo } from './types';
 
-export interface Photo {
-  id: number;
-  filename: string;
-  title: string;
-  description: string;
-  location: string;
-  year: string;
-  category: 'Paisajismo' | 'Arquitectura' | 'Detalles';
-  additionalInfo?: string; // Contenido adicional "Sobre este proyecto"
-}
+export { type Photo } from './types';
 
 export const photos: Photo[] = [
   { 

@@ -1,15 +1,7 @@
 // Configuración centralizada de todas las acuarelas
+import { Watercolor } from './types';
 
-export interface Watercolor {
-  id: number;
-  filename: string;
-  title: string;
-  description: string;
-  orientation: 'vertical' | 'horizontal';
-  year: string;
-  medium?: string; // Técnica o materiales utilizados
-  additionalInfo?: string; // Contenido adicional
-}
+export { type Watercolor } from './types';
 
 export const watercolors: Watercolor[] = [
   { 

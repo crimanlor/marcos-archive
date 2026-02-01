@@ -1,46 +1,7 @@
 // Configuración centralizada de proyectos paisajísticos
+import { LandscapeProject } from './types';
 
-export interface ProjectImage {
-  filename: string;
-  caption?: string;
-}
-
-export interface PlantTexture {
-  filename: string;
-  name: string;
-}
-
-export interface PlantTexture {
-  filename: string;
-  name: string;
-}
-
-export interface LandscapeProject {
-  id: number;
-  filename: string;
-  title: string;
-  description: string;
-  location: string;
-  year: string;
-  area?: string; // Superficie del proyecto
-  distance?: string; // Longitud del proyecto (si aplica)
-  // medium?: string;
-  category?: 'Proyecto conceptual' | 'Proyecto realizado';
-  features?: string[]; // Características principales del proyecto
-  additionalInfo?: string | string[]; // Contenido adicional "Sobre este proyecto"
-  // Galería de imágenes adicionales
-  detailImages?: ProjectImage[]; // Dos imágenes en fila
-  featureImage?: ProjectImage; // Imagen grande centrada
-  planImage?: ProjectImage; // Imagen del plano
-  // Nueva información para estrategia
-  strategy?: {
-    title: string; // Título de la estrategia
-    description: string; // Explicación de la estrategia
-    planCaption?: string; // Pie de foto del plano
-  };
-  authorNote?: string; // Nota del autor
-  plantsAndTextures?: PlantTexture[]; // Plantas y texturas del proyecto
-}
+export { type LandscapeProject } from './types';
 
 export const landscapeProjects: LandscapeProject[] = [
   { 

@@ -1,27 +1,24 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { photos } from '../../lib/photos';
+import { useGalleryModal } from '../../hooks/useGalleryModal';
+import { getImagePath, IMAGE_SIZES, IMAGE_CLASSES } from '../../lib/imageConfig';
 import PhotoModal from '../../components/PhotoModal';
 
 export default function PhotographyPage() {
-  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
-
-  const handleNext = () => {
-    if (selectedPhotoIndex !== null && selectedPhotoIndex < photos.length - 1) {
-      setSelectedPhotoIndex(selectedPhotoIndex + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (selectedPhotoIndex !== null && selectedPhotoIndex > 0) {
-      setSelectedPhotoIndex(selectedPhotoIndex - 1);
-    }
-  };
-
-  const selectedPhoto = selectedPhotoIndex !== null ? photos[selectedPhotoIndex] : null;
+  const { 
+    selectedIndex, 
+    selectedItem: selectedPhoto,
+    isOpen,
+    openModal,
+    closeModal,
+    handleNext, 
+    handlePrevious,
+    hasNext,
+    hasPrevious 
+  } = useGalleryModal(photos);
 
   return (
     <div className="pt-20 md:pt-24">
@@ -51,15 +48,16 @@ export default function PhotographyPage() {
             {photos.map((photo, index) => (
               <button
                 key={photo.id}
-                onClick={() => setSelectedPhotoIndex(index)}
+                onClick={() => openModal(index)}
                 className="relative bg-gray-100 aspect-square rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
               >
                 <Image
-                  src={`/images/${photo.filename}`}
+                  src={getImagePath(photo.filename)}
                   alt={photo.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className={`${IMAGE_CLASSES.cover} ${IMAGE_CLASSES.hoverZoom}`}
+                  sizes={IMAGE_SIZES.photoGrid}
+                />
                 />
               </button>
             ))}
@@ -69,14 +67,14 @@ export default function PhotographyPage() {
 
       {/* Photo Modal */}
       <PhotoModal
-        isOpen={selectedPhoto !== null}
-        onClose={() => setSelectedPhotoIndex(null)}
-        imageSrc={selectedPhoto ? `/images/${selectedPhoto.filename}` : ''}
+        isOpen={isOpen}
+        onClose={closeModal}
+        imageSrc={selectedPhoto ? getImagePath(selectedPhoto.filename) : ''}
         imageAlt={selectedPhoto?.title || ''}
         onNext={handleNext}
         onPrevious={handlePrevious}
-        hasNext={selectedPhotoIndex !== null && selectedPhotoIndex < photos.length - 1}
-        hasPrevious={selectedPhotoIndex !== null && selectedPhotoIndex > 0}
+        hasNext={hasNext}
+        hasPrevious={hasPrevious}
       />
 
       {/* About section */}
