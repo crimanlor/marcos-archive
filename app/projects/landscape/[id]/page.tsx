@@ -214,7 +214,7 @@ export default function LandscapeProjectDetailPage() {
               <div className={`grid grid-cols-1 gap-8 mb-12 ${project.detailImages.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
                 {project.detailImages.map((img, idx) => (
                   <div key={idx} className="group">
-                    <div className={`relative w-full bg-gray-100 rounded-lg overflow-hidden mb-4 ${project.detailImages.length === 2 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
+                    <div className={`relative w-full bg-gray-100 rounded-lg overflow-hidden mb-4 ${project.detailImages && project.detailImages.length === 2 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
                       <Image
                         src={`/images/${img.filename}`}
                         alt={img.caption || `Detalle ${idx + 1}`}
