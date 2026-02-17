@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { landscapeProjects } from '../../lib/landscape';
+import { projectsContent } from '../../config/projectsContent';
 
 export const metadata: Metadata = {
   title: 'Proyectos Paisajísticos | Marcos Villén Rubio',
@@ -21,10 +22,10 @@ export default function LandscapeProjectsPage() {
             Volver a proyectos
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
-            Proyectos Paisajísticos
+            {projectsContent.categories.find(cat => cat.id === 'landscape')?.title}
           </h1>
           <p className="text-xl text-gray-600 text-balance">
-            Selección de trabajos dedicados al diseño del paisaje y espacios naturales con enfoque minimalista y contemporáneo.
+            {projectsContent.categories.find(cat => cat.id === 'landscape')?.description}
           </p>
         </div>
       </section>

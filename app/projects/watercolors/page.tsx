@@ -6,6 +6,7 @@ import { watercolors } from '../../lib/watercolors';
 import { useGalleryModal } from '../../hooks/useGalleryModal';
 import { getImagePath, IMAGE_SIZES, IMAGE_CLASSES } from '../../lib/imageConfig';
 import PhotoModal from '../../components/PhotoModal';
+import { projectsContent } from '../../config/projectsContent';
 
 export default function WatercolorsPage() {
   const { 
@@ -31,10 +32,10 @@ export default function WatercolorsPage() {
             Volver a proyectos
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
-            Sketching
+            {projectsContent.categories.find(cat => cat.id === 'watercolors')?.title}
           </h1>
           <p className="text-xl text-gray-600 text-balance">
-            Una colección de acuarelas que exploran la interpretación artística de conceptos arquitectónicos, espacios y visiones naturalistas.
+            {projectsContent.categories.find(cat => cat.id === 'watercolors')?.description}
           </p>
         </div>
       </section>
@@ -73,19 +74,6 @@ export default function WatercolorsPage() {
         hasNext={hasNext}
         hasPrevious={hasPrevious}
       />
-
-{/* About section */}
-      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
-        <div className="container-portfolio max-w-3xl">
-          <h2 className="text-3xl font-bold text-gray-950 mb-6">Sobre esta serie</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Las acuarelas representan un proceso de reflexión creativa sobre el diseño arquitectónico. Cada pieza es una exploración artística de conceptos, espacios y la relación entre forma, luz y naturaleza.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Utilizadas tanto para la conceptualización de proyectos como para la comunicación visual de ideas, estas acuarelas capturan la esencia emocional de espacios que buscan inspirar calma y conexión con el entorno natural.
-          </p>
-        </div>
-      </section>
 
       {/* Navigation */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">

@@ -6,6 +6,7 @@ import { photos } from '../../lib/photos';
 import { useGalleryModal } from '../../hooks/useGalleryModal';
 import { getImagePath, IMAGE_SIZES, IMAGE_CLASSES } from '../../lib/imageConfig';
 import PhotoModal from '../../components/PhotoModal';
+import { projectsContent } from '../../config/projectsContent';
 
 export default function PhotographyPage() {
   const { 
@@ -32,10 +33,10 @@ export default function PhotographyPage() {
             Volver a proyectos
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
-            Archivo Fotográfico
+            {projectsContent.categories.find(cat => cat.id === 'photography')?.title}
           </h1>
           <p className="text-xl text-gray-600 text-balance">
-            Documentación visual de proyectos completados, espacios naturales y detalles arquitectónicos que capturan la esencia de nuestro trabajo.
+            {projectsContent.categories.find(cat => cat.id === 'photography')?.description}
           </p>
         </div>
       </section>
@@ -75,19 +76,6 @@ export default function PhotographyPage() {
         hasNext={hasNext}
         hasPrevious={hasPrevious}
       />
-
-      {/* About section */}
-      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
-        <div className="container-portfolio max-w-3xl">
-          <h2 className="text-3xl font-bold text-gray-950 mb-6">Documentación visual</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Mi mirada se detiene en las relaciones: entre lo natural y lo artificial, entre lo orgánico y lo hierático, entre lo vivo y lo construido. 
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Me interesa cómo la vegetación ocupa, transforma o dialoga con estructuras existentes, y cómo pequeños gestos activan el paisaje. El archivo fotográfico funciona como un registro de estas interacciones.
-          </p>
-        </div>
-      </section>
 
       {/* Navigation */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">

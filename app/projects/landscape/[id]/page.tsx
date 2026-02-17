@@ -257,16 +257,6 @@ export default function LandscapeProjectDetailPage() {
             {/* Large plan image */}
             {project.planImage && (
               <div className="mb-12">
-                {/* Strategy section if available */}
-                {project.strategy && (
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-950 mb-4">{project.strategy.title}</h3>
-                    <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                      {project.strategy.description}
-                    </p>
-                  </div>
-                )}
-                
                 <div className="relative w-full aspect-[16/9] bg-white rounded-lg overflow-hidden mb-4 border border-gray-200">
                   <Image
                     src={`/images/${project.planImage.filename}`}
@@ -276,9 +266,9 @@ export default function LandscapeProjectDetailPage() {
                     sizes="(max-width: 1280px) 100vw, 1280px"
                   />
                 </div>
-                {(project.strategy?.planCaption || project.planImage.caption) && (
+                {project.planImage.caption && (
                   <p className="text-sm text-gray-600 text-center">
-                    {project.strategy?.planCaption || project.planImage.caption}
+                    {project.planImage.caption}
                   </p>
                 )}
               </div>

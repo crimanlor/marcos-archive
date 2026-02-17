@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { projectsContent } from '../../config/projectsContent';
 
 export const metadata: Metadata = {
   title: 'Referencias | Marcos Villén Rubio',
@@ -169,9 +170,12 @@ export default function ReferencesPage() {
             </svg>
             Volver a proyectos
           </Link>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-950 text-balance">
-            Referencias
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
+            {projectsContent.categories.find(cat => cat.id === 'references')?.title}
           </h1>
+          <p className="text-xl text-gray-600 text-balance">
+            {projectsContent.categories.find(cat => cat.id === 'references')?.description}
+          </p>
         </div>
       </section>
 

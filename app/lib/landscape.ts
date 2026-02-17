@@ -40,11 +40,6 @@ export const landscapeProjects: LandscapeProject[] = [
       filename: 'image-landscape-project-5.jpg', 
       caption: 'Planta general del proyecto · Distribución y zonificación' 
     },
-    strategy: {
-      title: 'Estrategia de intervención',
-      description: 'La propuesta organiza la cubierta mediante un sistema continuo de vegetación, recorridos accesibles y áreas de estancia. La plantación se concibe como una capa climática activa, capaz de mitigar el calor, retener agua y generar una experiencia sensorial ligada al paisaje mediterráneo.',
-      planCaption: 'Planta general del proyecto · Distribución y zonificación'
-    },
     authorNote: 'Este proyecto supone un primer acercamiento a la arquitectura del paisaje como herramienta para humanizar espacios urbanos y mejorar la calidad de vida a través del diseño vegetal.',
     plantsAndTextures: [
       { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
