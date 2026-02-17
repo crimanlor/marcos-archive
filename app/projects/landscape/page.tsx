@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { landscapeProjects } from '../../lib/landscape';
 
 export const metadata: Metadata = {
-  title: 'Proyectos Paisajísticos | Arquitecto',
+  title: 'Proyectos Paisajísticos | Marcos Villén Rubio',
   description: 'Galería de proyectos de paisajismo y diseño de espacios naturales contemporáneos',
 };
 

@@ -21,7 +21,12 @@ export const landscapeProjects: LandscapeProject[] = [
       'Recorrido accesible y continuo para personas mayores',
       'Espacios de sombra, estancia y contemplación orientados al bienestar'
     ],
-    additionalInfo: 'Este proyecto plantea la transformación de una azotea dura e infrautilizada en un oasis vegetal elevado, concebido como un jardín mediterráneo adaptado al clima de Barcelona. La intervención busca mejorar el confort térmico, visual y emocional del espacio, integrando vegetación, recorridos accesibles y zonas de descanso orientadas al bienestar de los usuarios de la residencia. ',
+    additionalInfo: [
+      'El proyecto propone la transformación de la azotea de la Residencia Sanitas Consell de Cent en una cubierta verde de carácter mediterráneo, concebida como un refugio vegetal elevado destinado al descanso, la contemplación y el bienestar de sus usuarios.',
+      'La intervención plantea una cubierta semi-intensiva de bajo mantenimiento, donde la vegetación se integra como un sistema continuo capaz de mejorar el confort térmico, absorber el agua de lluvia en episodios puntuales y aportar textura y cambio estacional al conjunto.',
+      'El espacio se organiza mediante recorridos accesibles y áreas de estancia puntuales, incorporando bancos y pequeños elementos de sombra ligera que generan refugio climático sin sobrecargar la cubierta ni competir con la presencia vegetal.',
+      'La propuesta prioriza criterios de biofilia y cuidado, entendiendo la azotea no solo como un elemento funcional del edificio, sino como un espacio de acompañamiento emocional que refuerza la relación entre las personas, la naturaleza y el paisaje urbano de Barcelona.'
+    ],
     detailImages: [
       { filename: 'image-landscape-project-2.jpg', caption: 'Vista aérea. Estado previo de la cubierta y relación con el entorno urbano.' },
       { filename: 'image-landscape-project-4.jpg', caption: 'Azotea existente, sin un sistema vegetal integrado ni espacios de estancia definidos.' },

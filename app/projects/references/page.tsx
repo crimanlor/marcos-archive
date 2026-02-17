@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Referencias | Arquitecto',
+  title: 'Referencias | Marcos Villén Rubio',
   description: 'Proyectos, referentes y profesionales que inspiran mi práctica arquitectónica y paisajística',
 };
 

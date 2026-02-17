@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Contacto | Arquitecto',
+  title: 'Contacto | Marcos Villén Rubio',
   description: 'Ponte en contacto para discutir tu proyecto arquitectónico',
 };
 
@@ -13,7 +13,7 @@ export default function ContactPage() {
       <section className="py-12 md:py-16 bg-white">
         <div className="container-portfolio max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 text-balance">
-            Hablemos de tu proyecto
+            Información de contacto
           </h1>
           {/* <p className="text-xl text-gray-600 text-balance">
             Estoy disponible para nuevos proyectos de arquitectura y paisajismo. No dudes en contactarme para explorar cómo podemos crear espacios excepcionales juntos.
@@ -27,7 +27,6 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Details */}
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold text-gray-950 mb-8">Información de contacto</h2>
               
               {/* Email */}
               <div className="flex items-start gap-4">
@@ -38,8 +37,23 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-950 mb-1">Email</h3>
-                  <a href="mailto:contacto@marcosvr.com" className="text-gray-600 hover:text-gray-950 transition-colors">
-                    contacto@marcosvr.com
+                  <a href="mailto:marcos-landscape@proton.me" className="text-gray-600 hover:text-gray-950 transition-colors">
+                    marcos-landscape@proton.me
+                  </a>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-gray-100 rounded-lg">
+                  <svg className="w-6 h-6 text-gray-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-950 mb-1">Teléfono</h3>
+                  <a href="tel:+34695531983" className="text-gray-600 hover:text-gray-950 transition-colors">
+                    +34 695 531 983
                   </a>
                 </div>
               </div>
@@ -82,47 +96,25 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Additional Info */}
+            {/* CV Download */}
             <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-950 mb-4">¿En qué puedo ayudarte?</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-gray-950 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Proyectos de arquitectura residencial</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-gray-950 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Diseño de jardines y paisajismo</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-gray-950 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Consultoría de diseño arquitectónico</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-gray-950 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Espacios públicos y comunitarios</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-gray-950 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Ilustraciones arquitectónicas (acuarelas)</span>
-                </li>
-              </ul>
+              <h3 className="text-2xl font-bold text-gray-950 mb-4">Currículum Vitae</h3>
+              <p className="text-gray-600 mb-6">
+                Descarga mi CV actualizado para conocer más sobre mi formación y experiencia.
+              </p>
+              
+              <a
+                href="TU_ENLACE_DE_GOOGLE_DRIVE_AQUI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-gray-950 text-white rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Descargar CV (PDF)
+              </a>
 
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  <strong className="text-gray-950">Tiempo de respuesta:</strong> Generalmente respondo en 24-48 horas. Si tienes un proyecto urgente, por favor indícalo en tu mensaje.
-                </p>
-              </div>
             </div>
           </div>
         </div>

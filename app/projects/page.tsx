@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Proyectos | Arquitecto',
+  title: 'Proyectos | Marcos Villén Rubio',
   description: 'Galería de proyectos: paisajismo, acuarelas y fotografía arquitectónica',
 };
 

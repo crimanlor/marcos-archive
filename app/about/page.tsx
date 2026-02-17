@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Sobre mí | Arquitecto',
+  title: 'Sobre mí | Marcos Villén Rubio',
   description: 'Conoce la filosofía y enfoque naturalista de nuestro trabajo arquitectónico',
 };
 
