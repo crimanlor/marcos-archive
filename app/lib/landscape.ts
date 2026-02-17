@@ -29,27 +29,23 @@ export const landscapeProjects: LandscapeProject[] = [
     ],
     detailImages: [
       { filename: 'image-landscape-project-2.jpg', caption: 'Vista aérea. Estado previo de la cubierta y relación con el entorno urbano.' },
-      { filename: 'image-landscape-project-5.jpg', caption: 'Planta general del proyecto · Distribución y zonificación' },
-      { filename: 'image-landscape-project-3.jpg', caption: 'Superficie dura y fragmentada antes de la intervención.' },
-      { filename: 'image-landscape-project-4.jpg', caption: 'Azotea existente, sin un sistema vegetal integrado ni espacios de estancia definidos.' }
+      { filename: 'image-landscape-project-5.jpg', caption: 'Sketch - Distribución y zonificación.' },
+      { filename: 'image-landscape-project-3.jpg', caption: 'Azotea antes de la intervención.' },
+      { filename: 'image-landscape-project-4.jpg', caption: 'Azotea libre de objetos.' }
     ],
     featureImage: { 
       filename: 'image-landscape-project-6.jpg', 
-      caption: 'Misma azotea pero con una sombra de vela para verano.' 
+      caption: 'Vista de la cubierta con vela de sombra.'
     },
     authorNote: 'Este proyecto supone un primer acercamiento a la arquitectura del paisaje como herramienta para humanizar espacios urbanos y mejorar la calidad de vida a través del diseño vegetal.',
     plantsAndTextures: [
       { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
       { filename: 'plant-lavandula-spica.jpg', name: 'LAVANDULA SPICA' },
       { filename: 'plant-thymus-vulgaris.jpg', name: 'THYMUS VULGARIS' },
-      { filename: 'plant-gaura-lindheimeri.jpg', name: 'GAURA LINDHEIMERI' },
       { filename: 'plant-salvia-nemorosa.jpg', name: 'SALVIA NEMOROSA' },
       { filename: 'plant-verbena-bonariensis.jpg', name: 'VERBENA BONARIENSIS' },
       { filename: 'plant-pittosporum-tobira.jpg', name: 'PITTOSPORUM TOBIRA' },
-      { filename: 'plant-pistacia-lentiscus.jpg', name: 'PISTACIA LENTISCUS' },
-      { filename: 'plant-myrtus-communis.jpg', name: 'MYRTUS COMMUNIS' },
-      { filename: 'plant-pennisetum-setaceum.jpg', name: 'PENNISETUM SETACEUM' },
-      { filename: 'texture-pavimento-ceramico.jpg', name: 'PAVIMENTO CERÁMICO ECO KLINKER' }
+      { filename: 'plant-pennisetum-setaceum.jpg', name: 'PENNISETUM SETACEUM' }
     ]
   },
   { 
@@ -75,8 +71,8 @@ export const landscapeProjects: LandscapeProject[] = [
       'La propuesta se apoya en la reorganización de uno de los accesos del aparcamiento, poco utilizado al conducir hacia una calle ya pacificada, concentrando la salida habitual hacia una vía claramente vehicular y haciendo viable la intervención sin pérdida funcional.'
     ],
     detailImages: [
-      { filename: 'image-landscape-02-1.jpg', caption: 'Vista del pasaje con la intervención paisajística' },
-      { filename: 'image-landscape-02-2.jpg', caption: 'Detalle de las jardineras y vegetación mediterránea' }
+      { filename: 'image-landscape-02-1.jpg', caption: 'Pasaje antes de la intervención paisajística' },
+      { filename: 'image-landscape-02.jpg', caption: 'Pasaje después de la intervención paisajística, cualificando el espacio urbano' }
     ],
     plantsAndTextures: [
       { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },

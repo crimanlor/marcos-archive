@@ -11,7 +11,7 @@ export const siteConfig = {
   
   // Información del contacto
   contact: {
-    email: 'marcos-landscape@proton.me',
+    email: 'marcos.villen@hotmail.com',
     phone: '+34 695 531 983',
     location: 'Barcelona, España',
   },

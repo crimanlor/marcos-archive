@@ -45,6 +45,7 @@ export default function LandscapeProjectsPage() {
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     quality={90}
+                    loading={index < 2 ? "eager" : "lazy"}
                   />
                 </div>
 

@@ -27,6 +27,10 @@ export const aboutContent = {
     items: [
       {
         year: '2026',
+        title: 'Voluntariado Barcelona Capital de la Arquitectura',
+      },
+      {
+        year: '2026',
         title: 'AutoCAD 2D - Básico',
       },
       {

@@ -13,7 +13,7 @@ export const contactContent = {
     title: 'Currículum Vitae',
     description: 'Descarga mi CV actualizado para conocer más sobre mi formación y experiencia.',
     buttonText: 'Descargar CV (PDF)',
-    driveLink: 'TU_ENLACE_DE_GOOGLE_DRIVE_AQUI', // Reemplazar con el enlace real
+    driveLink: 'https://drive.google.com/file/d/1Y9g5Pfmd8Y4nJJ0xcjvcSz6GLRinJIL4/view?usp=drive_link', // Reemplazar con el enlace real
   },
 
   // Sección de Call to Action

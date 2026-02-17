@@ -2,40 +2,43 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { landscapeProjects } from '../lib/landscape';
+import { watercolors } from '../lib/watercolors';
+import { photos } from '../lib/photos';   
 
 const projectCategories = [
   {
-    id: 'landscape',
-    title: 'Proyectos conceptuales',
-    description: 'De paisajismo y espacio público',
-    slug: 'landscape',
-    count: 8,
-    image: '/images/image-projects-1.jpg',
-  },
-  {
-    id: 'watercolors',
-    title: 'Sketches',
-    description: 'De arquitectura y paisaje',
-    slug: 'watercolors',
-    count: 8,
-    image: '/images/image-projects-2.jpg',
-  },
-  {
-    id: 'photography',
-    title: 'Archivo fotográfico',
-    description: 'Y espacios públicos',
-    slug: 'photography',
-    count: 36,
-    image: '/images/image-projects-3.jpg',
-  },
-  {
-    id: 'references',
-    title: 'Referencias',
-    description: 'De proyectos, obras y artistas',
-    slug: 'references',
-    count: 1,
-    image: '/images/image-projects-4.jpg',
-  }
+        id: 'landscape',
+        title: 'Proyectos conceptuales',
+        description: 'Proyectos conceptuales de paisajismo y espacio público',
+        slug: 'landscape',
+        count: landscapeProjects.length, // Se actualiza automáticamente
+        image: '/images/image-projects-1.jpg',
+      },
+      {
+        id: 'watercolors',
+        title: 'Sketches',
+        description: 'Sketches de arquitectura y paisaje',
+        slug: 'watercolors',
+        count: watercolors.length, // Se actualiza automáticamente
+        image: '/images/image-projects-2.jpg',
+      },
+      {
+        id: 'photography',
+        title: 'Archivo fotográfico',
+        description: 'Archivo fotográfico y espacios públicos',
+        slug: 'photography',
+        count: photos.length, // Se actualiza automáticamente
+        image: '/images/image-projects-3.jpg',
+      },
+      {
+        id: 'references',
+        title: 'Referencias',
+        description: 'Referencias de proyectos, obras y artistas',
+        slug: 'references',
+        count: 1,
+        image: '/images/image-projects-4.jpg',
+      }
 ];
 
 export default function ProjectsPreview() {

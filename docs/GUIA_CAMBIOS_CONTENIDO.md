@@ -232,6 +232,39 @@ export const projectsContent = {
 3. Modifica todos los campos excepto el `id`
 4. Añade una coma `,` al final del proyecto anterior
 
+**🌿 Configurar Plantas y Texturas por Proyecto:**
+
+Cada proyecto puede tener su propio listado de plantas y texturas. Para editarlo:
+
+```typescript
+{
+  id: 1,
+  title: 'Mi Proyecto',
+  // ... otros campos ...
+  
+  // ✅ Array de plantas y texturas - PERSONALIZABLE POR PROYECTO
+  plantsAndTextures: [
+    { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
+    { filename: 'plant-lavandula-spica.jpg', name: 'LAVANDULA SPICA' },
+    { filename: 'plant-thymus-vulgaris.jpg', name: 'THYMUS VULGARIS' },
+    // Añade o elimina líneas según necesites
+  ]
+}
+```
+
+**Para añadir una planta/textura:**
+```typescript
+{ filename: 'plant-nombre-cientifico.jpg', name: 'NOMBRE EN MAYÚSCULAS' },
+```
+
+**Para eliminar una planta/textura:**
+- Borra la línea completa (incluyendo la coma)
+
+**Importante:**
+- El `filename` debe coincidir exactamente con el archivo en `public/images/`
+- Mantén siempre la coma `,` al final de cada línea (excepto la última)
+- Puedes tener diferentes plantas en cada proyecto
+
 ---
 
 ### 📸 Fotografías del Archivo

@@ -17,7 +17,7 @@ export const projectsContent = {
     {
       id: 'landscape',
       title: 'Proyectos conceptuales',
-      description: 'De paisajismo y espacio público',
+      description: 'Proyectos conceptuales de paisajismo y espacio público',
       slug: 'landscape',
       count: landscapeProjects.length, // Se actualiza automáticamente
       image: '/images/image-projects-1.jpg',
@@ -25,7 +25,7 @@ export const projectsContent = {
     {
       id: 'watercolors',
       title: 'Sketches',
-      description: 'De arquitectura y paisaje',
+      description: 'Sketches de arquitectura y paisaje',
       slug: 'watercolors',
       count: watercolors.length, // Se actualiza automáticamente
       image: '/images/image-projects-2.jpg',
@@ -33,7 +33,7 @@ export const projectsContent = {
     {
       id: 'photography',
       title: 'Archivo fotográfico',
-      description: 'Y espacios públicos',
+      description: 'Archivo fotográfico y espacios públicos',
       slug: 'photography',
       count: photos.length, // Se actualiza automáticamente
       image: '/images/image-projects-3.jpg',
@@ -41,7 +41,7 @@ export const projectsContent = {
     {
       id: 'references',
       title: 'Referencias',
-      description: 'De proyectos, obras y artistas',
+      description: 'Referencias de proyectos, obras y artistas',
       slug: 'references',
       count: 1,
       image: '/images/image-projects-4.jpg',

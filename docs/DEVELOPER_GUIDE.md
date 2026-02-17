@@ -525,17 +525,43 @@ Contiene el contenido detallado de cada proyecto de paisajismo:
 export const landscapeProjects: LandscapeProject[] = [
   {
     id: 1,
+    filename: 'image-landscape-project-01.jpg',
     title: 'Nombre del Proyecto',
-    slug: 'nombre-del-proyecto',
     description: 'Descripción breve',
     location: 'Ciudad, País',
-    year: 2024,
-    images: ['image-landscape-1.jpg'],
+    year: '2024',
+    area: '168 m²',
+    category: 'Proyecto conceptual',
+    
+    features: [
+      'Característica 1',
+      'Característica 2',
+    ],
+    
     additionalInfo: [
       'Párrafo 1 con información detallada...',
       'Párrafo 2...',
-      // Array de párrafos organizados
     ],
+    
+    detailImages: [
+      { filename: 'image-landscape-project-2.jpg', caption: 'Descripción de la imagen' },
+      { filename: 'image-landscape-project-3.jpg', caption: 'Otra descripción' },
+    ],
+    
+    featureImage: { 
+      filename: 'image-landscape-project-6.jpg', 
+      caption: 'Imagen destacada' 
+    },
+    
+    // 🌿 Plantas y texturas - CONFIGURABLE POR PROYECTO
+    plantsAndTextures: [
+      { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
+      { filename: 'plant-lavandula-spica.jpg', name: 'LAVANDULA SPICA' },
+      { filename: 'plant-thymus-vulgaris.jpg', name: 'THYMUS VULGARIS' },
+      // Añade o elimina según necesites para cada proyecto
+    ],
+    
+    authorNote: 'Nota final del autor sobre el proyecto',
   },
   // ...
 ];
@@ -544,8 +570,29 @@ export const landscapeProjects: LandscapeProject[] = [
 **Para añadir un proyecto:**
 1. Añade el objeto al array
 2. Incrementa el `id`
-3. El `slug` debe ser URL-friendly (sin espacios, minúsculas)
-4. `additionalInfo` es un array de strings (cada string = un párrafo)
+3. `additionalInfo` es un array de strings (cada string = un párrafo)
+
+**🌿 Plantas y Texturas por Proyecto:**
+
+Cada proyecto puede tener su propio conjunto de plantas y texturas:
+
+```typescript
+plantsAndTextures: [
+  { filename: 'plant-nombre-cientifico.jpg', name: 'NOMBRE EN MAYÚSCULAS' },
+  { filename: 'texture-material.jpg', name: 'NOMBRE DEL MATERIAL' },
+]
+```
+
+**Características:**
+- ✅ Cada proyecto tiene su lista independiente
+- ✅ Fácilmente editable: añade o elimina líneas
+- ✅ El `filename` debe existir en `public/images/`
+- ✅ Se muestran automáticamente en la página de detalle del proyecto
+
+**Para modificar:**
+- Añadir: Copia una línea y modifica filename y name
+- Eliminar: Borra la línea completa
+- Siempre mantén la coma al final de cada línea (excepto la última)
 
 ---
 
