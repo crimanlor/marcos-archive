@@ -29,16 +29,13 @@ export const landscapeProjects: LandscapeProject[] = [
     ],
     detailImages: [
       { filename: 'image-landscape-project-2.jpg', caption: 'Vista aérea. Estado previo de la cubierta y relación con el entorno urbano.' },
-      { filename: 'image-landscape-project-4.jpg', caption: 'Azotea existente, sin un sistema vegetal integrado ni espacios de estancia definidos.' },
-      { filename: 'image-landscape-project-6.jpg', caption: 'Misma azotea pero con una sombra de vela para verano.' }
+      { filename: 'image-landscape-project-5.jpg', caption: 'Planta general del proyecto · Distribución y zonificación' },
+      { filename: 'image-landscape-project-3.jpg', caption: 'Superficie dura y fragmentada antes de la intervención.' },
+      { filename: 'image-landscape-project-4.jpg', caption: 'Azotea existente, sin un sistema vegetal integrado ni espacios de estancia definidos.' }
     ],
     featureImage: { 
-      filename: 'image-landscape-project-3.jpg', 
-      caption: 'Superficie dura y fragmentada antes de la intervención.' 
-    },
-    planImage: { 
-      filename: 'image-landscape-project-5.jpg', 
-      caption: 'Planta general del proyecto · Distribución y zonificación' 
+      filename: 'image-landscape-project-6.jpg', 
+      caption: 'Misma azotea pero con una sombra de vela para verano.' 
     },
     authorNote: 'Este proyecto supone un primer acercamiento a la arquitectura del paisaje como herramienta para humanizar espacios urbanos y mejorar la calidad de vida a través del diseño vegetal.',
     plantsAndTextures: [

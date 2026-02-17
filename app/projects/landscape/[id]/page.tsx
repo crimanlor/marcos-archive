@@ -23,14 +23,10 @@ export default function LandscapeProjectDetailPage() {
     );
   }
 
-  // Encontrar proyecto anterior y siguiente (navegación circular)
+  // Encontrar proyecto anterior y siguiente (navegación NO circular)
   const currentIndex = landscapeProjects.findIndex(p => p.id === projectId);
-  const previousProject = currentIndex > 0 
-    ? landscapeProjects[currentIndex - 1] 
-    : landscapeProjects[landscapeProjects.length - 1]; // Si es el primero, ir al último
-  const nextProject = currentIndex < landscapeProjects.length - 1 
-    ? landscapeProjects[currentIndex + 1] 
-    : landscapeProjects[0]; // Si es el último, ir al primero
+  const previousProject = currentIndex > 0 ? landscapeProjects[currentIndex - 1] : null;
+  const nextProject = currentIndex < landscapeProjects.length - 1 ? landscapeProjects[currentIndex + 1] : null;
 
   return (
     <div className="pt-20 md:pt-24 min-h-screen bg-white">
@@ -216,7 +212,7 @@ export default function LandscapeProjectDetailPage() {
             
             {/* Three images in a row */}
             {project.detailImages && project.detailImages.length > 0 && (
-              <div className={`grid grid-cols-1 gap-8 mb-12 ${project.detailImages.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+              <div className={`grid grid-cols-1 gap-8 mb-12 ${project.detailImages.length === 2 ? 'md:grid-cols-2' : project.detailImages.length === 4 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
                 {project.detailImages.map((img, idx) => (
                   <div key={idx} className="group">
                     <div className={`relative w-full bg-gray-100 rounded-lg overflow-hidden mb-4 ${project.detailImages && project.detailImages.length === 2 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
@@ -238,13 +234,13 @@ export default function LandscapeProjectDetailPage() {
 
             {/* Large centered feature image */}
             {project.featureImage && (
-              <div className="mb-12">
+              <div className="group mb-12">
                 <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden mb-4">
                   <Image
                     src={`/images/${project.featureImage.filename}`}
                     alt={project.featureImage.caption || 'Imagen destacada'}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 1280px) 100vw, 1280px"
                   />
                 </div>
@@ -291,28 +287,32 @@ export default function LandscapeProjectDetailPage() {
       {/* Navigation between projects */}
       <section className="py-8 border-t border-gray-200 bg-gray-50">
         <div className="container-portfolio max-w-6xl">
-          <div className="grid grid-cols-2 gap-6">
+          <div className={`grid gap-6 ${previousProject && nextProject ? 'grid-cols-2' : 'grid-cols-1'}`}>
             {/* Previous */}
-            <Link
-              href={`/projects/landscape/${previousProject.id}`}
-              className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white"
-            >
-              <p className="text-sm text-gray-600 mb-2">Anterior</p>
-              <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
-                {previousProject.title}
-              </h3>
-            </Link>
+            {previousProject && (
+              <Link
+                href={`/projects/landscape/${previousProject.id}`}
+                className={`group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white ${!nextProject ? 'max-w-md' : ''}`}
+              >
+                <p className="text-sm text-gray-600 mb-2">Anterior</p>
+                <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
+                  {previousProject.title}
+                </h3>
+              </Link>
+            )}
 
             {/* Next */}
-            <Link
-              href={`/projects/landscape/${nextProject.id}`}
-              className="group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right"
-            >
-              <p className="text-sm text-gray-600 mb-2">Siguiente</p>
-              <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
-                {nextProject.title}
-              </h3>
-            </Link>
+            {nextProject && (
+              <Link
+                href={`/projects/landscape/${nextProject.id}`}
+                className={`group p-6 border border-gray-300 hover:border-gray-950 rounded-lg transition-colors hover:bg-white text-right ${!previousProject ? 'ml-auto max-w-md' : ''}`}
+              >
+                <p className="text-sm text-gray-600 mb-2">Siguiente</p>
+                <h3 className="text-lg font-semibold text-gray-950 group-hover:text-gray-700">
+                  {nextProject.title}
+                </h3>
+              </Link>
+            )}
           </div>
         </div>
       </section>
