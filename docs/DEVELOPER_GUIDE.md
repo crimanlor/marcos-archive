@@ -116,14 +116,18 @@ marcos-archive/
 │   │   ├── Breadcrumb.tsx      # Breadcrumbs
 │   │   └── CallToAction.tsx    # CTA sections
 │   │
-│   ├── config/                 # Configuración
-│   │   └── site.ts             # ⚙️ Config del sitio (IMPORTANTE)
+│   ├── config/                 # ⚙️ Configuración (IMPORTANTE)
+│   │   ├── site.ts             # Info del sitio, contacto y redes
+│   │   ├── homeContent.ts      # Contenido de página Home/Hero
+│   │   ├── aboutContent.ts     # Contenido de página "Sobre mí"
+│   │   ├── contactContent.ts   # Contenido de página de Contacto
+│   │   └── projectsContent.ts  # Categorías de proyectos
 │   │
-│   ├── lib/                    # Utilidades y datos
-│   │   ├── data.ts             # Datos de proyectos paisajísticos
+│   ├── lib/                    # Utilidades y datos de proyectos
+│   │   ├── data.ts             # Datos de proyectos paisajísticos (legacy)
 │   │   ├── photos.ts           # Datos del archivo fotográfico
 │   │   ├── watercolors.ts      # Datos de sketching
-│   │   ├── landscape.ts        # Datos específicos de paisajismo
+│   │   ├── landscape.ts        # Proyectos paisajísticos detallados
 │   │   ├── imageConfig.ts      # Config de imágenes Next
 │   │   ├── metadata.ts         # Helper para SEO
 │   │   └── types.ts            # TypeScript types
@@ -260,11 +264,35 @@ import Breadcrumb from '@/app/components/Breadcrumb';
 
 ## 📊 Gestión de Datos
 
-### ✅ Información Centralizada en siteConfig
+### ✅ Arquitectura de Configuración Centralizada
+
+El proyecto utiliza un sistema de configuración centralizada donde cada página tiene su propio archivo de contenido en `app/config/`.
+
+**Archivos de Configuración:**
+
+```
+app/config/
+├── site.ts              # Información del sitio, contacto y redes sociales
+├── homeContent.ts       # Contenido de la página Home/Hero
+├── aboutContent.ts      # Contenido de la página "Sobre mí"
+├── contactContent.ts    # Contenido de la página de Contacto
+└── projectsContent.ts   # Categorías de proyectos
+```
+
+**Ventajas de esta arquitectura:**
+- ✅ Separación clara entre datos y presentación
+- ✅ Fácil de mantener y actualizar
+- ✅ Un solo lugar para cada tipo de contenido
+- ✅ Tipado con TypeScript
+- ✅ Se propaga automáticamente a todos los componentes
+
+---
+
+### 📋 site.ts - Información General
 
 **Archivo:** `app/config/site.ts`
 
-**✅ ACTUALIZADO:** Toda la información de contacto, nombre y redes sociales ahora está centralizada aquí y se usa en Navigation.tsx y Footer.tsx.
+Información básica del sitio, contacto y redes sociales:
 
 ```typescript
 export const siteConfig = {
@@ -293,29 +321,152 @@ export const siteConfig = {
 };
 ```
 
-**Uso en componentes:**
+**Usado en:** Navigation.tsx, Footer.tsx, contact/page.tsx
+
+---
+
+### 🏡 homeContent.ts - Página de Inicio
+
+**Archivo:** `app/config/homeContent.ts`
+
+Contenido de la sección Hero (portada):
 
 ```typescript
-// Navigation.tsx y Footer.tsx
-import { siteConfig } from '../config/site';
-
-// Usar en el código
-{siteConfig.architect.name}
-{siteConfig.contact.email}
-{siteConfig.socialLinks.instagram}
+export const homeContent = {
+  hero: {
+    title: {
+      line1: 'Arquitectura',
+      line2: 'del Paisaje',
+    },
+    subtitle: 'Urbanismo · Biofilia · Regeneración ecológica',
+    backgroundImage: '/images/image-hero.jpg',
+    buttons: {
+      primary: {
+        text: 'Ver proyectos',
+        link: '/projects',
+      },
+      secondary: {
+        text: 'Sobre mí',
+        link: '/about',
+      },
+    },
+  },
+};
 ```
 
-**Ventajas:**
-- ✅ Un solo lugar para editar
-- ✅ Se propaga automáticamente a todos los componentes
-- ✅ Fácil de mantener
-- ✅ Tipado con TypeScript
+**Usado en:** components/HeroSection.tsx
 
-### Datos de Proyectos
+---
 
-**Archivo:** `app/lib/data.ts`
+### 📄 aboutContent.ts - Página "Sobre mí"
 
-Contiene todos los proyectos paisajísticos:
+**Archivo:** `app/config/aboutContent.ts`
+
+Todo el contenido de la página About:
+
+```typescript
+export const aboutContent = {
+  pageTitle: 'Sobre mí',
+  
+  mainSection: {
+    title: 'Quién soy',
+    image: '/images/image-quien-soy-1.jpg',
+    imageAlt: 'Marcos Villén Rubio - Arquitecto',
+    paragraphs: [
+      'Párrafo 1...',
+      'Párrafo 2...',
+      // Array de párrafos
+    ],
+  },
+
+  education: {
+    title: 'Formación',
+    items: [
+      { year: '2026', title: 'AutoCAD 2D - Básico' },
+      // Array de formación
+    ],
+  },
+
+  experience: {
+    title: 'Experiencia laboral en entornos de',
+    items: [
+      { 
+        title: 'Gestión y funcionamiento de espacios de uso público',
+        subtitle: '(Sector hotelero)',
+      },
+      // Array de experiencia
+    ],
+  },
+};
+```
+
+**Usado en:** about/page.tsx
+
+---
+
+### 📞 contactContent.ts - Página de Contacto
+
+**Archivo:** `app/config/contactContent.ts`
+
+Contenido específico de la página de contacto:
+
+```typescript
+export const contactContent = {
+  pageTitle: 'Información de contacto',
+  
+  cvSection: {
+    title: 'Currículum Vitae',
+    description: 'Descarga mi CV actualizado...',
+    buttonText: 'Descargar CV (PDF)',
+    driveLink: 'URL_DE_GOOGLE_DRIVE',
+  },
+
+  ctaSection: {
+    title: '¿Quieres ver más de mi trabajo?',
+    description: 'Explora mi portafolio completo...',
+    buttonText: 'Ver proyectos',
+    buttonLink: '/projects',
+  },
+};
+```
+
+**Usado en:** contact/page.tsx (junto con siteConfig para email/teléfono/ubicación)
+
+---
+
+### 🎨 projectsContent.ts - Categorías de Proyectos
+
+**Archivo:** `app/config/projectsContent.ts`
+
+Define las categorías de proyectos mostradas en la página principal:
+
+```typescript
+export const projectsContent = {
+  pageTitle: 'Proyectos',
+  
+  categories: [
+    {
+      id: 'landscape',
+      title: 'Proyectos conceptuales',
+      description: 'De paisajismo y espacio público',
+      slug: 'landscape',
+      count: 8,
+      image: '/images/image-projects-1.jpg',
+    },
+    // Más categorías...
+  ],
+};
+```
+
+**Usado en:** projects/page.tsx
+
+---
+
+### 🌳 landscape.ts - Proyectos Paisajísticos (Contenido Detallado)
+
+**Archivo:** `app/lib/landscape.ts`
+
+Contiene el contenido detallado de cada proyecto de paisajismo:
 
 ```typescript
 export const landscapeProjects: Project[] = [
@@ -342,12 +493,45 @@ Para añadir un proyecto:
 
 Configuración de fotografías del archivo:
 
+### 🌳 landscape.ts - Proyectos Paisajísticos (Contenido Detallado)
+
+**Archivo:** `app/lib/landscape.ts`
+
+Contiene el contenido detallado de cada proyecto de paisajismo:
+
 ```typescript
-export const photos: Photo[] = [
-  { 
-    id: 1, 
-    filename: 'photo-001.jpg',
-    title: 'Título',
+export const landscapeProjects: LandscapeProject[] = [
+  {
+    id: 1,
+    title: 'Nombre del Proyecto',
+    slug: 'nombre-del-proyecto',
+    description: 'Descripción breve',
+    location: 'Ciudad, País',
+    year: 2024,
+    images: ['image-landscape-1.jpg'],
+    additionalInfo: [
+      'Párrafo 1 con información detallada...',
+      'Párrafo 2...',
+      // Array de párrafos organizados
+    ],
+  },
+  // ...
+];
+```
+
+**Para añadir un proyecto:**
+1. Añade el objeto al array
+2. Incrementa el `id`
+3. El `slug` debe ser URL-friendly (sin espacios, minúsculas)
+4. `additionalInfo` es un array de strings (cada string = un párrafo)
+
+---
+
+### 📸 photos.ts - Archivo Fotográfico
+
+**Archivo:** `app/lib/photos.ts`
+
+Configuración de fotografías del archivo:
     description: 'Descripción',
     location: 'Ubicación',
     year: '2024',

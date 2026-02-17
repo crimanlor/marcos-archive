@@ -31,14 +31,18 @@
 
 ## 1. Cambiar Textos
 
-### 📑 Tabla de Referencia Rápida
+### 📑 Tabla de Referencia Rápida - TODO CENTRALIZADO EN CONFIG
 
-| Qué cambiar | Archivo | Línea aprox. |
-|-------------|---------|--------------|
-| Nombre (navegación y footer) | `app/components/Navigation.tsx` y `Footer.tsx` | 12-14 |
-| Email y teléfono | `app/components/Footer.tsx` | 50-67 |
-| Redes sociales (Instagram, LinkedIn) | `app/components/Footer.tsx` | 73-90 |
-| Biografía en página "Sobre mí" | `app/about/page.tsx` | 28-52 |
+| Qué cambiar | Archivo de Configuración |
+|-------------|--------------------------|
+| **Información personal y contacto** | `app/config/site.ts` |
+| **Página de inicio (Hero)** | `app/config/homeContent.ts` |
+| **Página "Sobre mí"** | `app/config/aboutContent.ts` |
+| **Página de Contacto** | `app/config/contactContent.ts` |
+| **Página de Proyectos** | `app/config/projectsContent.ts` |
+| **Proyectos de paisajismo** | `app/lib/landscape.ts` |
+| **Archivo fotográfico** | `app/lib/photos.ts` |
+| **Sketches (acuarelas)** | `app/lib/watercolors.ts` |
 
 ### 🏠 Información Personal y Contacto
 
@@ -72,30 +76,141 @@ export const siteConfig = {
 
 **✅ Ventajas:**
 - Un solo archivo para cambiar todo
-- Se actualiza automáticamente en Navigation y Footer
+- Se actualiza automáticamente en toda la web
 - Más fácil de mantener
+
+---
+
+### 🏡 Página de Inicio (Portada)
+
+**📁 Archivo:** `app/config/homeContent.ts`
+
+```typescript
+export const homeContent = {
+  hero: {
+    title: {
+      line1: 'Arquitectura',        // ← Primera línea del título
+      line2: 'del Paisaje',          // ← Segunda línea del título
+    },
+    subtitle: 'Urbanismo · Biofilia · Regeneración ecológica',  // ← Subtítulo
+    backgroundImage: '/images/image-hero.jpg',  // ← Imagen de fondo
+    buttons: {
+      primary: {
+        text: 'Ver proyectos',       // ← Texto del botón principal
+        link: '/projects',
+      },
+      secondary: {
+        text: 'Sobre mí',            // ← Texto del botón secundario
+        link: '/about',
+      },
+    },
+  },
+};
+```
 
 ---
 
 ### 📄 Página "Sobre mí"
 
-**📁 Archivo:** `app/about/page.tsx`
+**📁 Archivo:** `app/config/aboutContent.ts`
 
-**Cómo cambiar un párrafo:**
-```tsx
-<p className="text-lg text-gray-600 mb-6 leading-relaxed">
-  Escribe aquí tu texto manteniendo esta estructura
-</p>
+**Cambiar la sección principal:**
+```typescript
+export const aboutContent = {
+  mainSection: {
+    title: 'Quién soy',
+    image: '/images/image-quien-soy-1.jpg',
+    paragraphs: [
+      'Primer párrafo...',           // ← Cambia cada párrafo
+      'Segundo párrafo...',
+      'Tercer párrafo...',
+      // Añade o elimina párrafos según necesites
+    ],
+  },
 ```
 
-**✅ Cambia:** Solo el texto entre `>` y `</p>`  
-**❌ No toques:** `<p className="...">`, ni ninguna etiqueta con `<` o `>`
+**Cambiar formación:**
+```typescript
+  education: {
+    title: 'Formación',
+    items: [
+      {
+        year: '2026',
+        title: 'AutoCAD 2D - Básico',    // ← Cambia el título
+      },
+      // Añade más items según necesites
+    ],
+  },
+```
+
+**Cambiar experiencia laboral:**
+```typescript
+  experience: {
+    title: 'Experiencia laboral en entornos de',
+    items: [
+      {
+        title: 'Gestión y funcionamiento de espacios de uso público',
+        subtitle: '(Sector hotelero)',
+      },
+      // Añade más items según necesites
+    ],
+  },
+```
 
 ---
 
-### 🎨 Proyectos de Paisajismo
+### 📞 Página de Contacto
 
-**📁 Archivo:** `app/lib/data.ts`
+**📁 Archivo:** `app/config/contactContent.ts`
+
+```typescript
+export const contactContent = {
+  pageTitle: 'Información de contacto',
+  
+  cvSection: {
+    title: 'Currículum Vitae',
+    description: 'Descarga mi CV actualizado...',
+    buttonText: 'Descargar CV (PDF)',
+    driveLink: 'TU_ENLACE_DE_GOOGLE_DRIVE_AQUI',  // ← Pon tu enlace de Google Drive
+  },
+
+  ctaSection: {
+    title: '¿Quieres ver más de mi trabajo?',
+    description: 'Explora mi portafolio completo...',
+    buttonText: 'Ver proyectos',
+  },
+};
+```
+
+---
+
+### 🎨 Página de Proyectos (Categorías)
+
+**📁 Archivo:** `app/config/projectsContent.ts`
+
+```typescript
+export const projectsContent = {
+  pageTitle: 'Proyectos',
+  
+  categories: [
+    {
+      id: 'landscape',
+      title: 'Proyectos conceptuales',          // ← Cambia el título
+      description: 'De paisajismo y espacio público',  // ← Descripción
+      slug: 'landscape',
+      count: 8,                                  // ← Número de proyectos
+      image: '/images/image-projects-1.jpg',    // ← Imagen de portada
+    },
+    // Más categorías...
+  ],
+};
+```
+
+---
+
+### 🎨 Proyectos de Paisajismo (Contenido Detallado)
+
+**📁 Archivo:** `app/lib/landscape.ts`
 
 **Editar un proyecto existente:**
 ```typescript

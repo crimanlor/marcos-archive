@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { homeContent } from '../config/homeContent';
 
 export default function HeroSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -23,8 +24,8 @@ export default function HeroSection() {
       {/* Hero Background Image */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/image-hero.jpg"
-          alt="Arquitectura y naturaleza"
+          src={homeContent.hero.backgroundImage}
+          alt={homeContent.hero.backgroundImageAlt}
           fill
           className="object-cover"
           priority
@@ -49,7 +50,7 @@ export default function HeroSection() {
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-950 mb-6 leading-tight text-balance"
           style={{ textShadow: '0 2px 8px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)' }}
         >
-          Arquitectura <br></br>del Paisaje
+          {homeContent.hero.title.line1} <br></br>{homeContent.hero.title.line2}
         </h1>
 
         <p
@@ -57,21 +58,21 @@ export default function HeroSection() {
           className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed text-balance max-w-2xl mx-auto"
           style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(255, 255, 255, 0.7)' }}
         >
-          Urbanismo · Biofilia · Regeneración ecológica
+          {homeContent.hero.subtitle}
         </p>
 
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/projects"
+            href={homeContent.hero.buttons.primary.link}
             className="px-8 py-4 bg-gray-950 text-white font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg rounded-lg"
           >
-            Ver proyectos
+            {homeContent.hero.buttons.primary.text}
           </Link>
           <Link
-            href="/about"
+            href={homeContent.hero.buttons.secondary.link}
             className="px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
           >
-            Sobre mí
+            {homeContent.hero.buttons.secondary.text}
           </Link>
         </div>
       </div>

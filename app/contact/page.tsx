@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { siteConfig } from '../config/site';
+import { contactContent } from '../config/contactContent';
 
 export const metadata: Metadata = {
   title: 'Contacto | Marcos Villén Rubio',
@@ -13,7 +15,7 @@ export default function ContactPage() {
       <section className="py-12 md:py-16 bg-white">
         <div className="container-portfolio max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 text-balance">
-            Información de contacto
+            {contactContent.pageTitle}
           </h1>
           {/* <p className="text-xl text-gray-600 text-balance">
             Estoy disponible para nuevos proyectos de arquitectura y paisajismo. No dudes en contactarme para explorar cómo podemos crear espacios excepcionales juntos.
@@ -37,8 +39,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-950 mb-1">Email</h3>
-                  <a href="mailto:marcos-landscape@proton.me" className="text-gray-600 hover:text-gray-950 transition-colors">
-                    marcos-landscape@proton.me
+                  <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-600 hover:text-gray-950 transition-colors">
+                    {siteConfig.contact.email}
                   </a>
                 </div>
               </div>
@@ -52,8 +54,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-950 mb-1">Teléfono</h3>
-                  <a href="tel:+34695531983" className="text-gray-600 hover:text-gray-950 transition-colors">
-                    +34 695 531 983
+                  <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`} className="text-gray-600 hover:text-gray-950 transition-colors">
+                    {siteConfig.contact.phone}
                   </a>
                 </div>
               </div>
@@ -68,12 +70,12 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-950 mb-1">LinkedIn</h3>
                   <a 
-                    href="https://www.linkedin.com/in/marcos-villen-rubio" 
+                    href={siteConfig.socialLinks.linkedin} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-gray-950 transition-colors inline-flex items-center gap-2"
                   >
-                    Marcos Villén Rubio
+                    {siteConfig.architect.name}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
@@ -91,20 +93,20 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-950 mb-1">Ubicación</h3>
-                  <p className="text-gray-600">Barcelona, España</p>
+                  <p className="text-gray-600">{siteConfig.contact.location}</p>
                 </div>
               </div>
             </div>
 
             {/* CV Download */}
             <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-950 mb-4">Currículum Vitae</h3>
+              <h3 className="text-2xl font-bold text-gray-950 mb-4">{contactContent.cvSection.title}</h3>
               <p className="text-gray-600 mb-6">
-                Descarga mi CV actualizado para conocer más sobre mi formación y experiencia.
+                {contactContent.cvSection.description}
               </p>
               
               <a
-                href="TU_ENLACE_DE_GOOGLE_DRIVE_AQUI"
+                href={contactContent.cvSection.driveLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-6 py-3 bg-gray-950 text-white rounded-lg hover:bg-gray-800 transition-colors"
@@ -112,7 +114,7 @@ export default function ContactPage() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Descargar CV (PDF)
+                {contactContent.cvSection.buttonText}
               </a>
 
             </div>
@@ -124,16 +126,16 @@ export default function ContactPage() {
       <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
         <div className="container-portfolio max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-950 mb-6">
-            ¿Quieres ver más de mi trabajo?
+            {contactContent.ctaSection.title}
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Explora mi portafolio completo de proyectos de arquitectura y paisajismo.
+            {contactContent.ctaSection.description}
           </p>
           <Link
-            href="/projects"
+            href={contactContent.ctaSection.buttonLink}
             className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-950 text-gray-950 font-medium hover:bg-gray-950 hover:text-white transition-all duration-300 rounded-lg"
           >
-            Ver proyectos
+            {contactContent.ctaSection.buttonText}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

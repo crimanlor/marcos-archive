@@ -1,46 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { projectsContent } from '../config/projectsContent';
 
 export const metadata: Metadata = {
   title: 'Proyectos | Marcos Villén Rubio',
   description: 'Galería de proyectos: paisajismo, acuarelas y fotografía arquitectónica',
 };
-
-const projectCategories = [
-  {
-    id: 'landscape',
-    title: 'Proyectos conceptuales',
-    description: 'De paisajismo y espacio público',
-    slug: 'landscape',
-    count: 8,
-    image: '/images/image-projects-1.jpg',
-  },
-  {
-    id: 'watercolors',
-    title: 'Sketches',
-    description: 'De arquitectura y paisaje',
-    slug: 'watercolors',
-    count: 8,
-    image: '/images/image-projects-2.jpg',
-  },
-  {
-    id: 'photography',
-    title: 'Archivo fotográfico',
-    description: 'Y espacios públicos',
-    slug: 'photography',
-    count: 36,
-    image: '/images/image-projects-3.jpg',
-  },
-  {
-    id: 'references',
-    title: 'Referencias',
-    description: 'De proyectos, obras y artistas',
-    slug: 'references',
-    count: 1,
-    image: '/images/image-projects-4.jpg',
-  }
-];
 
 export default function ProjectsPage() {
   return (
@@ -49,7 +15,7 @@ export default function ProjectsPage() {
        <section className="py-12 md:py-16 bg-white">
         <div className="container-portfolio max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 text-balance">
-            Proyectos
+            {projectsContent.pageTitle}
           </h1>
           {/* <p className="text-xl text-gray-600 text-balance">
             Una selección de trabajos que reflejan nuestra práctica arquitectónica centrada en la naturaleza y el minimalismo.
@@ -61,7 +27,7 @@ export default function ProjectsPage() {
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {projectCategories.map((category, index) => (
+            {projectsContent.categories.map((category, index) => (
               <Link
                 key={category.id}
                 href={`/projects/${category.slug}`}
