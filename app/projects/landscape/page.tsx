@@ -43,6 +43,7 @@ export default function LandscapeProjectsPage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={90}
                   />
                 </div>
 

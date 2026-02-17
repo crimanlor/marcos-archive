@@ -42,7 +42,9 @@
 | **Página de Proyectos** | `app/config/projectsContent.ts` |
 | **Proyectos de paisajismo** | `app/lib/landscape.ts` |
 | **Archivo fotográfico** | `app/lib/photos.ts` |
-| **Sketches (acuarelas)** | `app/lib/watercolors.ts` |
+| **Sketches (acuarelas)** | `app/lib/watercolors.ts` ⚡ **AUTOMÁTICO** |
+
+> ⚡ **NUEVO:** Los sketches se generan automáticamente, solo cambia un número.
 
 ### 🏠 Información Personal y Contacto
 
@@ -253,6 +255,43 @@ export const projectsContent = {
 
 ---
 
+### 🎨 Sketches / Acuarelas ⚡ AUTOMÁTICO
+
+**📁 Archivo:** `app/lib/watercolors.ts`
+
+**✨ SÚPER FÁCIL - SOLO CAMBIA UN NÚMERO:**
+
+```typescript
+// 🎨 SOLO CAMBIA ESTE NÚMERO cuando añadas o elimines acuarelas
+const TOTAL_WATERCOLORS = 11;
+```
+
+**Pasos:**
+
+1. **Añade tus imágenes** a `public/images/` con nombres:
+   - `watercolor-001.jpg`
+   - `watercolor-002.jpg`
+   - `watercolor-003.jpg`
+   - etc.
+
+2. **Cambia el número** en `app/lib/watercolors.ts`:
+   - Si tienes 15 acuarelas → `TOTAL_WATERCOLORS = 15`
+   - Si tienes 8 acuarelas → `TOTAL_WATERCOLORS = 8`
+
+3. **¡Listo!** Todo se genera automáticamente:
+   - ✅ Todas las acuarelas aparecen en la galería
+   - ✅ El contador se actualiza solo
+   - ✅ Los nombres se generan automáticamente (Sketch 1, Sketch 2, etc.)
+   - ✅ No necesitas editar nada más
+
+**Ventajas:**
+- No necesitas añadir cada acuarela manualmente
+- Solo un número para cambiar
+- Menos errores
+- Más rápido
+
+---
+
 ## 2. Cambiar Imágenes
 
 ### 📁 Ubicación: `public/images/`
@@ -265,7 +304,9 @@ export const projectsContent = {
 | Portada principal | `image-hero.jpg` | Página de inicio |
 | Proyectos paisajismo | `image-landscape-project-01.jpg` a `-06.jpg` | Galería de proyectos |
 | Archivo fotográfico | `photo-001.jpg` a `photo-040.jpg` | Página de fotografía |
-| Sketching/Acuarelas | `watercolor-001.jpg` a `watercolor-011.jpg` | Página de sketching |
+| Sketching/Acuarelas ⚡ | `watercolor-001.jpg`, `watercolor-002.jpg`, etc. | Automático - Solo añade archivos |
+
+> ⚡ **Para sketches:** Solo añade archivos con el formato `watercolor-XXX.jpg` y cambia el número en `watercolors.ts`
 
 ---
 

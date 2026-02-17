@@ -126,7 +126,7 @@ marcos-archive/
 │   ├── lib/                    # Utilidades y datos de proyectos
 │   │   ├── data.ts             # Datos de proyectos paisajísticos (legacy)
 │   │   ├── photos.ts           # Datos del archivo fotográfico
-│   │   ├── watercolors.ts      # Datos de sketching
+│   │   ├── watercolors.ts      # ⚡ Sketches - Sistema automático
 │   │   ├── landscape.ts        # Proyectos paisajísticos detallados
 │   │   ├── imageConfig.ts      # Config de imágenes Next
 │   │   ├── metadata.ts         # Helper para SEO
@@ -441,6 +441,10 @@ export const contactContent = {
 Define las categorías de proyectos mostradas en la página principal:
 
 ```typescript
+import { watercolors } from '../lib/watercolors';
+import { photos } from '../lib/photos';
+import { landscapeProjects } from '../lib/landscape';
+
 export const projectsContent = {
   pageTitle: 'Proyectos',
   
@@ -450,13 +454,31 @@ export const projectsContent = {
       title: 'Proyectos conceptuales',
       description: 'De paisajismo y espacio público',
       slug: 'landscape',
-      count: 8,
+      count: landscapeProjects.length, // ⚡ Se actualiza automáticamente
       image: '/images/image-projects-1.jpg',
+    },
+    {
+      id: 'watercolors',
+      title: 'Sketches',
+      description: 'De arquitectura y paisaje',
+      slug: 'watercolors',
+      count: watercolors.length, // ⚡ Se actualiza automáticamente
+      image: '/images/image-projects-2.jpg',
+    },
+    {
+      id: 'photography',
+      title: 'Archivo fotográfico',
+      description: 'Y espacios públicos',
+      slug: 'photography',
+      count: photos.length, // ⚡ Se actualiza automáticamente
+      image: '/images/image-projects-3.jpg',
     },
     // Más categorías...
   ],
 };
 ```
+
+**✨ Ventaja:** Los contadores (`count`) se actualizan automáticamente al cambiar los arrays de datos.
 
 **Usado en:** projects/page.tsx
 
@@ -532,6 +554,13 @@ export const landscapeProjects: LandscapeProject[] = [
 **Archivo:** `app/lib/photos.ts`
 
 Configuración de fotografías del archivo:
+
+```typescript
+export const photos: Photo[] = [
+  { 
+    id: 1, 
+    filename: 'photo-001.jpg',
+    title: 'Título',
     description: 'Descripción',
     location: 'Ubicación',
     year: '2024',
@@ -542,6 +571,51 @@ Configuración de fotografías del archivo:
 ```
 
 **Importante:** El `filename` debe coincidir con el archivo en `public/images/`
+
+---
+
+### 🎨 watercolors.ts - Sketches / Acuarelas ⚡ AUTOMÁTICO
+
+**Archivo:** `app/lib/watercolors.ts`
+
+**Sistema de generación automática:**
+
+```typescript
+// 🎨 SOLO CAMBIA ESTE NÚMERO cuando añadas o elimines acuarelas
+const TOTAL_WATERCOLORS = 11;
+
+// Genera automáticamente el array de acuarelas
+export const watercolors: Watercolor[] = Array.from(
+  { length: TOTAL_WATERCOLORS }, 
+  (_, i) => {
+    const number = i + 1;
+    return {
+      id: number,
+      filename: `watercolor-${String(number).padStart(3, '0')}.jpg`,
+      title: `Sketch ${number}`,
+      description: '',
+      orientation: 'vertical',
+      year: '2024',
+      medium: 'Acuarela sobre papel'
+    };
+  }
+);
+```
+
+**Ventajas:**
+- ✅ Solo cambias un número (`TOTAL_WATERCOLORS`)
+- ✅ Nombres de archivo generados automáticamente con formato correcto
+- ✅ No necesitas añadir cada acuarela manualmente
+- ✅ Reduce errores y ahorra tiempo
+
+**Para añadir/eliminar acuarelas:**
+1. Añade archivos con formato: `watercolor-001.jpg`, `watercolor-002.jpg`, etc. en `public/images/`
+2. Actualiza `TOTAL_WATERCOLORS` con el número total
+3. ¡Listo! Todo se actualiza automáticamente
+
+**Nota:** Los contadores en `projectsContent.ts` también se actualizan automáticamente usando `.length`
+
+---
 
 ### Types
 

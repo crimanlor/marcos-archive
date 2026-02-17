@@ -3,6 +3,10 @@
  * Modifica estos valores para actualizar las categorías de proyectos
  */
 
+import { watercolors } from '../lib/watercolors';
+import { photos } from '../lib/photos';
+import { landscapeProjects } from '../lib/landscape';
+
 export const projectsContent = {
   // Título principal
   pageTitle: 'Proyectos',
@@ -15,7 +19,7 @@ export const projectsContent = {
       title: 'Proyectos conceptuales',
       description: 'De paisajismo y espacio público',
       slug: 'landscape',
-      count: 8,
+      count: landscapeProjects.length, // Se actualiza automáticamente
       image: '/images/image-projects-1.jpg',
     },
     {
@@ -23,7 +27,7 @@ export const projectsContent = {
       title: 'Sketches',
       description: 'De arquitectura y paisaje',
       slug: 'watercolors',
-      count: 8,
+      count: watercolors.length, // Se actualiza automáticamente
       image: '/images/image-projects-2.jpg',
     },
     {
@@ -31,7 +35,7 @@ export const projectsContent = {
       title: 'Archivo fotográfico',
       description: 'Y espacios públicos',
       slug: 'photography',
-      count: 36,
+      count: photos.length, // Se actualiza automáticamente
       image: '/images/image-projects-3.jpg',
     },
     {
