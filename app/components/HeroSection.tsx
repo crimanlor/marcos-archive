@@ -49,7 +49,7 @@ export default function HeroSection() {
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-950 mb-6 leading-tight text-balance"
           style={{ textShadow: '0 2px 8px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)' }}
         >
-          Arquitectura <br></br>del paisaje
+          Arquitectura <br></br>del Paisaje
         </h1>
 
         <p

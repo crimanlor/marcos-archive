@@ -8,7 +8,7 @@ export const landscapeProjects: LandscapeProject[] = [
     id: 1, 
     filename: 'image-landscape-project-01.jpg', 
     title: 'Cubierta verde · Residencia Sanitas Consell de Cent', 
-    description: 'Cubierta vegetal como espacio de bienestar y refugio biofílico en altura.',
+    description: 'Una intervención paisajística en altura que transforma una azotea dura en un espacio vegetal de descanso y bienestar para los usuarios de la residencia.',
     location: 'Barcelona, España',
     year: '2026',
     area: '168 m²',

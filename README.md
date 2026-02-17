@@ -1,143 +1,112 @@
-# 🎨 Portfolio de Arquitecto - Guía Rápida
+# 🎨 Portfolio de Arquitectura y Paisajismo
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
 
-Portfolio web profesional minimalista para arquitectos. Optimizado, limpio y fácil de mantener.
+Portfolio web profesional minimalista. Optimizado, limpio y fácil de mantener.
+
+---
 
 ## 🚀 Inicio Rápido
 
 ```bash
-# 1. Instalar dependencias
 npm install
-
-# 2. Iniciar servidor de desarrollo
 npm run dev
-
-# 3. Abrir en navegador
 # http://localhost:3000
 ```
 
-## 📁 Estructura Principal
+---
+
+## 📚 Documentación
+
+**Solo 2 documentos, nada más:**
+
+### 💻 [Para Desarrolladores → DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)
+
+Setup, arquitectura, componentes, deploy, troubleshooting. **Todo lo técnico está aquí.**
+
+### 📝 [Para No Desarrolladores → GUIA_CAMBIOS_CONTENIDO.md](./docs/GUIA_CAMBIOS_CONTENIDO.md)
+
+Cómo editar textos, cambiar imágenes, optimizarlas y subirlas a GitHub. **Sin código.**
+
+---
+
+## 📁 Estructura
 
 ```
-app/
-├── page.tsx                 # Home
-├── about/page.tsx          # Sobre mí
-├── projects/               # Proyectos
-│   ├── page.tsx
-│   ├── landscape/
-│   ├── watercolors/
-│   └── photography/
-├── components/             # Componentes reutilizables
-├── config/site.ts         # ⭐ CONFIGURACIÓN AQUÍ
-└── globals.css            # Estilos globales
+marcos-archive/
+├── app/                    # Código de la aplicación
+│   ├── components/        # Componentes React
+│   ├── lib/               # Datos (proyectos, fotos)
+│   ├── config/site.ts     # ⚙️ Configuración principal
+│   └── ...
+├── public/images/         # 🖼️ Todas las imágenes
+├── docs/                  # 📚 Solo 2 guías
+│   ├── DEVELOPER_GUIDE.md
+│   └── GUIA_CAMBIOS_CONTENIDO.md
+└── optimize-images.sh     # Script de optimización
 ```
 
-## ✏️ Personalizar
+---
 
-### 1. Cambiar información
-Edita `app/config/site.ts`:
-```typescript
-siteName: 'Tu Nombre'
-email: 'tu-email@example.com'
-phone: '+34 123 456 789'
+## ✏️ Cambios Rápidos
+
+**Nombre (Navigation/Footer):** `app/components/Navigation.tsx` y `Footer.tsx`  
+**Email y teléfono:** `app/components/Footer.tsx` (líneas 50-67)  
+**Redes sociales:** `app/components/Footer.tsx` (líneas 73-90)  
+**Biografía completa:** `app/about/page.tsx` (líneas 28-52)  
+**Proyectos paisajismo:** `app/lib/data.ts`  
+**Fotografías:** `app/lib/photos.ts`  
+**Imágenes:** `public/images/`
+
+**Optimizar imágenes:**
+```bash
+./optimize-images.sh
 ```
 
-### 2. Cambiar colores
-Edita `app/globals.css`:
-```css
-:root {
-  --color-primary: #000000;
-  --color-accent: #0d3d3d;
-}
-```
+---
 
-### 3. Editar contenido
-- **Home**: `app/page.tsx`
-- **Sobre mí**: `app/about/page.tsx`
-- **Proyectos**: `app/projects/page.tsx`
-
-### 4. Agregar imágenes
-Coloca en `public/images/` y usa:
-```tsx
-<img src="/images/foto.jpg" alt="Descripción" />
-```
-
-## 🧩 Componentes
-
-```tsx
-// Button
-<Button variant="primary" size="lg">Click</Button>
-
-// GalleryGrid
-<GalleryGrid columns="auto" gap="md">
-  {items.map(item => <div key={item.id}>{item}</div>)}
-</GalleryGrid>
-```
-
-## 🎨 Clases Tailwind Comunes
-
-```css
-/* Espaciado */
-p-4    /* padding 16px */
-m-8    /* margin 32px */
-gap-6  /* gap 24px */
-
-/* Colores */
-bg-white           /* fondo blanco */
-text-gray-950      /* texto oscuro */
-hover:bg-gray-100  /* hover */
-
-/* Responsive */
-md:text-5xl        /* tablet+ */
-lg:grid-cols-3     /* desktop+ */
-```
-
-## 🐛 Problemas Comunes
+## 🛠️ Comandos
 
 ```bash
-# Limpiar caché
-rm -rf .next && npm run dev
-
-# Verificar errores
-npm run lint
-
-# Reinstalar dependencias
-rm -rf node_modules && npm install
+npm run dev          # Desarrollo
+npm run build        # Build producción
+npm run lint         # Verificar código
+./optimize-images.sh # Optimizar imágenes
 ```
 
-## 📚 Documentación Completa
-
-- `00_COMIENZA_AQUI.md` - Tutorial paso a paso
-- `QUICK_START.md` - Guía de 10 pasos
-- `INDEX.md` - Índice completo del proyecto
-- `DEVELOPMENT_GUIDE.md` - Guía de desarrollo avanzado
+---
 
 ## 🚀 Deploy
 
+**Vercel (recomendado):**
+1. Conecta tu repo en [vercel.com](https://vercel.com)
+2. Deploy automático en cada push
+
+O con CLI:
 ```bash
-# Vercel (recomendado)
 npm i -g vercel
 vercel
-
-# O compilar
-npm run build
-npm start
 ```
 
-## ✅ Checklist
+---
 
-- [ ] Cambiar nombre en `config/site.ts`
-- [ ] Actualizar email y teléfono
-- [ ] Personalizar textos
-- [ ] Agregar imágenes
-- [ ] Probar en móvil
-- [ ] Deploy
+## 🆘 Problemas
 
-## 📞 Ayuda
+```bash
+# No arranca
+rm -rf .next node_modules
+npm install && npm run dev
+
+# Puerto ocupado
+lsof -ti:3000 | xargs kill -9
+```
+
+---
+
+## 📖 Recursos
 
 - [Next.js Docs](https://nextjs.org/docs)
 - [Tailwind Docs](https://tailwindcss.com/docs)
@@ -145,4 +114,9 @@ npm start
 
 ---
 
-**Versión:** 1.0.0 | **Estado:** ✅ Optimizado y listo
+**¿Desarrollador?** → Lee [DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)  
+**¿No técnico?** → Lee [GUIA_CAMBIOS_CONTENIDO.md](./docs/GUIA_CAMBIOS_CONTENIDO.md)
+
+---
+
+*v2.0 - Docs optimizadas y consolidadas*
