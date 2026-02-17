@@ -53,13 +53,18 @@ marcos-archive/
 
 ## ✏️ Cambios Rápidos
 
-**Nombre (Navigation/Footer):** `app/components/Navigation.tsx` y `Footer.tsx`  
-**Email y teléfono:** `app/components/Footer.tsx` (líneas 50-67)  
-**Redes sociales:** `app/components/Footer.tsx` (líneas 73-90)  
-**Biografía completa:** `app/about/page.tsx` (líneas 28-52)  
-**Proyectos paisajismo:** `app/lib/data.ts`  
-**Fotografías:** `app/lib/photos.ts`  
-**Imágenes:** `public/images/`
+**✅ TODO centralizado en:** `app/config/site.ts`
+
+- Nombre, email, teléfono
+- Redes sociales (Instagram, LinkedIn)
+- Información del arquitecto
+- Colores y configuración
+
+**Otros archivos:**
+- **Biografía completa:** `app/about/page.tsx`  
+- **Proyectos paisajismo:** `app/lib/data.ts`  
+- **Fotografías:** `app/lib/photos.ts`  
+- **Imágenes:** `public/images/`
 
 **Optimizar imágenes:**
 ```bash

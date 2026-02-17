@@ -260,61 +260,56 @@ import Breadcrumb from '@/app/components/Breadcrumb';
 
 ## 📊 Gestión de Datos
 
-### ⚠️ Información Dispersa (No Centralizada)
-
-**IMPORTANTE:** A diferencia de lo esperado, NO toda la información está en `app/config/site.ts`. Aquí está la ubicación REAL de cada dato:
-
-#### Información de Contacto y Personal
-
-| Dato | Ubicación Real | Líneas |
-|------|---------------|--------|
-| Nombre completo | `app/components/Navigation.tsx` | 14 |
-| Nombre completo | `app/components/Footer.tsx` | 12 |
-| Email | `app/components/Footer.tsx` | 51-56 |
-| Teléfono | `app/components/Footer.tsx` | 61-66 |
-| Instagram | `app/components/Footer.tsx` | 73-80 |
-| LinkedIn | `app/components/Footer.tsx` | 83-90 |
-| Biografía completa | `app/about/page.tsx` | 28-52 |
-
-**Para cambiar tu nombre, email o redes:** Edita directamente en Footer.tsx y Navigation.tsx (están hardcodeados).
-
----
-
-### Configuración del Sitio
+### ✅ Información Centralizada en siteConfig
 
 **Archivo:** `app/config/site.ts`
 
-⚠️ **Nota:** Este archivo existe pero NO se está usando para contacto/redes sociales en la versión actual.
-
-Contiene configuración general pero no está conectado a los componentes:
+**✅ ACTUALIZADO:** Toda la información de contacto, nombre y redes sociales ahora está centralizada aquí y se usa en Navigation.tsx y Footer.tsx.
 
 ```typescript
 export const siteConfig = {
-  siteName: 'Estudio Arquitectura',
-  siteDescription: 'Portfolio de arquitecto...',
+  siteName: 'Marcos Villén Rubio',
+  siteDescription: 'Portfolio de arquitectura del paisaje...',
   
-  // ⚠️ Estos datos NO se usan actualmente en Footer/Navigation
+  // Información del contacto
   contact: {
-    email: 'contact@example.com',
-    phone: '+34 000 000 000',
+    email: 'marcos-landscape@proton.me',
+    phone: '+34 695 531 983',
     location: 'Barcelona, España',
   },
   
+  // Redes sociales
   socialLinks: {
-    instagram: 'https://instagram.com/usuario',
-    linkedin: 'https://linkedin.com/in/usuario',
+    instagram: 'https://instagram.com/marcosvillen',
+    linkedin: 'https://www.linkedin.com/in/marcosvillen/',
   },
   
-  // Colores personalizados
-  colors: {
-    primary: '#000000',
-    secondary: '#1a1a1a',
-    accent: '#0d3d3d',
+  // Información del arquitecto
+  architect: {
+    name: 'Marcos Villén Rubio',
+    title: 'Arquitectura del Paisaje',
+    subtitle: 'Urbanismo · Biofilia · Regeneración Ecológica',
   },
 };
 ```
 
-**TODO:** Refactorizar Footer.tsx y Navigation.tsx para usar `siteConfig` en lugar de valores hardcodeados.
+**Uso en componentes:**
+
+```typescript
+// Navigation.tsx y Footer.tsx
+import { siteConfig } from '../config/site';
+
+// Usar en el código
+{siteConfig.architect.name}
+{siteConfig.contact.email}
+{siteConfig.socialLinks.instagram}
+```
+
+**Ventajas:**
+- ✅ Un solo lugar para editar
+- ✅ Se propaga automáticamente a todos los componentes
+- ✅ Fácil de mantener
+- ✅ Tipado con TypeScript
 
 ### Datos de Proyectos
 

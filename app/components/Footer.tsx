@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteConfig } from '../config/site';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,9 +10,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Column 1: Brand */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Marcos Villén Rubio</h3>
+            <h3 className="text-lg font-semibold mb-4">{siteConfig.architect.name}</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Urbanismo · Biofilia · Regeneración Ecológica
+              {siteConfig.architect.subtitle}
             </p>
           </div>
 
@@ -48,20 +49,20 @@ export default function Footer() {
     {/* Email */}
     <li>
       <a
-        href="mailto:marcos-landscape@proton.me"
+        href={`mailto:${siteConfig.contact.email}`}
         className="text-gray-400 hover:text-white transition-colors"
       >
-        marcos-landscape@proton.me
+        {siteConfig.contact.email}
       </a>
     </li>
 
     {/* Teléfono */}
     <li>
       <a
-        href="tel:+34695531983"
+        href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
         className="text-gray-400 hover:text-white transition-colors"
       >
-        +34 695 531 983
+        {siteConfig.contact.phone}
       </a>
     </li>
 
@@ -69,25 +70,29 @@ export default function Footer() {
     <li className="pt-2">
       <div className="flex gap-4">
 
-        <a
-          href="https://instagram.com/marcosvillen"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-white transition-colors text-sm"
-          aria-label="Instagram de Marcos Villén"
-        >
-          Instagram
-        </a>
+        {siteConfig.socialLinks.instagram && (
+          <a
+            href={siteConfig.socialLinks.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors text-sm"
+            aria-label={`Instagram de ${siteConfig.architect.name}`}
+          >
+            Instagram
+          </a>
+        )}
 
-        <a
-          href="https://www.linkedin.com/in/marcosvillen/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-white transition-colors text-sm"
-          aria-label="LinkedIn de Marcos Villén"
-        >
-          LinkedIn
-        </a>
+        {siteConfig.socialLinks.linkedin && (
+          <a
+            href={siteConfig.socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors text-sm"
+            aria-label={`LinkedIn de ${siteConfig.architect.name}`}
+          >
+            LinkedIn
+          </a>
+        )}
 
       </div>
     </li>
@@ -101,7 +106,7 @@ export default function Footer() {
        <div className="border-t border-gray-800 pt-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            © {currentYear} Marcos Villén Rubio. Todos los derechos reservados.
+            © {currentYear} {siteConfig.architect.name}. Todos los derechos reservados.
           </p>
           <p className="text-gray-400 text-sm">
             Desarrollado por{" "}

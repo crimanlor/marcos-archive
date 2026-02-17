@@ -5,31 +5,32 @@
 
 export const siteConfig = {
   // Información básica
-  siteName: 'Estudio Arquitectura',
-  siteDescription: 'Portfolio de arquitecto especializado en diseño naturalista y paisajismo contemporáneo',
+  siteName: 'Marcos Villén Rubio',
+  siteDescription: 'Portfolio de arquitectura del paisaje · Urbanismo · Biofilia · Regeneración Ecológica',
   siteUrl: 'https://arquitectura-portfolio.com',
   
   // Información del contacto
   contact: {
-    email: 'contact@example.com',
-    phone: '+34 000 000 000',
+    email: 'marcos-landscape@proton.me',
+    phone: '+34 695 531 983',
     location: 'Barcelona, España',
   },
 
   // Redes sociales
   socialLinks: {
-    instagram: 'https://instagram.com/usuario',
-    linkedin: 'https://linkedin.com/in/usuario',
-    twitter: 'https://twitter.com/usuario',
-    behance: 'https://behance.net/usuario',
+    instagram: 'https://instagram.com/marcosvillen',
+    linkedin: 'https://www.linkedin.com/in/marcosvillen/',
+    twitter: '',
+    behance: '',
   },
 
   // Información del arquitecto
   architect: {
-    name: 'Juan Pérez',
-    title: 'Arquitecto & Diseñador de Paisajes',
-    bio: 'Especializado en diseño minimalista y arquitectura naturalista.',
-    yearsExperience: 10,
+    name: 'Marcos Villén Rubio',
+    title: 'Arquitectura del Paisaje',
+    subtitle: 'Urbanismo · Biofilia · Regeneración Ecológica',
+    bio: 'Especializado en diseño del paisaje y espacios naturales contemporáneos.',
+    yearsExperience: 0,
   },
 
   // Colores personalizados

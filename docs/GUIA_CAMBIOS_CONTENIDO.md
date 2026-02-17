@@ -40,54 +40,40 @@
 | Redes sociales (Instagram, LinkedIn) | `app/components/Footer.tsx` | 73-90 |
 | Biografía en página "Sobre mí" | `app/about/page.tsx` | 28-52 |
 
-### 🏠 Nombre, Email, Teléfono y Redes Sociales
+### 🏠 Información Personal y Contacto
 
-**⚠️ IMPORTANTE:** Esta información NO está centralizada, está en varios archivos.
+**📁 Archivo:** `app/config/site.ts`
 
-#### Cambiar tu Nombre
+**✅ TODO ESTÁ AQUÍ - Un solo lugar para cambiar todo:**
 
-**📁 Archivo:** `app/components/Navigation.tsx` (línea 14)
-```tsx
-Marcos Villén Rubio  // ← Cambia aquí tu nombre
+```typescript
+export const siteConfig = {
+  // Información del contacto
+  contact: {
+    email: 'marcos-landscape@proton.me',     // ← Cambia tu email
+    phone: '+34 695 531 983',                // ← Cambia tu teléfono
+    location: 'Barcelona, España',           // ← Tu ubicación
+  },
+
+  // Redes sociales
+  socialLinks: {
+    instagram: 'https://instagram.com/marcosvillen',         // ← Tu Instagram
+    linkedin: 'https://www.linkedin.com/in/marcosvillen/',   // ← Tu LinkedIn
+  },
+
+  // Información del arquitecto
+  architect: {
+    name: 'Marcos Villén Rubio',             // ← Tu nombre completo
+    title: 'Arquitectura del Paisaje',       // ← Tu título
+    subtitle: 'Urbanismo · Biofilia · Regeneración Ecológica',  // ← Tu subtítulo
+  },
+};
 ```
 
-**📁 Archivo:** `app/components/Footer.tsx` (línea 12)
-```tsx
-<h3 className="text-lg font-semibold mb-4">Marcos Villén Rubio</h3>
-// Cambia "Marcos Villén Rubio" por tu nombre
-```
-
-#### Cambiar Email y Teléfono
-
-**📁 Archivo:** `app/components/Footer.tsx` (líneas 50-67)
-```tsx
-{/* Email - línea 51 */}
-<a href="mailto:marcos-landscape@proton.me">
-  marcos-landscape@proton.me  // ← Cambia aquí
-</a>
-
-{/* Teléfono - línea 61 */}
-<a href="tel:+34695531983">
-  +34 695 531 983  // ← Cambia aquí
-</a>
-```
-
-#### Cambiar Redes Sociales
-
-**📁 Archivo:** `app/components/Footer.tsx` (líneas 73-90)
-```tsx
-{/* Instagram - línea 73 */}
-<a href="https://instagram.com/marcosvillen">  // ← Cambia la URL
-  Instagram
-</a>
-
-{/* LinkedIn - línea 83 */}
-<a href="https://www.linkedin.com/in/marcosvillen/">  // ← Cambia la URL
-  LinkedIn
-</a>
-```
-
-**⚠️ Importante:** Cambia solo las URLs y los textos, NO toques las comillas ni las etiquetas `<a>`, `href=`, etc.
+**✅ Ventajas:**
+- Un solo archivo para cambiar todo
+- Se actualiza automáticamente en Navigation y Footer
+- Más fácil de mantener
 
 ---
 
@@ -442,24 +428,19 @@ Las imágenes originales están guardadas en: `public/images/originales/`
 
 ### Ejemplo 1: Cambiar Email y Teléfono
 
-1. Abre `app/components/Footer.tsx`
-2. Busca línea 51 para el email:
-   ```tsx
-   <a href="mailto:marcos-landscape@proton.me">
-     marcos-landscape@proton.me  // ← Cambia aquí tu email
-   </a>
+1. Abre `app/config/site.ts`
+2. Busca la sección `contact` (línea 13):
+   ```typescript
+   contact: {
+     email: 'marcos-landscape@proton.me',  // ← Cambia aquí
+     phone: '+34 695 531 983',              // ← Cambia aquí
+   },
    ```
-3. Busca línea 61 para el teléfono:
-   ```tsx
-   <a href="tel:+34695531983">
-     +34 695 531 983  // ← Cambia aquí tu teléfono
-   </a>
-   ```
-4. Cambia por tus datos (mantén las comillas y etiquetas)
-5. Guarda (Cmd + S)
-6. Sube a GitHub
+3. Cambia por tus datos
+4. Guarda (Cmd + S)
+5. ¡Listo! Se actualiza automáticamente en todo el sitio
 
-**Tiempo:** 3 minutos
+**Tiempo:** 2 minutos
 
 ---
 

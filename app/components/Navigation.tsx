@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { siteConfig } from '../config/site';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Navigation() {
       <nav className="container-portfolio flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <Link href="/" className="text-lg md:text-xl font-semibold tracking-tight hover:opacity-70 transition-opacity">
-          Marcos Villén Rubio
+          {siteConfig.architect.name}
         </Link>
 
         {/* Desktop Navigation */}
