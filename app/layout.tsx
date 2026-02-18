@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: 'Marcos Villén Rubio',
   description: 'Urbanismo · Biofilia · Regeneración Ecológica',
   keywords: 'arquitectura, paisaje, diseño, portfolio',
+  icons: {
+    icon: '/images/marcos-villen-logo.png',
+    apple: '/images/marcos-villen-logo.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
