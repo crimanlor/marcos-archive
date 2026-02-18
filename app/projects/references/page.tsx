@@ -3,8 +3,7 @@ import { Metadata } from 'next';
 import { projectsContent } from '../../config/projectsContent';
 
 export const metadata: Metadata = {
-  title: 'Referencias | Marcos Villén Rubio',
-  description: 'Proyectos, referentes y profesionales que inspiran mi práctica arquitectónica y paisajística',
+  title: 'Referencias | Marcos Villén Rubio'
 };
 
 const references = {
@@ -173,9 +172,6 @@ export default function ReferencesPage() {
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
             {projectsContent.categories.find(cat => cat.id === 'references')?.title}
           </h1>
-          <p className="text-xl text-gray-600 text-balance">
-            {projectsContent.categories.find(cat => cat.id === 'references')?.description}
-          </p>
         </div>
       </section>
 

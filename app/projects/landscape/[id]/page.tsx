@@ -271,7 +271,7 @@ export default function LandscapeProjectDetailPage() {
             )}
 
             {/* Author note section */}
-            {project.authorNote && (
+            {/* {project.authorNote && (
               <div className="border-t border-gray-200 pt-12">
                 <div className="max-w-3xl mx-auto">
                   <p className="text-lg text-gray-700 leading-relaxed">
@@ -279,7 +279,7 @@ export default function LandscapeProjectDetailPage() {
                   </p>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </section>
       )}

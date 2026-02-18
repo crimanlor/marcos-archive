@@ -35,9 +35,6 @@ export default function PhotographyPage() {
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
             {projectsContent.categories.find(cat => cat.id === 'photography')?.title}
           </h1>
-          <p className="text-xl text-gray-600 text-balance">
-            {projectsContent.categories.find(cat => cat.id === 'photography')?.description}
-          </p>
         </div>
       </section>
 
