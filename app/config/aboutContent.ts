@@ -27,6 +27,10 @@ export const aboutContent = {
     items: [
       {
         year: '2026',
+        title: 'Voluntariado en Huerto Urbano Espai Nur de Barcelona',
+      },
+      {
+        year: '2026',
         title: 'Voluntariado Barcelona Capital de la Arquitectura',
       },
       {
