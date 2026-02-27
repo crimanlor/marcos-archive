@@ -2,24 +2,30 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import { siteConfig } from './config/site';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Marcos Villén Rubio',
-  description: 'Urbanismo · Biofilia · Regeneración Ecológica',
-  keywords: 'arquitectura, paisaje, diseño, portfolio',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || siteConfig.siteUrl),
+  title: {
+    default: siteConfig.architect.name,
+    template: `%s | ${siteConfig.architect.name}`,
+  },
+  description: siteConfig.siteDescription,
+  keywords: siteConfig.seo.keywords.split(', '),
   icons: {
-    icon: '/images/marcos-villen-logo.png',
-    apple: '/images/marcos-villen-logo.png',
+    icon: siteConfig.architect.favicon || '/images/marcos-villen-logo.png',
+    apple: siteConfig.architect.favicon || '/images/marcos-villen-logo.png',
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://marcos-landscape.vercel.app/',
-    siteName: 'Estudio de Arquitectura',
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.siteName,
+    title: siteConfig.architect.name,
+    description: siteConfig.siteDescription,
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: siteConfig.seo.ogImage,
         width: 1200,
         height: 630,
       },

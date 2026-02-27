@@ -3,10 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { landscapeProjects } from '../../lib/landscape';
 import { projectsContent } from '../../config/projectsContent';
+import { siteConfig } from '../../config/site';
 
 export const metadata: Metadata = {
-  title: 'Proyectos Paisajísticos | Marcos Villén Rubio',
-  description: 'Galería de proyectos de paisajismo y diseño de espacios naturales contemporáneos',
+  title: `${projectsContent.categories.find(cat => cat.id === 'landscape')?.title} | ${siteConfig.architect.name}`,
+  description: siteConfig.siteDescription,
 };
 
 export default function LandscapeProjectsPage() {

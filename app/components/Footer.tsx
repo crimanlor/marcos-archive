@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { siteConfig } from '../config/site';
+import { navigationContent } from '../config/navigationContent';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,21 +21,13 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-4 uppercase tracking-wider">Navegación</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
-                  Sobre mí
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="text-gray-400 hover:text-white transition-colors">
-                  Proyectos
-                </Link>
-              </li>
+              {navigationContent.items.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-gray-400 hover:text-white transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

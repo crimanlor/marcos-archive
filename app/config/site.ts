@@ -31,6 +31,7 @@ export const siteConfig = {
     subtitle: 'Urbanismo · Biofilia · Regeneración Ecológica',
     bio: 'Especializado en diseño del paisaje y espacios naturales contemporáneos.',
     yearsExperience: 0,
+    favicon: '/images/marcos-villen-logo.png',
   },
 
   // Colores personalizados

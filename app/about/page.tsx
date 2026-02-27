@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { aboutContent } from '../config/aboutContent';
+import { siteConfig } from '../config/site';
 
 export const metadata: Metadata = {
-  title: 'Sobre mí | Marcos Villén Rubio',
-  description: 'Conoce la filosofía y enfoque naturalista de nuestro trabajo arquitectónico',
+  title: `${aboutContent.pageTitle} | ${siteConfig.architect.name}`,
+  description: siteConfig.siteDescription,
 };
 
 export default function AboutPage() {

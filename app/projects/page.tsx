@@ -2,10 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { projectsContent } from '../config/projectsContent';
+import { siteConfig } from '../config/site';
 
 export const metadata: Metadata = {
-  title: 'Proyectos | Marcos Villén Rubio',
-  description: 'Galería de proyectos: paisajismo, acuarelas y fotografía arquitectónica',
+  title: `${projectsContent.pageTitle} | ${siteConfig.architect.name}`,
+  description: siteConfig.siteDescription,
 };
 
 export default function ProjectsPage() {

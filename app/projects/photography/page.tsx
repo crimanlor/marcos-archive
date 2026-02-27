@@ -10,7 +10,6 @@ import { projectsContent } from '../../config/projectsContent';
 
 export default function PhotographyPage() {
   const { 
-    selectedIndex, 
     selectedItem: selectedPhoto,
     isOpen,
     openModal,

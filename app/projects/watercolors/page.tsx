@@ -10,7 +10,6 @@ import { projectsContent } from '../../config/projectsContent';
 
 export default function WatercolorsPage() {
   const { 
-    selectedIndex, 
     selectedItem: selectedWatercolor,
     isOpen,
     openModal,

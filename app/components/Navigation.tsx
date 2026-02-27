@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { navigationContent } from '../config/navigationContent';
 import { siteConfig } from '../config/site';
 
 export default function Navigation() {
@@ -17,20 +18,16 @@ export default function Navigation() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-sm font-medium hover:text-gray-600 transition-colors">
-            Inicio
-          </Link>
-          <Link href="/about" className="text-sm font-medium hover:text-gray-600 transition-colors">
-            Sobre mí
-          </Link>
-          <Link href="/projects" className="text-sm font-medium hover:text-gray-600 transition-colors">
-            Proyectos
-          </Link>
+          {navigationContent.items.map((item) => (
+            <Link key={item.href} href={item.href} className="text-sm font-medium hover:text-gray-600 transition-colors">
+              {item.label}
+            </Link>
+          ))}
           <Link
-            href="/contact"
+            href={navigationContent.contactButton.href}
             className="px-6 py-2 bg-gray-950 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
           >
-            Contacto
+            {navigationContent.contactButton.label}
           </Link>
         </div>
 
@@ -50,17 +47,13 @@ export default function Navigation() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white">
           <div className="container-portfolio py-4 flex flex-col gap-4">
-            <Link href="/" className="text-sm font-medium hover:text-gray-600 transition-colors">
-              Inicio
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-gray-600 transition-colors">
-              Sobre mí
-            </Link>
-            <Link href="/projects" className="text-sm font-medium hover:text-gray-600 transition-colors">
-              Proyectos
-            </Link>
-            <Link href="/contact" className="px-6 py-2 bg-gray-950 text-white rounded-lg text-sm font-medium text-center hover:bg-gray-800 transition-colors">
-              Contacto
+            {navigationContent.items.map((item) => (
+              <Link key={item.href} href={item.href} className="text-sm font-medium hover:text-gray-600 transition-colors">
+                {item.label}
+              </Link>
+            ))}
+            <Link href={navigationContent.contactButton.href} className="px-6 py-2 bg-gray-950 text-white rounded-lg text-sm font-medium text-center hover:bg-gray-800 transition-colors">
+              {navigationContent.contactButton.label}
             </Link>
           </div>
         </div>

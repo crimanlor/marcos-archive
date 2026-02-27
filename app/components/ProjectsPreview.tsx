@@ -2,44 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { landscapeProjects } from '../lib/landscape';
-import { watercolors } from '../lib/watercolors';
-import { photos } from '../lib/photos';   
-
-const projectCategories = [
-  {
-        id: 'landscape',
-        title: 'Proyectos conceptuales',
-        description: 'Proyectos conceptuales de paisajismo y espacio público',
-        slug: 'landscape',
-        count: landscapeProjects.length, // Se actualiza automáticamente
-        image: '/images/image-projects-1.jpg',
-      },
-      {
-        id: 'watercolors',
-        title: 'Sketches',
-        description: 'Sketches de arquitectura y paisaje',
-        slug: 'watercolors',
-        count: watercolors.length, // Se actualiza automáticamente
-        image: '/images/image-projects-2.jpg',
-      },
-      {
-        id: 'photography',
-        title: 'Archivo fotográfico',
-        description: 'Archivo fotográfico y espacios públicos',
-        slug: 'photography',
-        count: photos.length, // Se actualiza automáticamente
-        image: '/images/image-projects-3.jpg',
-      },
-      {
-        id: 'references',
-        title: 'Referencias',
-        description: 'Referencias de proyectos, obras y artistas',
-        slug: 'references',
-        count: 1,
-        image: '/images/image-projects-4.jpg',
-      }
-];
+import { projectsContent } from '../config/projectsContent';
 
 export default function ProjectsPreview() {
   return (
@@ -59,7 +22,7 @@ export default function ProjectsPreview() {
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container-portfolio">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {projectCategories.map((category, index) => (
+            {projectsContent.categories.map((category, index) => (
               <Link
                 key={category.id}
                 href={`/projects/${category.slug}`}

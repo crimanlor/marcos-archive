@@ -4,8 +4,8 @@ import { siteConfig } from '../config/site';
 import { contactContent } from '../config/contactContent';
 
 export const metadata: Metadata = {
-  title: 'Contacto | Marcos Villén Rubio',
-  description: 'Ponte en contacto para discutir tu proyecto arquitectónico',
+  title: `${contactContent.pageTitle} | ${siteConfig.architect.name}`,
+  description: siteConfig.siteDescription,
 };
 
 export default function ContactPage() {
