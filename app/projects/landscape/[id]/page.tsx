@@ -1,42 +1,40 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { landscapeProjects } from '../../../lib/landscape';
 import { projectNavigationContent } from '../../../config/projectNavigationContent';
 
-export default function LandscapeProjectDetailPage() {
-  const params = useParams();
-  const projectId = parseInt(params.id as string);
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+/**
+ * Genera rutas estáticas para todos los proyectos de paisajismo en build time.
+ * Esto convierte la página en un Server Component con generación estática (SSG).
+ */
+export async function generateStaticParams() {
+  return landscapeProjects.map((project) => ({ id: String(project.id) }));
+}
+
+export default async function LandscapeProjectDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const projectId = parseInt(id);
   const project = landscapeProjects.find(p => p.id === projectId);
 
-  if (!project) {
-    return (
-      <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-950 mb-4">Proyecto no encontrado</h1>
-          <Link href="/projects/landscape" className="text-gray-600 hover:text-gray-950 underline">
-            {projectNavigationContent.backButton.text}
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  if (!project) notFound();
 
-  // Encontrar proyecto anterior y siguiente (navegación NO circular)
   const currentIndex = landscapeProjects.findIndex(p => p.id === projectId);
   const previousProject = currentIndex > 0 ? landscapeProjects[currentIndex - 1] : null;
   const nextProject = currentIndex < landscapeProjects.length - 1 ? landscapeProjects[currentIndex + 1] : null;
 
   return (
     <div className="pt-20 md:pt-24 min-h-screen bg-white">
-      {/* Header with back button */}
+      {/* Cabecera con botón de vuelta */}
       <section className="py-8 border-b border-gray-200">
         <div className="container-portfolio">
           <div className="flex items-center justify-between">
-            <Link 
-              href="/projects/landscape" 
+            <Link
+              href="/projects/landscape"
               className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-950 transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,7 +49,7 @@ export default function LandscapeProjectDetailPage() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* Imagen principal e información */}
       <section className="py-16 md:py-24">
         <div className="container-portfolio max-w-6xl">
           <div className="relative w-full aspect-[16/9] bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-100 mb-12">
@@ -66,42 +64,37 @@ export default function LandscapeProjectDetailPage() {
             />
           </div>
 
-          {/* Project Info */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Main Content */}
+            {/* Contenido principal */}
             <div className="lg:col-span-2">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-950 mb-6 text-balance">
                 {project.title}
               </h1>
-              
-              <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                {project.description}
-              </p>
 
-              {/* Additional Info Section */}
+              <p className="text-xl text-gray-600 leading-relaxed mb-8">{project.description}</p>
+
               {project.additionalInfo && (
                 <div className="border-t border-gray-200 pt-8 mb-8">
-                  <h2 className="text-2xl font-bold text-gray-950 mb-4">{projectNavigationContent.sections.aboutProject}</h2>
+                  <h2 className="text-2xl font-bold text-gray-950 mb-4">
+                    {projectNavigationContent.sections.aboutProject}
+                  </h2>
                   <div className="space-y-4">
                     {Array.isArray(project.additionalInfo) ? (
                       project.additionalInfo.map((paragraph, idx) => (
-                        <p key={idx} className="text-lg text-gray-700 leading-relaxed">
-                          {paragraph}
-                        </p>
+                        <p key={idx} className="text-lg text-gray-700 leading-relaxed">{paragraph}</p>
                       ))
                     ) : (
-                      <p className="text-lg text-gray-700 leading-relaxed">
-                        {project.additionalInfo}
-                      </p>
+                      <p className="text-lg text-gray-700 leading-relaxed">{project.additionalInfo}</p>
                     )}
                   </div>
                 </div>
               )}
 
-              {/* Features */}
               {project.features && project.features.length > 0 && (
                 <div className="border-t border-gray-200 pt-8">
-                  <h2 className="text-2xl font-bold text-gray-950 mb-6">{projectNavigationContent.sections.features}</h2>
+                  <h2 className="text-2xl font-bold text-gray-950 mb-6">
+                    {projectNavigationContent.sections.features}
+                  </h2>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {project.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
@@ -116,7 +109,7 @@ export default function LandscapeProjectDetailPage() {
               )}
             </div>
 
-            {/* Sidebar - Project Details */}
+            {/* Sidebar con detalles */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
                 <h3 className="text-lg font-semibold text-gray-950 mb-4">Detalles del proyecto</h3>
@@ -131,7 +124,7 @@ export default function LandscapeProjectDetailPage() {
                       {project.location}
                     </p>
                   </div>
-                  
+
                   <div>
                     <p className="text-sm text-gray-500 mb-1">{projectNavigationContent.projectDetails.year}</p>
                     <p className="text-gray-950 font-medium flex items-center gap-2">
@@ -153,6 +146,7 @@ export default function LandscapeProjectDetailPage() {
                       </p>
                     </div>
                   )}
+
                   {project.distance && (
                     <div>
                       <p className="text-sm text-gray-500 mb-1">{projectNavigationContent.projectDetails.distance}</p>
@@ -180,11 +174,13 @@ export default function LandscapeProjectDetailPage() {
         </div>
       </section>
 
-      {/* Plants and Textures Section */}
+      {/* Plantas y texturas */}
       {project.plantsAndTextures && project.plantsAndTextures.length > 0 && (
         <section className="py-16 md:py-24 bg-white border-t border-gray-200">
           <div className="container-portfolio max-w-6xl">
-            <h2 className="text-3xl font-bold text-gray-950 mb-12">{projectNavigationContent.sections.plantsAndTextures}</h2>
+            <h2 className="text-3xl font-bold text-gray-950 mb-12">
+              {projectNavigationContent.sections.plantsAndTextures}
+            </h2>
             <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-4">
               {project.plantsAndTextures.map((item, idx) => (
                 <div key={idx} className="text-center">
@@ -205,18 +201,25 @@ export default function LandscapeProjectDetailPage() {
         </section>
       )}
 
-      {/* Additional Project Images Gallery */}
+      {/* Galería de imágenes adicionales */}
       {(project.detailImages || project.featureImage || project.planImage) && (
         <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
           <div className="container-portfolio max-w-6xl">
-            <h2 className="text-3xl font-bold text-gray-950 mb-12">{projectNavigationContent.sections.gallery}</h2>
-            
-            {/* Three images in a row */}
+            <h2 className="text-3xl font-bold text-gray-950 mb-12">
+              {projectNavigationContent.sections.gallery}
+            </h2>
+
             {project.detailImages && project.detailImages.length > 0 && (
-              <div className={`grid grid-cols-1 gap-8 mb-12 ${project.detailImages.length === 2 ? 'md:grid-cols-2' : project.detailImages.length === 4 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+              <div className={`grid grid-cols-1 gap-8 mb-12 ${
+                project.detailImages.length === 2 ? 'md:grid-cols-2'
+                : project.detailImages.length === 4 ? 'md:grid-cols-2'
+                : 'md:grid-cols-3'
+              }`}>
                 {project.detailImages.map((img, idx) => (
                   <div key={idx} className="group">
-                    <div className={`relative w-full bg-gray-100 rounded-lg overflow-hidden mb-4 ${project.detailImages && project.detailImages.length === 2 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
+                    <div className={`relative w-full bg-gray-100 rounded-lg overflow-hidden mb-4 ${
+                      project.detailImages && project.detailImages.length === 2 ? 'aspect-[3/4]' : 'aspect-[4/3]'
+                    }`}>
                       <Image
                         src={`/images/${img.filename}`}
                         alt={img.caption || `Detalle ${idx + 1}`}
@@ -233,7 +236,6 @@ export default function LandscapeProjectDetailPage() {
               </div>
             )}
 
-            {/* Large centered feature image */}
             {project.featureImage && (
               <div className="group mb-12">
                 <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden mb-4">
@@ -251,7 +253,6 @@ export default function LandscapeProjectDetailPage() {
               </div>
             )}
 
-            {/* Large plan image */}
             {project.planImage && (
               <div className="mb-12">
                 <div className="relative w-full aspect-[16/9] bg-white rounded-lg overflow-hidden mb-4 border border-gray-200">
@@ -264,32 +265,18 @@ export default function LandscapeProjectDetailPage() {
                   />
                 </div>
                 {project.planImage.caption && (
-                  <p className="text-sm text-gray-600 text-center">
-                    {project.planImage.caption}
-                  </p>
+                  <p className="text-sm text-gray-600 text-center">{project.planImage.caption}</p>
                 )}
               </div>
             )}
-
-            {/* Author note section */}
-            {/* {project.authorNote && (
-              <div className="border-t border-gray-200 pt-12">
-                <div className="max-w-3xl mx-auto">
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    {project.authorNote}
-                  </p>
-                </div>
-              </div>
-            )} */}
           </div>
         </section>
       )}
 
-      {/* Navigation between projects */}
+      {/* Navegación entre proyectos */}
       <section className="py-8 border-t border-gray-200 bg-gray-50">
         <div className="container-portfolio max-w-6xl">
           <div className={`grid gap-6 ${previousProject && nextProject ? 'grid-cols-2' : 'grid-cols-1'}`}>
-            {/* Previous */}
             {previousProject && (
               <Link
                 href={`/projects/landscape/${previousProject.id}`}
@@ -302,7 +289,6 @@ export default function LandscapeProjectDetailPage() {
               </Link>
             )}
 
-            {/* Next */}
             {nextProject && (
               <Link
                 href={`/projects/landscape/${nextProject.id}`}
