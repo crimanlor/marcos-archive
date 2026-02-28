@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { projectNavigationContent } from '../config/projectNavigationContent';
 
 interface NavLink {
   href: string;
@@ -45,7 +46,7 @@ export default function ProjectCategoryLayout({
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Volver a proyectos
+            {projectNavigationContent.backButton.text}
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 mb-6 text-balance">
             {title}

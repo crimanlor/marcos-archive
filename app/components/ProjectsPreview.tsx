@@ -11,7 +11,7 @@ export default function ProjectsPreview() {
       <div className="container-portfolio">
         <div className="mb-16 md:mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-950 mb-2 text-balance">
-            Proyectos
+            {projectsContent.pageTitle}
           </h2>
         </div>
 

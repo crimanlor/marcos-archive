@@ -6,6 +6,7 @@ import { useGalleryModal } from '../../hooks/useGalleryModal';
 import { getImagePath, IMAGE_SIZES, IMAGE_CLASSES } from '../../lib/imageConfig';
 import PhotoModal from '../../components/PhotoModal';
 import { projectsContent } from '../../config/projectsContent';
+import { projectNavigationContent } from '../../config/projectNavigationContent';
 import ProjectCategoryLayout from '../../components/ProjectCategoryLayout';
 
 export default function PhotographyPage() {
@@ -26,8 +27,8 @@ export default function PhotographyPage() {
   return (
     <ProjectCategoryLayout
       title={category.title}
-      navLeft={{ href: '/projects', label: 'Todos los proyectos', sublabel: 'Volver a' }}
-      navRight={{ href: `/projects/${nextCategory.slug}`, label: nextCategory.title, sublabel: 'Siguiente categoría' }}
+      navLeft={{ href: '/projects', label: projectNavigationContent.categoryNav.allProjects, sublabel: projectNavigationContent.categoryNav.backTo }}
+      navRight={{ href: `/projects/${nextCategory.slug}`, label: nextCategory.title, sublabel: projectNavigationContent.categoryNav.nextCategory }}
       navSectionBg="white"
     >
       {/* Grid de fotografías */}

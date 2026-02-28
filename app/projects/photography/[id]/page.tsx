@@ -105,7 +105,7 @@ export default async function PhotoDetailPage({ params }: PageProps) {
                   {projectNavigationContent.sections.aboutProject}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {photo.additionalInfo || 'Aquí puedes añadir más información sobre el proyecto, detalles técnicos, proceso creativo, o cualquier otro contenido relevante que quieras compartir.'}
+                  {photo.additionalInfo || projectNavigationContent.fallbacks.additionalInfo}
                 </p>
               </div>
             </div>

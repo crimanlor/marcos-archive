@@ -23,7 +23,9 @@ export const siteConfig = {
 
   socialLinks: {
     instagram: 'https://instagram.com/marcosvillen',
+    instagramLabel: 'Instagram',
     linkedin: 'https://www.linkedin.com/in/marcosvillen/',
+    linkedinLabel: 'LinkedIn',
   },
 
   architect: {
@@ -57,6 +59,23 @@ export const siteConfig = {
   analytics: {
     googleAnalyticsId: '',
     enableCookieConsent: true,
+  },
+
+  /** Locale BCP 47 usado en Open Graph y html[lang] */
+  locale: 'es_ES',
+
+  /** Textos del pie de página */
+  footer: {
+    navigationHeading: 'Navegación',
+    contactHeading: 'Contacto',
+    rightsReserved: 'Todos los derechos reservados.',
+  },
+
+  /** Créditos del desarrollador */
+  credits: {
+    developedBy: 'Desarrollado por',
+    developerName: 'Lorena Criado',
+    developerUrl: 'https://github.com/crimanlor',
   },
 };
 

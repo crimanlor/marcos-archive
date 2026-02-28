@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { projectsContent } from '../../config/projectsContent';
 import { referencesContent } from '../../config/referencesContent';
+import { projectNavigationContent } from '../../config/projectNavigationContent';
 import ProjectCategoryLayout from '../../components/ProjectCategoryLayout';
 
 const category = projectsContent.categories.find(cat => cat.id === 'references')!;
@@ -17,8 +18,8 @@ export default function ReferencesPage() {
   return (
     <ProjectCategoryLayout
       title={category.title}
-      navLeft={{ href: '/projects', label: 'Todos los proyectos', sublabel: 'Volver a' }}
-      navRight={{ href: `/projects/${firstCategory.slug}`, label: firstCategory.title, sublabel: 'Siguiente categoría' }}
+      navLeft={{ href: '/projects', label: projectNavigationContent.categoryNav.allProjects, sublabel: projectNavigationContent.categoryNav.backTo }}
+      navRight={{ href: `/projects/${firstCategory.slug}`, label: firstCategory.title, sublabel: projectNavigationContent.categoryNav.nextCategory }}
       navSectionBg="gray"
     >
       {/* Contenido de referencias */}

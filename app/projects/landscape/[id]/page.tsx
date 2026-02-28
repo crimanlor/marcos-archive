@@ -112,7 +112,7 @@ export default async function LandscapeProjectDetailPage({ params }: PageProps) 
             {/* Sidebar con detalles */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
-                <h3 className="text-lg font-semibold text-gray-950 mb-4">Detalles del proyecto</h3>
+                <h3 className="text-lg font-semibold text-gray-950 mb-4">{projectNavigationContent.sidebar.projectDetails}</h3>
                 <div className="space-y-4">
                   <div>
                     <p className="text-sm text-gray-500 mb-1">{projectNavigationContent.projectDetails.location}</p>
@@ -222,7 +222,7 @@ export default async function LandscapeProjectDetailPage({ params }: PageProps) 
                     }`}>
                       <Image
                         src={`/images/${img.filename}`}
-                        alt={img.caption || `Detalle ${idx + 1}`}
+                        alt={img.caption || projectNavigationContent.fallbacks.detailImage(idx + 1)}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 33vw"
@@ -241,7 +241,7 @@ export default async function LandscapeProjectDetailPage({ params }: PageProps) 
                 <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden mb-4">
                   <Image
                     src={`/images/${project.featureImage.filename}`}
-                    alt={project.featureImage.caption || 'Imagen destacada'}
+                    alt={project.featureImage.caption || projectNavigationContent.fallbacks.featureImage}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 1280px) 100vw, 1280px"
@@ -258,7 +258,7 @@ export default async function LandscapeProjectDetailPage({ params }: PageProps) 
                 <div className="relative w-full aspect-[16/9] bg-white rounded-lg overflow-hidden mb-4 border border-gray-200">
                   <Image
                     src={`/images/${project.planImage.filename}`}
-                    alt={project.planImage.caption || 'Plano del proyecto'}
+                    alt={project.planImage.caption || projectNavigationContent.fallbacks.planImage}
                     fill
                     className="object-contain p-4"
                     sizes="(max-width: 1280px) 100vw, 1280px"

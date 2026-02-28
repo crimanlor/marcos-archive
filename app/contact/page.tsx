@@ -17,9 +17,6 @@ export default function ContactPage() {
           <h1 className="text-5xl md:text-6xl font-bold text-gray-950 text-balance">
             {contactContent.pageTitle}
           </h1>
-          {/* <p className="text-xl text-gray-600 text-balance">
-            Estoy disponible para nuevos proyectos de arquitectura y paisajismo. No dudes en contactarme para explorar cómo podemos crear espacios excepcionales juntos.
-          </p> */}
         </div>
       </section>
 
@@ -38,7 +35,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-950 mb-1">Email</h3>
+                  <h3 className="text-lg font-semibold text-gray-950 mb-1">{contactContent.methods.email}</h3>
                   <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-600 hover:text-gray-950 transition-colors">
                     {siteConfig.contact.email}
                   </a>
@@ -53,7 +50,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-950 mb-1">Teléfono</h3>
+                  <h3 className="text-lg font-semibold text-gray-950 mb-1">{contactContent.methods.phone}</h3>
                   <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`} className="text-gray-600 hover:text-gray-950 transition-colors">
                     {siteConfig.contact.phone}
                   </a>
@@ -68,7 +65,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-950 mb-1">LinkedIn</h3>
+                  <h3 className="text-lg font-semibold text-gray-950 mb-1">{contactContent.methods.linkedin}</h3>
                   <a 
                     href={siteConfig.socialLinks.linkedin} 
                     target="_blank" 
@@ -92,7 +89,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-950 mb-1">Ubicación</h3>
+                  <h3 className="text-lg font-semibold text-gray-950 mb-1">{contactContent.methods.location}</h3>
                   <p className="text-gray-600">{siteConfig.contact.location}</p>
                 </div>
               </div>

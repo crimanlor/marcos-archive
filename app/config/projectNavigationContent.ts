@@ -39,6 +39,34 @@ export const projectNavigationContent = {
   cta: {
     viewFullProject: 'Ver proyecto completo',
   },
+
+  // Textos de la barra de navegación entre categorías
+  categoryNav: {
+    backTo: 'Volver a',
+    allProjects: 'Todos los proyectos',
+    nextCategory: 'Siguiente categoría',
+  },
+
+  // Título del sidebar de detalles del proyecto
+  sidebar: {
+    projectDetails: 'Detalles del proyecto',
+  },
+
+  // Etiquetas de accesibilidad del modal de fotos
+  modal: {
+    close: 'Cerrar',
+    previous: 'Anterior',
+    next: 'Siguiente',
+  },
+
+  // Textos de fallback para imágenes sin caption
+  fallbacks: {
+    detailImage: (n: number) => `Detalle ${n}`,
+    featureImage: 'Imagen destacada',
+    planImage: 'Plano del proyecto',
+    additionalInfo:
+      'Aquí puedes añadir más información sobre el proyecto, detalles técnicos, proceso creativo, o cualquier otro contenido relevante que quieras compartir.',
+  },
 };
 
 export type ProjectNavigationContent = typeof projectNavigationContent;

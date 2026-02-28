@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
+import { projectNavigationContent } from '../config/projectNavigationContent';
 
 interface PhotoModalProps {
   isOpen: boolean;
@@ -48,7 +49,7 @@ export default function PhotoModal({ isOpen, onClose, imageSrc, imageAlt, onNext
       <button
         onClick={onClose}
         className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
-        aria-label="Cerrar"
+        aria-label={projectNavigationContent.modal.close}
       >
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -63,7 +64,7 @@ export default function PhotoModal({ isOpen, onClose, imageSrc, imageAlt, onNext
             onPrevious();
           }}
           className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 hover:bg-black/70 rounded-full p-3"
-          aria-label="Anterior"
+          aria-label={projectNavigationContent.modal.previous}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -79,7 +80,7 @@ export default function PhotoModal({ isOpen, onClose, imageSrc, imageAlt, onNext
             onNext();
           }}
           className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 hover:bg-black/70 rounded-full p-3"
-          aria-label="Siguiente"
+          aria-label={projectNavigationContent.modal.next}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

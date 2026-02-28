@@ -7,7 +7,15 @@ export const contactContent = {
   // Título principal
   pageTitle: 'Información de contacto',
   pageDescription: '', // Vacío actualmente, pero disponible para futuro uso
-  
+
+  // Etiquetas de los métodos de contacto
+  methods: {
+    email: 'Email',
+    phone: 'Teléfono',
+    linkedin: 'LinkedIn',
+    location: 'Ubicación',
+  },
+
   // Sección de CV
   cvSection: {
     title: 'Currículum Vitae',

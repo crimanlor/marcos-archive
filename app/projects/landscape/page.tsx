@@ -20,8 +20,8 @@ export default function LandscapeProjectsPage() {
   return (
     <ProjectCategoryLayout
       title={category.title}
-      navLeft={{ href: '/projects', label: 'Todos los proyectos', sublabel: 'Volver a' }}
-      navRight={{ href: `/projects/${nextCategory.slug}`, label: nextCategory.title, sublabel: 'Siguiente categoría' }}
+      navLeft={{ href: '/projects', label: projectNavigationContent.categoryNav.allProjects, sublabel: projectNavigationContent.categoryNav.backTo }}
+      navRight={{ href: `/projects/${nextCategory.slug}`, label: nextCategory.title, sublabel: projectNavigationContent.categoryNav.nextCategory }}
       navSectionBg="gray"
     >
       {/* Lista de proyectos */}

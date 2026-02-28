@@ -23,7 +23,7 @@ export default function Footer() {
 
           {/* Columna 2: Navegación */}
           <div>
-            <h4 className="text-sm font-semibold mb-4 uppercase tracking-wider">Navegación</h4>
+            <h4 className="text-sm font-semibold mb-4 uppercase tracking-wider">{siteConfig.footer.navigationHeading}</h4>
             <ul className="space-y-2 text-sm">
               {navigationContent.items.map((item) => (
                 <li key={item.href}>
@@ -37,7 +37,7 @@ export default function Footer() {
 
           {/* Columna 3: Contacto */}
           <div>
-            <h4 className="text-sm font-semibold mb-4 uppercase tracking-wider">Contacto</h4>
+            <h4 className="text-sm font-semibold mb-4 uppercase tracking-wider">{siteConfig.footer.contactHeading}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -63,9 +63,9 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-400 hover:text-white transition-colors text-sm"
-                      aria-label={`Instagram de ${siteConfig.architect.name}`}
+                      aria-label={`${siteConfig.socialLinks.instagramLabel} de ${siteConfig.architect.name}`}
                     >
-                      Instagram
+                      {siteConfig.socialLinks.instagramLabel}
                     </a>
                   )}
                   {siteConfig.socialLinks.linkedin && (
@@ -74,9 +74,9 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-400 hover:text-white transition-colors text-sm"
-                      aria-label={`LinkedIn de ${siteConfig.architect.name}`}
+                      aria-label={`${siteConfig.socialLinks.linkedinLabel} de ${siteConfig.architect.name}`}
                     >
-                      LinkedIn
+                      {siteConfig.socialLinks.linkedinLabel}
                     </a>
                   )}
                 </div>
@@ -88,17 +88,17 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              © {currentYear} {siteConfig.architect.name}. Todos los derechos reservados.
+              © {currentYear} {siteConfig.architect.name}. {siteConfig.footer.rightsReserved}
             </p>
             <p className="text-gray-400 text-sm">
-              Desarrollado por{' '}
+              {siteConfig.credits.developedBy}{' '}
               <a
-                href="https://github.com/crimanlor"
+                href={siteConfig.credits.developerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
               >
-                Lorena Criado.
+                {siteConfig.credits.developerName}.
               </a>
             </p>
           </div>

@@ -22,6 +22,11 @@ export const navigationContent = {
     backButton: 'Volver',
     menuLabel: 'Menú',
   },
+
+  // Accesibilidad
+  accessibility: {
+    toggleMenu: 'Toggle menu',
+  },
 };
 
 export type NavigationContent = typeof navigationContent;

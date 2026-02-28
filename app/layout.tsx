@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'es_ES',
+      locale: siteConfig.locale,
     url: siteConfig.siteUrl,
     siteName: siteConfig.siteName,
     title: siteConfig.architect.name,
