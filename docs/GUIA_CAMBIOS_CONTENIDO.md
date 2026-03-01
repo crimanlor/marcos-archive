@@ -35,11 +35,13 @@
 
 | Qué cambiar | Archivo de Configuración |
 |-------------|--------------------------|
-| **Información personal y contacto** | `app/config/site.ts` |
+| **Nombre, email, teléfono, redes sociales, footer, créditos** | `app/config/site.ts` |
+| **Menú de navegación** | `app/config/navigationContent.ts` |
 | **Página de inicio (Hero)** | `app/config/homeContent.ts` |
 | **Página "Sobre mí"** | `app/config/aboutContent.ts` |
 | **Página de Contacto** | `app/config/contactContent.ts` |
-| **Página de Proyectos** | `app/config/projectsContent.ts` |
+| **Categorías de proyectos** | `app/config/projectsContent.ts` |
+| **Textos de navegación entre proyectos** | `app/config/projectNavigationContent.ts` |
 | **Proyectos de paisajismo** | `app/lib/landscape.ts` |
 | **Archivo fotográfico** | `app/lib/photos.ts` |
 | **Sketches (acuarelas)** | `app/lib/watercolors.ts` ⚡ **AUTOMÁTICO** |
@@ -56,7 +58,7 @@
 export const siteConfig = {
   // Información del contacto
   contact: {
-    email: 'marcos-landscape@proton.me',     // ← Cambia tu email
+    email: 'marcos.villen@hotmail.com',      // ← Cambia tu email
     phone: '+34 695 531 983',                // ← Cambia tu teléfono
     location: 'Barcelona, España',           // ← Tu ubicación
   },
@@ -64,7 +66,9 @@ export const siteConfig = {
   // Redes sociales
   socialLinks: {
     instagram: 'https://instagram.com/marcosvillen',         // ← Tu Instagram
+    instagramLabel: 'Instagram',                              // ← Texto del enlace
     linkedin: 'https://www.linkedin.com/in/marcosvillen/',   // ← Tu LinkedIn
+    linkedinLabel: 'LinkedIn',                                // ← Texto del enlace
   },
 
   // Información del arquitecto
@@ -72,6 +76,20 @@ export const siteConfig = {
     name: 'Marcos Villén Rubio',             // ← Tu nombre completo
     title: 'Arquitectura del Paisaje',       // ← Tu título
     subtitle: 'Urbanismo · Biofilia · Regeneración Ecológica',  // ← Tu subtítulo
+  },
+
+  // Pie de página
+  footer: {
+    navigationHeading: 'Navegación',         // ← Encabezado columna nav
+    contactHeading: 'Contacto',              // ← Encabezado columna contacto
+    rightsReserved: 'Todos los derechos reservados.',
+  },
+
+  // Créditos del desarrollador
+  credits: {
+    developedBy: 'Desarrollado por',
+    developerName: 'Lorena Criado',          // ← Nombre del desarrollador
+    developerUrl: 'https://github.com/crimanlor',
   },
 };
 ```
@@ -168,7 +186,15 @@ export const aboutContent = {
 ```typescript
 export const contactContent = {
   pageTitle: 'Información de contacto',
-  
+
+  // Etiquetas de los métodos de contacto (se muestran como título de cada sección)
+  methods: {
+    email: 'Email',         // ← Cambia la etiqueta si lo necesitas
+    phone: 'Teléfono',
+    linkedin: 'LinkedIn',
+    location: 'Ubicación',
+  },
+
   cvSection: {
     title: 'Currículum Vitae',
     description: 'Descarga mi CV actualizado...',
@@ -651,9 +677,15 @@ Las imágenes originales están guardadas en: `public/images/originales/`
 
 ### Ejemplo 3: Actualizar Biografía Completa
 
-1. Abre `app/about/page.tsx`
-2. Busca los párrafos con `<p className="text-lg...">` (líneas 30-52)
-3. Cambia el texto entre `>` y `</p>`
+1. Abre `app/config/aboutContent.ts`
+2. Busca la sección `mainSection.paragraphs`:
+   ```typescript
+   paragraphs: [
+     'Primer párrafo...',   // ← Cambia el texto aquí
+     'Segundo párrafo...',
+   ],
+   ```
+3. Cambia el texto entre comillas
 4. Guarda
 5. Sube a GitHub
 
@@ -705,5 +737,5 @@ Para dudas técnicas complejas, contacta con tu desarrollador.
 
 ---
 
-*Última actualización: Febrero 2026*
-*Versión: 2.0 - Guía Sintética*
+*Última actualización: Marzo 2026*
+*Versión: 3.0 - Contenido 100% centralizado en config/*

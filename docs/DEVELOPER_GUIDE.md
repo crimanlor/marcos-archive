@@ -1,6 +1,6 @@
-# 🛠️ Guía Completa para Desarrolladores
+# Guía Completa para Desarrolladores
 
-**Portfolio de Arquitectura y Paisajismo - Next.js 15 + React 19 + TypeScript**
+**Portfolio de Arquitectura y Paisajismo - Next.js 16 (canary) + React 19 + TypeScript 5**
 
 ---
 
@@ -21,8 +21,8 @@
 
 ## 🚀 Setup Inicial
 
-### Requisitos Previos
-- Node.js 18+ 
+## Requisitos Previos
+- Node.js **≥ 20** (el proyecto usa APIs de Node 20+; Node 18 falla en build)
 - npm o yarn
 - Git
 
@@ -50,7 +50,7 @@ npm run dev          # Servidor desarrollo (puerto 3000)
 npm run build        # Build para producción
 npm run start        # Servidor producción
 npm run lint         # ESLint
-npm run type-check   # TypeScript check
+npx tsc --noEmit     # TypeScript check (sin emitir archivos)
 ```
 
 ---
@@ -59,10 +59,10 @@ npm run type-check   # TypeScript check
 
 ### Stack Tecnológico
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 canary (App Router)
 - **UI:** React 19
-- **Lenguaje:** TypeScript 5.3
-- **Estilos:** Tailwind CSS 3.4
+- **Lenguaje:** TypeScript 5
+- **Estilos:** Tailwind CSS 4
 - **Optimización:** Next/Image, Sharp
 - **Deploy:** Vercel (recomendado)
 
@@ -82,7 +82,7 @@ npm run type-check   # TypeScript check
 ```
 marcos-archive/
 ├── app/                          # Next.js App Router
-│   ├── layout.tsx               # Layout principal
+│   ├── layout.tsx               # Layout principal (metadata + locale desde siteConfig)
 │   ├── page.tsx                 # Home
 │   ├── globals.css              # Estilos globales + Tailwind
 │   │
@@ -93,163 +93,142 @@ marcos-archive/
 │   │   └── page.tsx
 │   │
 │   ├── projects/                # Sección de proyectos
-│   │   ├── page.tsx            # Listado de proyectos
-│   │   ├── landscape/          # Proyectos paisajísticos
+│   │   ├── page.tsx            # Listado de categorías
+│   │   ├── landscape/          # Proyectos conceptuales de paisajismo
 │   │   │   ├── page.tsx
-│   │   │   └── [id]/page.tsx   # Detalle proyecto
-│   │   ├── watercolors/        # Sketching/Acuarelas
+│   │   │   └── [id]/page.tsx   # Detalle proyecto (SSG con generateStaticParams)
+│   │   ├── watercolors/        # Sketches/Acuarelas
 │   │   │   └── page.tsx
 │   │   ├── photography/        # Archivo fotográfico
 │   │   │   ├── page.tsx
-│   │   │   └── [id]/page.tsx
-│   │   └── references/         # Referencias (plantas, texturas)
+│   │   │   └── [id]/page.tsx   # Detalle foto (SSG con generateStaticParams)
+│   │   └── references/         # Referencias (libros, obras, artistas)
 │   │       └── page.tsx
 │   │
 │   ├── components/             # Componentes React reutilizables
-│   │   ├── Navigation.tsx      # Barra de navegación
-│   │   ├── Footer.tsx          # Footer
-│   │   ├── Button.tsx          # Botón con variantes
-│   │   ├── GalleryGrid.tsx     # Grid de galerías
-│   │   ├── HeroSection.tsx     # Hero homepage
-│   │   ├── ProjectsPreview.tsx # Preview de proyectos
-│   │   ├── PhotoModal.tsx      # Modal para fotos
-│   │   ├── Breadcrumb.tsx      # Breadcrumbs
-│   │   └── CallToAction.tsx    # CTA sections
+│   │   ├── Navigation.tsx      # Barra de navegación (client)
+│   │   ├── Footer.tsx          # Footer (server)
+│   │   ├── HeroSection.tsx     # Hero homepage (server)
+│   │   ├── CategoryCard.tsx    # Tarjeta de categoría de proyectos (server)
+│   │   ├── ProjectCategoryLayout.tsx  # Layout compartido de categorías (server)
+│   │   ├── ProjectsPreview.tsx # Preview de proyectos en Home (server)
+│   │   ├── PhotoModal.tsx      # Modal para fotos (client)
+│   │   ├── Breadcrumb.tsx      # Breadcrumbs (server)
+│   │   └── CallToAction.tsx    # Secciones CTA (server)
 │   │
-│   ├── config/                 # ⚙️ Configuración (IMPORTANTE)
-│   │   ├── site.ts             # Info del sitio, contacto y redes
-│   │   ├── homeContent.ts      # Contenido de página Home/Hero
-│   │   ├── aboutContent.ts     # Contenido de página "Sobre mí"
-│   │   ├── contactContent.ts   # Contenido de página de Contacto
-│   │   └── projectsContent.ts  # Categorías de proyectos
+│   ├── config/                 # ⚙️ TODO el contenido visible (fuente única de verdad)
+│   │   ├── site.ts             # Info del sitio, contacto, redes, locale, footer, créditos
+│   │   ├── navigationContent.ts  # Menú, botón contacto, accesibilidad
+│   │   ├── homeContent.ts      # Contenido Hero / portada
+│   │   ├── aboutContent.ts     # Contenido página "Sobre mí"
+│   │   ├── contactContent.ts   # Contenido página Contacto + labels métodos
+│   │   ├── projectsContent.ts  # Categorías de proyectos
+│   │   ├── projectNavigationContent.ts  # Textos de nav entre proyectos, sidebar, modal, fallbacks
+│   │   └── referencesContent.ts  # Contenido sección Referencias
 │   │
-│   ├── lib/                    # Utilidades y datos de proyectos
-│   │   ├── data.ts             # Datos de proyectos paisajísticos (legacy)
-│   │   ├── photos.ts           # Datos del archivo fotográfico
-│   │   ├── watercolors.ts      # ⚡ Sketches - Sistema automático
-│   │   ├── landscape.ts        # Proyectos paisajísticos detallados
-│   │   ├── imageConfig.ts      # Config de imágenes Next
-│   │   ├── metadata.ts         # Helper para SEO
-│   │   └── types.ts            # TypeScript types
+│   ├── lib/                    # Datos de proyectos y utilidades
+│   │   ├── landscape.ts        # Proyectos conceptuales (array tipado)
+│   │   ├── photos.ts           # Archivo fotográfico (array tipado)
+│   │   ├── watercolors.ts      # Sketches — sistema de generación automática
+│   │   ├── imageConfig.ts      # Constantes de tamaños y clases de imágenes
+│   │   ├── metadata.ts         # Helper para SEO (generateMetadata)
+│   │   └── types.ts            # TypeScript types compartidos
 │   │
-│   ├── hooks/                  # Custom React Hooks
-│   │   └── useGalleryModal.ts  # Hook para modales
-│   │
-│   └── utils/                  # Utilidades generales
-│       └── hooks.ts
+│   └── hooks/                  # Custom React Hooks
+│       ├── useGalleryModal.ts  # Hook para modal de galería
+│       └── useScrollReveal.ts  # Hook para animaciones de scroll
 │
 ├── public/                     # Archivos estáticos
-│   └── images/                 # 🖼️ Todas las imágenes
-│       ├── originales/         # Backups de imágenes originales
-│       ├── photo-*.jpg         # Fotografías (001-040)
-│       ├── watercolor-*.jpg    # Acuarelas (001-011)
+│   └── images/                 # Todas las imágenes
+│       ├── originales/         # Backups de imágenes originales (pre-optimización)
+│       ├── photo-*.jpg         # Fotografías del archivo
+│       ├── watercolor-*.jpg    # Acuarelas/Sketches
 │       ├── image-*.jpg         # Imágenes de páginas
-│       └── plant-*.jpg         # Referencias de plantas
+│       └── plant-*.jpg         # Referencias de plantas/texturas
 │
-├── docs/                       # 📚 Documentación
+├── docs/                       # Documentación
 │   ├── DEVELOPER_GUIDE.md      # Este archivo
 │   └── GUIA_CAMBIOS_CONTENIDO.md  # Para no-devs
 │
-├── optimize-images.sh          # Script de optimización
+├── optimize-images.sh          # Script de optimización de imágenes
 ├── next.config.ts              # Config de Next.js
 ├── tailwind.config.ts          # Config de Tailwind
-├── tsconfig.json               # Config de TypeScript
+├── tsconfig.json               # Config de TypeScript (alias @/* → ./)
 └── package.json                # Dependencies
 ```
 
 ---
 
-## 🧩 Componentes
+## Componentes
 
 ### Navigation
 
-Barra de navegación responsive con menú móvil.
+Barra de navegación responsive con menú móvil. Client Component (`'use client'`) porque usa estado local para el toggle.
 
 ```tsx
-// Ya incluido en app/layout.tsx
-import Navigation from '@/app/components/Navigation';
-
-// Props: Ninguna (lee config de app/config/site.ts)
+// Ya incluido en app/layout.tsx — no necesita props
+// Lee items de navigationContent y nombre del arquitecto de siteConfig
+import Navigation from '@/components/Navigation';
 ```
 
-### Button
+### CategoryCard
 
-Botón con múltiples variantes y tamaños.
+Tarjeta de categoría de proyectos. Server Component.
 
 ```tsx
-import Button from '@/app/components/Button';
+import CategoryCard from '@/components/CategoryCard';
 
-// Variantes
-<Button variant="primary">Primario</Button>
-<Button variant="secondary">Secundario</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
+<CategoryCard category={category} index={index} />
 
-// Tamaños
-<Button size="sm">Pequeño</Button>
-<Button size="md">Mediano</Button>
-<Button size="lg">Grande</Button>
-
-// Como link
-<Button asLink href="/projects">Ver Proyectos</Button>
-
-// Props completas
-interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  asLink?: boolean;
-  href?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-  className?: string;
-}
+// category viene de projectsContent.categories
+// index se usa para la animación de entrada escalonada
 ```
 
-### GalleryGrid
+### ProjectCategoryLayout
 
-Grid responsive para galerías de imágenes.
+Layout compartido para todas las páginas de categoría. Incluye back-link, h1 y barra de navegación inferior entre categorías. Server Component.
 
 ```tsx
-import GalleryGrid from '@/app/components/GalleryGrid';
+import ProjectCategoryLayout from '@/components/ProjectCategoryLayout';
 
-<GalleryGrid columns="auto" gap="md">
-  {items.map(item => (
-    <div key={item.id}>
-      <Image src={item.image} alt={item.title} />
-    </div>
-  ))}
-</GalleryGrid>
-
-// Props
-interface GalleryGridProps {
-  columns?: 'auto' | '2' | '3' | '4';
-  gap?: 'sm' | 'md' | 'lg';
-  children: React.ReactNode;
-}
+<ProjectCategoryLayout
+  title={category.title}
+  navLeft={{ href: '/projects', label: 'Todos los proyectos', sublabel: 'Volver a' }}
+  navRight={{ href: '/projects/watercolors', label: 'Sketches', sublabel: 'Siguiente categoría' }}
+  navSectionBg="gray"   // 'gray' | 'white'
+>
+  {/* contenido de la categoría */}
+</ProjectCategoryLayout>
 ```
 
 ### PhotoModal
 
-Modal para visualizar fotos en grande con información.
+Modal para visualizar fotos en grande con navegación por teclado. Client Component.
 
 ```tsx
-import PhotoModal from '@/app/components/PhotoModal';
-import { useGalleryModal } from '@/app/hooks/useGalleryModal';
+import PhotoModal from '@/components/PhotoModal';
+import { useGalleryModal } from '@/hooks/useGalleryModal';
 
-const { selectedPhoto, openModal, closeModal } = useGalleryModal();
+const { selectedItem, isOpen, openModal, closeModal, handleNext, handlePrevious, hasNext, hasPrevious } = useGalleryModal(items);
 
 <PhotoModal
-  photo={selectedPhoto}
+  isOpen={isOpen}
   onClose={closeModal}
+  imageSrc={selectedItem ? getImagePath(selectedItem.filename) : ''}
+  imageAlt={selectedItem?.title || ''}
+  onNext={handleNext}
+  onPrevious={handlePrevious}
+  hasNext={hasNext}
+  hasPrevious={hasPrevious}
 />
 ```
 
 ### Breadcrumb
 
-Migajas de pan para navegación.
+Migas de pan para navegación. Server Component.
 
 ```tsx
-import Breadcrumb from '@/app/components/Breadcrumb';
+import Breadcrumb from '@/components/Breadcrumb';
 
 <Breadcrumb
   items={[
@@ -262,264 +241,214 @@ import Breadcrumb from '@/app/components/Breadcrumb';
 
 ---
 
-## 📊 Gestión de Datos
+## Gestión de Datos
 
-### ✅ Arquitectura de Configuración Centralizada
+### Arquitectura: contenido 100% en `config/`
 
-El proyecto utiliza un sistema de configuración centralizada donde cada página tiene su propio archivo de contenido en `app/config/`.
-
-**Archivos de Configuración:**
+Ningún string visible al usuario está hardcodeado en componentes o páginas. Todo vive en `app/config/`.
 
 ```
 app/config/
-├── site.ts              # Información del sitio, contacto y redes sociales
-├── homeContent.ts       # Contenido de la página Home/Hero
-├── aboutContent.ts      # Contenido de la página "Sobre mí"
-├── contactContent.ts    # Contenido de la página de Contacto
-└── projectsContent.ts   # Categorías de proyectos
+├── site.ts                     # Info del sitio, contacto, redes, locale, footer, créditos
+├── navigationContent.ts        # Menú, botón contacto, accesibilidad (aria-labels)
+├── homeContent.ts              # Contenido Hero / portada
+├── aboutContent.ts             # Contenido página "Sobre mí"
+├── contactContent.ts           # Contenido página Contacto + labels métodos
+├── projectsContent.ts          # Categorías de proyectos (title, slug, imagen, count)
+├── projectNavigationContent.ts # Textos nav entre proyectos, sidebar, modal, fallbacks de alt
+└── referencesContent.ts        # Contenido sección Referencias
 ```
-
-**Ventajas de esta arquitectura:**
-- ✅ Separación clara entre datos y presentación
-- ✅ Fácil de mantener y actualizar
-- ✅ Un solo lugar para cada tipo de contenido
-- ✅ Tipado con TypeScript
-- ✅ Se propaga automáticamente a todos los componentes
 
 ---
 
-### 📋 site.ts - Información General
+### site.ts
 
 **Archivo:** `app/config/site.ts`
 
-Información básica del sitio, contacto y redes sociales:
+Fuente única de verdad para información del sitio. Usado en Navigation, Footer, layout, contact y metadata.
 
 ```typescript
 export const siteConfig = {
   siteName: 'Marcos Villén Rubio',
-  siteDescription: 'Portfolio de arquitectura del paisaje...',
-  
-  // Información del contacto
+  siteDescription: '...',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://arquitectura-portfolio.com',
+
   contact: {
-    email: 'marcos-landscape@proton.me',
+    email: 'marcos.villen@hotmail.com',
     phone: '+34 695 531 983',
     location: 'Barcelona, España',
   },
-  
-  // Redes sociales
+
   socialLinks: {
     instagram: 'https://instagram.com/marcosvillen',
+    instagramLabel: 'Instagram',       // texto del enlace + aria-label
     linkedin: 'https://www.linkedin.com/in/marcosvillen/',
+    linkedinLabel: 'LinkedIn',
   },
-  
-  // Información del arquitecto
+
   architect: {
     name: 'Marcos Villén Rubio',
     title: 'Arquitectura del Paisaje',
     subtitle: 'Urbanismo · Biofilia · Regeneración Ecológica',
+    bio: '...',
+    favicon: '/images/marcos-villen-logo.png',
+  },
+
+  features: { blog: false, shop: false, /* ... */ },
+
+  seo: {
+    keywords: 'arquitectura, paisaje, ...',
+    author: 'Marcos Villén Rubio',
+    ogImage: '/og-image.jpg',
+  },
+
+  analytics: {
+    googleAnalyticsId: '',   // vacío = deshabilitado
+    enableCookieConsent: true,
+  },
+
+  locale: 'es_ES',           // usado en <html lang> y Open Graph
+
+  footer: {
+    navigationHeading: 'Navegación',
+    contactHeading: 'Contacto',
+    rightsReserved: 'Todos los derechos reservados.',
+  },
+
+  credits: {
+    developedBy: 'Desarrollado por',
+    developerName: 'Lorena Criado',
+    developerUrl: 'https://github.com/crimanlor',
   },
 };
 ```
 
-**Usado en:** Navigation.tsx, Footer.tsx, contact/page.tsx
-
 ---
 
-### 🏡 homeContent.ts - Página de Inicio
+### navigationContent.ts
 
-**Archivo:** `app/config/homeContent.ts`
-
-Contenido de la sección Hero (portada):
+**Archivo:** `app/config/navigationContent.ts`
 
 ```typescript
-export const homeContent = {
-  hero: {
-    title: {
-      line1: 'Arquitectura',
-      line2: 'del Paisaje',
-    },
-    subtitle: 'Urbanismo · Biofilia · Regeneración ecológica',
-    backgroundImage: '/images/image-hero.jpg',
-    buttons: {
-      primary: {
-        text: 'Ver proyectos',
-        link: '/projects',
-      },
-      secondary: {
-        text: 'Sobre mí',
-        link: '/about',
-      },
-    },
+export const navigationContent = {
+  items: [
+    { label: 'Inicio', href: '/' },
+    { label: 'Sobre mí', href: '/about' },
+    { label: 'Proyectos', href: '/projects' },
+  ],
+  contactButton: { label: 'Contacto', href: '/contact' },
+  mobile: { backButton: 'Volver', menuLabel: 'Menú' },
+  accessibility: {
+    toggleMenu: 'Toggle menu',   // aria-label del botón hamburguesa
   },
 };
 ```
 
-**Usado en:** components/HeroSection.tsx
-
 ---
 
-### 📄 aboutContent.ts - Página "Sobre mí"
-
-**Archivo:** `app/config/aboutContent.ts`
-
-Todo el contenido de la página About:
-
-```typescript
-export const aboutContent = {
-  pageTitle: 'Sobre mí',
-  
-  mainSection: {
-    title: 'Quién soy',
-    image: '/images/image-quien-soy-1.jpg',
-    imageAlt: 'Marcos Villén Rubio - Arquitecto',
-    paragraphs: [
-      'Párrafo 1...',
-      'Párrafo 2...',
-      // Array de párrafos
-    ],
-  },
-
-  education: {
-    title: 'Formación',
-    items: [
-      { year: '2026', title: 'AutoCAD 2D - Básico' },
-      // Array de formación
-    ],
-  },
-
-  experience: {
-    title: 'Experiencia laboral en entornos de',
-    items: [
-      { 
-        title: 'Gestión y funcionamiento de espacios de uso público',
-        subtitle: '(Sector hotelero)',
-      },
-      // Array de experiencia
-    ],
-  },
-};
-```
-
-**Usado en:** about/page.tsx
-
----
-
-### 📞 contactContent.ts - Página de Contacto
+### contactContent.ts
 
 **Archivo:** `app/config/contactContent.ts`
-
-Contenido específico de la página de contacto:
 
 ```typescript
 export const contactContent = {
   pageTitle: 'Información de contacto',
-  
+  methods: {
+    email: 'Email',
+    phone: 'Teléfono',
+    linkedin: 'LinkedIn',
+    location: 'Ubicación',
+  },
   cvSection: {
     title: 'Currículum Vitae',
-    description: 'Descarga mi CV actualizado...',
+    description: '...',
     buttonText: 'Descargar CV (PDF)',
-    driveLink: 'URL_DE_GOOGLE_DRIVE',
+    driveLink: 'https://drive.google.com/...',
   },
-
   ctaSection: {
     title: '¿Quieres ver más de mi trabajo?',
-    description: 'Explora mi portafolio completo...',
+    description: '...',
     buttonText: 'Ver proyectos',
     buttonLink: '/projects',
   },
 };
 ```
 
-**Usado en:** contact/page.tsx (junto con siteConfig para email/teléfono/ubicación)
+---
+
+### projectNavigationContent.ts
+
+**Archivo:** `app/config/projectNavigationContent.ts`
+
+Textos de toda la navegación interna de proyectos: botones de volver, prev/next, sidebar de detalles, aria-labels del modal y textos fallback para alt de imágenes sin caption.
+
+```typescript
+export const projectNavigationContent = {
+  backButton: {
+    text: 'Volver a proyectos',
+    textAll: 'Todos los proyectos',
+  },
+  navigation: {
+    previous: 'Anterior',
+    next: 'Siguiente',
+    backTo: 'Volver a',
+    projectOf: 'Proyecto',
+  },
+  projectDetails: {
+    location: 'Ubicación', year: 'Año', area: 'Superficie',
+    distance: 'Distancia', category: 'Categoría',
+  },
+  sections: {
+    features: 'Características principales',
+    aboutProject: 'Sobre este proyecto',
+    gallery: 'Galería del proyecto',
+    plantsAndTextures: 'Plantas y texturas',
+  },
+  cta: { viewFullProject: 'Ver proyecto completo' },
+  categoryNav: {
+    backTo: 'Volver a',
+    allProjects: 'Todos los proyectos',
+    nextCategory: 'Siguiente categoría',
+  },
+  sidebar: { projectDetails: 'Detalles del proyecto' },
+  modal: { close: 'Cerrar', previous: 'Anterior', next: 'Siguiente' },
+  fallbacks: {
+    detailImage: (n: number) => `Detalle ${n}`,
+    featureImage: 'Imagen destacada',
+    planImage: 'Plano del proyecto',
+    additionalInfo: 'Aquí puedes añadir más información...',
+  },
+};
+```
 
 ---
 
-### 🎨 projectsContent.ts - Categorías de Proyectos
+### projectsContent.ts
 
 **Archivo:** `app/config/projectsContent.ts`
 
-Define las categorías de proyectos mostradas en la página principal:
-
 ```typescript
-import { watercolors } from '../lib/watercolors';
-import { photos } from '../lib/photos';
-import { landscapeProjects } from '../lib/landscape';
-
 export const projectsContent = {
   pageTitle: 'Proyectos',
-  
   categories: [
     {
       id: 'landscape',
       title: 'Proyectos conceptuales',
-      description: 'De paisajismo y espacio público',
+      description: '...',
       slug: 'landscape',
-      count: landscapeProjects.length, // ⚡ Se actualiza automáticamente
+      count: landscapeProjects.length,  // se actualiza automáticamente
       image: '/images/image-projects-1.jpg',
     },
-    {
-      id: 'watercolors',
-      title: 'Sketches',
-      description: 'De arquitectura y paisaje',
-      slug: 'watercolors',
-      count: watercolors.length, // ⚡ Se actualiza automáticamente
-      image: '/images/image-projects-2.jpg',
-    },
-    {
-      id: 'photography',
-      title: 'Archivo fotográfico',
-      description: 'Y espacios públicos',
-      slug: 'photography',
-      count: photos.length, // ⚡ Se actualiza automáticamente
-      image: '/images/image-projects-3.jpg',
-    },
-    // Más categorías...
+    // watercolors, photography, references...
   ],
 };
 ```
 
-**✨ Ventaja:** Los contadores (`count`) se actualizan automáticamente al cambiar los arrays de datos.
-
-**Usado en:** projects/page.tsx
-
 ---
 
-### 🌳 landscape.ts - Proyectos Paisajísticos (Contenido Detallado)
+### landscape.ts — Proyectos de Paisajismo
 
 **Archivo:** `app/lib/landscape.ts`
-
-Contiene el contenido detallado de cada proyecto de paisajismo:
-
-```typescript
-export const landscapeProjects: Project[] = [
-  {
-    id: 1,
-    title: 'Nombre del Proyecto',
-    slug: 'nombre-del-proyecto',
-    description: 'Descripción breve',
-    location: 'Ciudad, País',
-    year: 2024,
-  },
-  // ...
-];
-```
-
-Para añadir un proyecto:
-1. Añade el objeto al array
-2. Incrementa el `id`
-3. El `slug` debe ser URL-friendly (sin espacios, todo minúsculas)
-
-### Fotografías
-
-**Archivo:** `app/lib/photos.ts`
-
-Configuración de fotografías del archivo:
-
-### 🌳 landscape.ts - Proyectos Paisajísticos (Contenido Detallado)
-
-**Archivo:** `app/lib/landscape.ts`
-
-Contiene el contenido detallado de cada proyecto de paisajismo:
 
 ```typescript
 export const landscapeProjects: LandscapeProject[] = [
@@ -532,135 +461,62 @@ export const landscapeProjects: LandscapeProject[] = [
     year: '2024',
     area: '168 m²',
     category: 'Proyecto conceptual',
-    
-    features: [
-      'Característica 1',
-      'Característica 2',
-    ],
-    
-    additionalInfo: [
-      'Párrafo 1 con información detallada...',
-      'Párrafo 2...',
-    ],
-    
+    features: ['Característica 1', 'Característica 2'],
+    additionalInfo: ['Párrafo 1...', 'Párrafo 2...'],
     detailImages: [
-      { filename: 'image-landscape-project-2.jpg', caption: 'Descripción de la imagen' },
-      { filename: 'image-landscape-project-3.jpg', caption: 'Otra descripción' },
+      { filename: 'image-x.jpg', caption: 'Descripción' },
     ],
-    
-    featureImage: { 
-      filename: 'image-landscape-project-6.jpg', 
-      caption: 'Imagen destacada' 
-    },
-    
-    // 🌿 Plantas y texturas - CONFIGURABLE POR PROYECTO
+    featureImage: { filename: 'image-y.jpg', caption: 'Imagen destacada' },
+    planImage: { filename: 'image-z.jpg', caption: 'Plano' },
     plantsAndTextures: [
       { filename: 'plant-salvia-rosmarinus.jpg', name: 'SALVIA ROSMARINUS' },
-      { filename: 'plant-lavandula-spica.jpg', name: 'LAVANDULA SPICA' },
-      { filename: 'plant-thymus-vulgaris.jpg', name: 'THYMUS VULGARIS' },
-      // Añade o elimina según necesites para cada proyecto
     ],
-    
-    authorNote: 'Nota final del autor sobre el proyecto',
   },
-  // ...
 ];
 ```
 
-**Para añadir un proyecto:**
-1. Añade el objeto al array
-2. Incrementa el `id`
-3. `additionalInfo` es un array de strings (cada string = un párrafo)
-
-**🌿 Plantas y Texturas por Proyecto:**
-
-Cada proyecto puede tener su propio conjunto de plantas y texturas:
-
-```typescript
-plantsAndTextures: [
-  { filename: 'plant-nombre-cientifico.jpg', name: 'NOMBRE EN MAYÚSCULAS' },
-  { filename: 'texture-material.jpg', name: 'NOMBRE DEL MATERIAL' },
-]
-```
-
-**Características:**
-- ✅ Cada proyecto tiene su lista independiente
-- ✅ Fácilmente editable: añade o elimina líneas
-- ✅ El `filename` debe existir en `public/images/`
-- ✅ Se muestran automáticamente en la página de detalle del proyecto
-
-**Para modificar:**
-- Añadir: Copia una línea y modifica filename y name
-- Eliminar: Borra la línea completa
-- Siempre mantén la coma al final de cada línea (excepto la última)
+Las páginas `landscape/page.tsx` y `landscape/[id]/page.tsx` usan `generateStaticParams()` → SSG completo.
 
 ---
 
-### 📸 photos.ts - Archivo Fotográfico
+### photos.ts — Archivo Fotográfico
 
 **Archivo:** `app/lib/photos.ts`
 
-Configuración de fotografías del archivo:
-
 ```typescript
 export const photos: Photo[] = [
-  { 
-    id: 1, 
+  {
+    id: 1,
     filename: 'photo-001.jpg',
     title: 'Título',
     description: 'Descripción',
     location: 'Ubicación',
     year: '2024',
     category: 'Paisajismo',
+    additionalInfo: 'Texto opcional de detalle',
   },
-  // ...
 ];
 ```
 
-**Importante:** El `filename` debe coincidir con el archivo en `public/images/`
+La página `photography/[id]/page.tsx` usa navegación circular y `generateStaticParams()`.
 
 ---
 
-### 🎨 watercolors.ts - Sketches / Acuarelas ⚡ AUTOMÁTICO
+### watercolors.ts — Sketches (automático)
 
 **Archivo:** `app/lib/watercolors.ts`
 
-**Sistema de generación automática:**
-
 ```typescript
-// 🎨 SOLO CAMBIA ESTE NÚMERO cuando añadas o elimines acuarelas
+// Solo cambia este número al añadir o eliminar sketches
 const TOTAL_WATERCOLORS = 11;
 
-// Genera automáticamente el array de acuarelas
-export const watercolors: Watercolor[] = Array.from(
-  { length: TOTAL_WATERCOLORS }, 
-  (_, i) => {
-    const number = i + 1;
-    return {
-      id: number,
-      filename: `watercolor-${String(number).padStart(3, '0')}.jpg`,
-      title: `Sketch ${number}`,
-      description: '',
-      orientation: 'vertical',
-      year: '2024',
-      medium: 'Acuarela sobre papel'
-    };
-  }
-);
+export const watercolors = Array.from({ length: TOTAL_WATERCOLORS }, (_, i) => ({
+  id: i + 1,
+  filename: `watercolor-${String(i + 1).padStart(3, '0')}.jpg`,
+  title: `Sketch ${i + 1}`,
+  // ...
+}));
 ```
-
-**Ventajas:**
-- ✅ Solo cambias un número (`TOTAL_WATERCOLORS`)
-- ✅ Nombres de archivo generados automáticamente con formato correcto
-- ✅ No necesitas añadir cada acuarela manualmente
-- ✅ Reduce errores y ahorra tiempo
-
-**Para añadir/eliminar acuarelas:**
-1. Añade archivos con formato: `watercolor-001.jpg`, `watercolor-002.jpg`, etc. en `public/images/`
-2. Actualiza `TOTAL_WATERCOLORS` con el número total
-3. ¡Listo! Todo se actualiza automáticamente
-
-**Nota:** Los contadores en `projectsContent.ts` también se actualizan automáticamente usando `.length`
 
 ---
 
@@ -668,18 +524,7 @@ export const watercolors: Watercolor[] = Array.from(
 
 **Archivo:** `app/lib/types.ts`
 
-Definiciones de TypeScript:
-
 ```typescript
-export interface Project {
-  id: number;
-  title: string;
-  slug: string;
-  description: string;
-  location: string;
-  year: number;
-}
-
 export interface Photo {
   id: number;
   filename: string;
@@ -690,32 +535,23 @@ export interface Photo {
   category: string;
   additionalInfo?: string;
 }
+// LandscapeProject, Watercolor, etc.
 ```
 
 ---
 
-## 🎨 Estilos y Personalización
+## Estilos y Personalización
 
-### Tailwind CSS
+### Tailwind CSS 4
 
-El proyecto usa Tailwind con configuración personalizada.
-
-**Archivo:** `tailwind.config.ts`
+El proyecto usa Tailwind CSS 4. La configuración del contenido escaneado está en `tailwind.config.ts`:
 
 ```typescript
 export default {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#000000',
-        secondary: '#1a1a1a',
-        accent: '#0d3d3d',
-      },
-    },
-  },
+  // Tailwind 4 usa CSS nativo para temas; evitar plugins de v3
 };
 ```
 
@@ -723,72 +559,28 @@ export default {
 
 **Archivo:** `app/globals.css`
 
-Variables CSS personalizadas:
-
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --color-primary: 0 0% 0%;
-    --color-secondary: 0 0% 10%;
-    --color-accent: 180 60% 15%;
-  }
-}
+@import "tailwindcss";
 
 /* Utilidades personalizadas */
-.container-portfolio {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+@layer utilities {
+  .container-portfolio {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 }
 ```
 
 ### Clases Tailwind Comunes
 
-```css
-/* Espaciado */
-p-4, p-6, p-8        # padding
-m-4, m-6, m-8        # margin
-gap-4, gap-6         # gap en grids/flex
-
-/* Layout */
-flex, grid           # display
-items-center         # align-items
-justify-between      # justify-content
-
+```
 /* Responsive */
-sm:text-lg          # ≥640px
-md:text-xl          # ≥768px
-lg:text-2xl         # ≥1024px
-xl:text-3xl         # ≥1280px
+md:text-xl       ≥768px
+lg:text-2xl      ≥1024px
 
-/* Colores */
-bg-white, bg-gray-100
-text-gray-900, text-gray-600
-hover:bg-gray-50
-
-/* Tipografía */
-font-bold, font-semibold
-text-sm, text-base, text-lg
-leading-tight, leading-relaxed
-```
-
-### Personalizar Colores
-
-Opción 1: Modificar `tailwind.config.ts`
-```typescript
-colors: {
-  primary: '#tu-color',
-  secondary: '#tu-color',
-}
-```
-
-Opción 2: Modificar `app/globals.css`
-```css
-:root {
-  --color-primary: h s l;
-}
+/* Colores del proyecto */
+bg-gray-950      Negro casi puro (principal)
+text-gray-600    Gris para texto secundario
+border-gray-200  Divisores
 ```
 
 ---
@@ -1168,8 +960,8 @@ Para dudas técnicas sobre este proyecto, consulta:
 
 ---
 
-**Versión:** 2.0  
-**Última actualización:** Febrero 2026  
+**Versión:** 3.0  
+**Última actualización:** Marzo 2026  
 **Autor:** Documentación consolidada del proyecto
 
 ---

@@ -1,15 +1,15 @@
-# 🎨 Portfolio de Arquitectura y Paisajismo
+# Portfolio de Arquitectura y Paisajismo
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)](https://tailwindcss.com/)
 
 Portfolio web profesional minimalista. Optimizado, limpio y fácil de mantener.
 
 ---
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ```bash
 npm install
@@ -17,54 +17,66 @@ npm run dev
 # http://localhost:3000
 ```
 
+> **Requisito:** Node.js ≥ 20
+
 ---
 
-## 📚 Documentación
+## Documentación
 
 **Solo 2 documentos, nada más:**
 
-### 💻 [Para Desarrolladores → DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)
+### [Para Desarrolladores → DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)
 
 Setup, arquitectura, componentes, deploy, troubleshooting. **Todo lo técnico está aquí.**
 
-### 📝 [Para No Desarrolladores → GUIA_CAMBIOS_CONTENIDO.md](./docs/GUIA_CAMBIOS_CONTENIDO.md)
+### [Para No Desarrolladores → GUIA_CAMBIOS_CONTENIDO.md](./docs/GUIA_CAMBIOS_CONTENIDO.md)
 
 Cómo editar textos, cambiar imágenes, optimizarlas y subirlas a GitHub. **Sin código.**
 
 ---
 
-## 📁 Estructura
+## Estructura
 
 ```
 marcos-archive/
-├── app/                    # Código de la aplicación
+├── app/
 │   ├── components/        # Componentes React
-│   ├── lib/               # Datos (proyectos, fotos)
-│   ├── config/site.ts     # ⚙️ Configuración principal
-│   └── ...
-├── public/images/         # 🖼️ Todas las imágenes
-├── docs/                  # 📚 Solo 2 guías
-│   ├── DEVELOPER_GUIDE.md
-│   └── GUIA_CAMBIOS_CONTENIDO.md
+│   ├── config/            # ⚙️ TODO el contenido visible
+│   │   ├── site.ts        # Info del sitio, contacto, redes, footer, créditos
+│   │   ├── navigationContent.ts
+│   │   ├── homeContent.ts
+│   │   ├── aboutContent.ts
+│   │   ├── contactContent.ts
+│   │   ├── projectsContent.ts
+│   │   ├── projectNavigationContent.ts
+│   │   └── referencesContent.ts
+│   ├── lib/               # Datos (proyectos, fotos, tipos)
+│   ├── hooks/             # Custom hooks
+│   └── ...páginas
+├── public/images/         # Todas las imágenes
+├── docs/                  # Solo 2 guías
 └── optimize-images.sh     # Script de optimización
 ```
 
 ---
 
-## ✏️ Cambios Rápidos
+## Cambios Rápidos
 
-**✅ TODO centralizado en:** `app/config/site.ts`
+**Todo el contenido visible está centralizado en `app/config/`**
 
-- Nombre, email, teléfono
-- Redes sociales (Instagram, LinkedIn)
-- Información del arquitecto
-- Colores y configuración
-
-**Otros archivos:**
-- **Biografía completa:** `app/about/page.tsx`  
-- **Proyectos paisajismo:** `app/lib/data.ts`  
-- **Fotografías:** `app/lib/photos.ts`  
-- **Imágenes:** `public/images/`
+| Qué cambiar | Archivo |
+|---|---|
+| Nombre, email, teléfono, redes, footer | `app/config/site.ts` |
+| Menú de navegación | `app/config/navigationContent.ts` |
+| Página de inicio | `app/config/homeContent.ts` |
+| Página "Sobre mí" | `app/config/aboutContent.ts` |
+| Página de Contacto | `app/config/contactContent.ts` |
+| Categorías de proyectos | `app/config/projectsContent.ts` |
+| Textos de navegación entre proyectos | `app/config/projectNavigationContent.ts` |
+| Proyectos de paisajismo (datos) | `app/lib/landscape.ts` |
+| Fotografías | `app/lib/photos.ts` |
+| Sketches | `app/lib/watercolors.ts` |
+| Imágenes | `public/images/` |
 
 **Optimizar imágenes:**
 ```bash
@@ -73,22 +85,24 @@ marcos-archive/
 
 ---
 
-## 🛠️ Comandos
+## Comandos
 
 ```bash
 npm run dev          # Desarrollo
 npm run build        # Build producción
 npm run lint         # Verificar código
+npx tsc --noEmit     # Verificar tipos TypeScript
 ./optimize-images.sh # Optimizar imágenes
 ```
 
 ---
 
-## 🚀 Deploy
+## Deploy
 
 **Vercel (recomendado):**
 1. Conecta tu repo en [vercel.com](https://vercel.com)
-2. Deploy automático en cada push
+2. Añade la variable de entorno `NEXT_PUBLIC_SITE_URL=https://tusitio.com`
+3. Deploy automático en cada push
 
 O con CLI:
 ```bash
@@ -98,7 +112,7 @@ vercel
 
 ---
 
-## 🆘 Problemas
+## Problemas
 
 ```bash
 # No arranca
@@ -111,7 +125,7 @@ lsof -ti:3000 | xargs kill -9
 
 ---
 
-## 📖 Recursos
+## Recursos
 
 - [Next.js Docs](https://nextjs.org/docs)
 - [Tailwind Docs](https://tailwindcss.com/docs)
@@ -124,4 +138,4 @@ lsof -ti:3000 | xargs kill -9
 
 ---
 
-*v2.0 - Docs optimizadas y consolidadas*
+*v3.0 - Refactor completo: contenido 100% centralizado en config/*
